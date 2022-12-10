@@ -1,0 +1,50 @@
+#mainheader {
+    font-size: 92px;
+    margin-top: 160px;
+    font-family: 'Mulish';
+}
+
+#menu-container {
+    width: 100%;
+    height: fit-content;
+    padding: 60px;
+    display: grid;
+    gap: 30px;
+    grid-auto-columns: 30px;
+    grid-auto-rows: 30px;
+
+    #category1 {
+            grid-row: 1 / 15;
+            grid-column: 1 / 14;
+    }
+    #category2 {
+        grid-row: 1 / 11;
+        grid-column: 14 / 30;
+    }
+    #category3 {
+        grid-row: 15 / 26;
+        grid-column: 1 / 15;
+    }
+    #category4 {
+        grid-row: 11 / 26;
+        grid-column: 15 / 30;
+    }
+
+
+    #category5 {
+        grid-row: 26 / 40;
+        grid-column: 1 / 14;
+    }
+    #category6 {
+        grid-row: 26 / 36;
+        grid-column: 14 / 30;
+    }
+    #category7 {
+        grid-row: 40 / 51;
+        grid-column: 1 / 15;
+    }
+    #category8 {
+        grid-row: 36 / 47;
+        grid-column: 15 / 30;
+    }
+}

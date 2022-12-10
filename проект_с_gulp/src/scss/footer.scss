@@ -1,0 +1,82 @@
+footer {
+    height: 510px;
+    width: inherit;
+    background-color: $footer-back-d0;
+    color: $primary-light;
+    display: grid;
+    font-size: $font-small;
+    .info {
+        height: 388px;
+        display: grid;
+        grid-template-rows: auto;
+        grid-template-columns: 65% auto;
+        .contact-data{
+            display: grid;
+            grid-template-columns: 100%;
+            row-gap: 30px;
+            padding: 80px;
+            &_contacts {
+                display: grid;
+                align-content: flex-start;
+                row-gap: 10px;
+            }
+        }
+        .follows {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            .background_pict {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                .pelena {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: $footer-back-d0;
+                    backdrop-filter: blur(1px);
+                }
+            }
+            .follows_header {
+                color: $primary-dark;
+                text-transform: uppercase;
+                font-size: $font-descript;
+                color: $primary-light;
+            }
+            .follows_link {
+                font-family: 'AlegreyaSans';
+                color: $primary-light;
+            }
+        }
+    }
+    .offer {
+        width: 100%;
+        height: 122px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: $footer-light;
+        padding: 40px;
+        color: $description;
+        .offer_warning {
+            // nothing
+        }
+        .offer_data {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            .data_what {
+                // nothing
+            }
+            .data_support {
+                // nothing
+            }
+        }
+    }
+}

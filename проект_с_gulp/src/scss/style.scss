@@ -1,0 +1,52 @@
+@import "vars";
+@import "null_style";
+@import "fonts";
+@import "header";
+@import "footer";
+@import "ids";
+@import "menu";
+
+body {
+    background: $backgroung;
+    position: relative;
+}
+
+.img {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    object-position: left top;
+}
+
+.logo {
+    height: 80px;
+    width: fit-content;
+}
+
+.background-img {
+    position: fixed;
+    z-index: -1;
+    top: 0px;
+    left: 0px;
+}
+
+.container {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 60px;
+}
+
+.contrast-text {
+    color: $contrast-text;
+}
+
+.title {
+    font-size: $font-header-regular;
+    font-family: 'Mulish';
+    color: $primary-light;
+}
+
+.subtitle {
+    color: $description;
+    font-size: $font-descript;
+}

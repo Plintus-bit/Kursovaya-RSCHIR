@@ -1,0 +1,84 @@
+header {
+    height: 158px;
+    width: 100%;
+    padding: 40px 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    .nav, .nav-mainpage {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0px;
+        gap: 40px;
+        .nav_link {
+            .link_button {
+                position: relative;
+                box-sizing: content-box;
+                border-radius: 0px;
+                padding: 14px 0px;
+                background-color: transparent;
+                color: $description;
+                transition: ease-in-out 0.3s;
+                transform-origin: center;
+                transition-delay: 50ms;
+                // &::before, &::after {
+                //     position: absolute;
+                //     content: '';
+                //     top: 48%;
+                //     left: 46px;
+                //     width: 5px;
+                //     height: 5px;
+                //     border-radius: 10px;
+                //     background-color: $primary-light;
+                //     opacity: 0;
+                //     transition: 0.12s;
+                //     transition-delay: 200ms;
+                // }
+                // &::after {
+                //     left: auto;
+                //     right: 46px;
+                // }
+                &:hover {
+                    border-radius: 100px;
+                    padding: 14px 66px;
+                    background-color: $contrast-text-b0;
+                    color: $backgroung;
+                    // &::after, &::before {
+                    //     opacity: 1;
+                    // }
+                }
+                &-active {
+                    border-radius: 100px;
+                    padding: 14px 66px;
+                    background-color: $header-buttons-d0;
+                    color: $primary-light;
+                    &::before, &::after {
+                        position: absolute;
+                        content: '';
+                        top: 48%;
+                        left: 46px;
+                        width: 5px;
+                        height: 5px;
+                        border-radius: 10px;
+                        background-color: $primary-light;
+                        opacity: 1;
+                    }
+                    &::after {
+                        left: auto;
+                        right: 46px;
+                    }
+                }
+            }
+        }
+    }
+    .nav-mainpage {
+        .nav_link {
+            .link_button {
+                color: $primary-light;
+            }
+        }
+    }
+}
