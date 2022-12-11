@@ -1,7 +1,6 @@
 {
   "name": "gulp_project",
   "version": "1.0.0",
-  "description": "",
   "main": "gulpfile.js",
   "type": "module",
   "scripts": {
@@ -46,6 +45,8 @@
     "webpack-stream": "^7.0.0"
   },
   "dependencies": {
+    "g": "^2.0.1",
     "gulp-cli": "^2.3.0"
-  }
+  },
+  "description": ""
 }

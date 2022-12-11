@@ -1,0 +1,41 @@
+#filter-menu {
+    .filter-menu_header {
+        align-self: center;
+        margin-bottom: 30px;
+    }
+    .filter-menu_filter-category {
+        .filter-category_header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            .header_title {
+                font-size: $font-descript;
+            }
+            .header_open {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                box-sizing: content-box;
+                width: 14px;
+                height: 14px;
+                padding: 4px;
+            }
+        }
+        .filter-category_checkboxes {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            .input {
+                // редактировать
+                &_type+label {
+                    font-size: $font-small;
+                    color: $primary-dark;
+                }
+            }
+        }
+    }
+}

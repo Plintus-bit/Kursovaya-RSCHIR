@@ -1,7 +1,8 @@
 footer {
     height: 510px;
+    z-index: 4;
     width: inherit;
-    background-color: $footer-back-d0;
+    background-color: $accent-medium;
     color: $primary-light;
     display: grid;
     font-size: $font-small;

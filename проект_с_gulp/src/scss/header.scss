@@ -1,6 +1,13 @@
 header {
+    // 158 px
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    background-color: $backgroung;
+    z-index: 10;
     height: 158px;
     width: 100%;
+    // 40px 60px
     padding: 40px 60px;
     display: flex;
     flex-direction: row;
@@ -12,12 +19,14 @@ header {
         justify-content: center;
         align-items: center;
         padding: 0px;
+        // 40px
         gap: 40px;
         .nav_link {
             .link_button {
                 position: relative;
                 box-sizing: content-box;
                 border-radius: 0px;
+                // 14px 0px
                 padding: 14px 0px;
                 background-color: transparent;
                 color: $description;
@@ -43,7 +52,8 @@ header {
                 // }
                 &:hover {
                     border-radius: 100px;
-                    padding: 14px 66px;
+                    // 14px 64px
+                    padding: 14px 64px;
                     background-color: $contrast-text-b0;
                     color: $backgroung;
                     // &::after, &::before {
@@ -52,7 +62,8 @@ header {
                 }
                 &-active {
                     border-radius: 100px;
-                    padding: 14px 66px;
+                    // 14px 64px
+                    padding: 14px 64px;
                     background-color: $header-buttons-d0;
                     color: $primary-light;
                     &::before, &::after {
@@ -68,7 +79,8 @@ header {
                     }
                     &::after {
                         left: auto;
-                        right: 46px;
+                        // 48px
+                        right: 48px;
                     }
                 }
             }

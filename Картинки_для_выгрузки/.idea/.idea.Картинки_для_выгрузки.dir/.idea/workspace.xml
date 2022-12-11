@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c48860e0-5aad-48fe-a856-5613f37be168" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../проект_с_gulp/gulp/version.json" beforeDir="false" afterPath="$PROJECT_DIR$/../проект_с_gulp/gulp/version.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../проект_с_gulp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../проект_с_gulp/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../проект_с_gulp/src/menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/../проект_с_gulp/src/menu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../проект_с_gulp/src/scss/header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../проект_с_gulp/src/scss/header.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../проект_с_gulp/src/scss/ids.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../проект_с_gulp/src/scss/ids.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../проект_с_gulp/src/scss/menu.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../проект_с_gulp/src/scss/menu.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../проект_с_gulp/src/scss/vars.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../проект_с_gulp/src/scss/vars.scss" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectId" id="2IlE2wKacSC26ACn3QKgJg2B98o" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <created>1670747570919</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1670747570919</updated>
+      <workItem from="1670747571041" duration="4000" />
+    </task>
+    <servers />
+  </component>
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>

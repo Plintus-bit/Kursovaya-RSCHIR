@@ -1,50 +1,98 @@
 #mainheader {
-    font-size: 92px;
-    margin-top: 160px;
+    font-size: 2.4em;
+    margin-top: 1.4em;
     font-family: 'Mulish';
+}
+
+#main-header {
+    background-color: transparent;
 }
 
 #menu-container {
     width: 100%;
     height: fit-content;
-    padding: 60px;
+    padding: 1.2em;
     display: grid;
-    gap: 30px;
-    grid-auto-columns: 30px;
-    grid-auto-rows: 30px;
+    gap: 0.6em;
+
+    grid-template-areas:
+    "A A A A A B B B B B B"
+    "A A A A A B B B B B B"
+    "A A A A A B B B B B B"
+    "A A A A A B B B B B B"
+    "A A A A A . D D D D D"
+    "C C C C C C D D D D D"
+    "C C C C C C D D D D D"
+    "C C C C C C D D D D D"
+    "C C C C C C D D D D D"
+    "E E E E E F F F F F F"
+    "E E E E E F F F F F F"
+    "E E E E E F F F F F F"
+    "E E E E E F F F F F F"
+    "E E E E E . H H H H H"
+    "G G G G G G H H H H H"
+    "G G G G G G H H H H H"
+    "G G G G G G H H H H H"
+    "G G G G G G H H H H H";
+    
+    grid-auto-columns: 3.7em;
+    grid-auto-rows: 3.7em;
 
     #category1 {
-            grid-row: 1 / 15;
-            grid-column: 1 / 14;
+        grid-area: A;
     }
     #category2 {
-        grid-row: 1 / 11;
-        grid-column: 14 / 30;
+        grid-area: B;
     }
     #category3 {
-        grid-row: 15 / 26;
-        grid-column: 1 / 15;
+        grid-area: C;
     }
     #category4 {
-        grid-row: 11 / 26;
-        grid-column: 15 / 30;
+        grid-area: D;
     }
 
 
     #category5 {
-        grid-row: 26 / 40;
-        grid-column: 1 / 14;
+        grid-area: E;
     }
     #category6 {
-        grid-row: 26 / 36;
-        grid-column: 14 / 30;
+        grid-area: F;
     }
     #category7 {
-        grid-row: 40 / 51;
-        grid-column: 1 / 15;
+        grid-area: G;
     }
     #category8 {
-        grid-row: 36 / 47;
-        grid-column: 15 / 30;
+        grid-area: H;
     }
+}
+
+#filter-menu {
+    position: fixed;
+    z-index: 2;
+    // fixed
+    width: 390px;
+    height: auto;
+    padding: 0px 40px;
+    background-color: $backgroung;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-right: 30px;
+}
+
+#section-container {
+    display: flex;
+    flex-direction: row;
+}
+
+#goods_place {
+    margin-left: 390px;
+    // if filter-menu fixed
+    display: grid;
+    width: 100%;
+    gap: 20px;
+    grid-template-columns: 33% 33% 33%;
+    grid-auto-rows: 500px;
+    height: max-content;
 }

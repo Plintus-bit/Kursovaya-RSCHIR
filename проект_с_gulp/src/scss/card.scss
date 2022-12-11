@@ -1,0 +1,68 @@
+.good-card {
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 2px;
+    .img {
+        object-position: center center;
+    }
+    .good-card_photo {
+        width: 100%;
+        height: 70%;
+    }
+    .good-card_info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        width: 100%;
+        .info_name-cost {
+            width: 100%;
+            font-size: $font-descript;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        .info_description {
+            width: 100%;
+            height: $font-small;
+            font-size: $font-small;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .info_activities {
+            width: 100%;
+            .activities_not-added {
+                .add {
+                    font-size: $font-small;
+                }
+            }
+            .activities_added {
+                display: grid;
+                grid-template-columns: 60% auto;
+                justify-content: space-between;
+                align-items: center;
+                .controls {
+                    &_minus, &_plus {
+                        width: 36px;
+                        height: 36px;
+                    }
+                    &_value {
+                        width: fit-content;
+                    }
+                }
+                .added_controls {
+                    display: grid;
+                    grid-template-columns: auto auto auto;
+                    justify-content: space-between;
+                }
+                .delete {
+                    width: 60px;
+                    height: 60px;
+                }
+            }
+        }
+    }
+}

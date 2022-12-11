@@ -5,6 +5,8 @@
 @import "footer";
 @import "ids";
 @import "menu";
+@import "sections";
+@import "card";
 
 body {
     background: $backgroung;
@@ -16,6 +18,11 @@ body {
     block-size: 100%;
     object-fit: cover;
     object-position: left top;
+    &-full {
+        inline-size: 100%;
+        block-size: 100%;
+        object-fit: contain;
+    }
 }
 
 .logo {
@@ -31,7 +38,9 @@ body {
 }
 
 .container {
+    position: relative;
     width: 100%;
+    margin-top: 158px;
     box-sizing: border-box;
     padding: 60px;
 }
@@ -49,4 +58,26 @@ body {
 .subtitle {
     color: $description;
     font-size: $font-descript;
+}
+
+.button, .button-inactive {
+    width: 100%;
+    padding: 12px 0px;
+    border-radius: 100px;
+    font-size: $font-descript;
+    color: $primary-dark;
+    transition: ease-in-out 0.08s;
+    border: 2px solid $primary-light;
+    background-color: $backgroung;
+}
+
+.button:hover {
+    color: $backgroung;
+    background-color: $primary-dark;
+}
+
+.button-inactive {
+    background-color: $button-light;
+    color: $description;
+    border: none;
 }
