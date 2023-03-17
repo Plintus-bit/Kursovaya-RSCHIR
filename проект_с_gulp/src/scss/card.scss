@@ -61,6 +61,10 @@
                 .delete {
                     width: 60px;
                     height: 60px;
+                    border-radius: 120px;
+                    &:active {
+                        background-color: $accent-pastel;
+                    }
                 }
             }
         }

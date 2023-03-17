@@ -7,13 +7,15 @@
 @import "menu";
 @import "sections";
 @import "card";
+@import "orders";
+@import "cart";
 
 body {
     background: $backgroung;
     position: relative;
 }
 
-.img {
+.img, .img-center {
     inline-size: 100%;
     block-size: 100%;
     object-fit: cover;
@@ -23,6 +25,9 @@ body {
         block-size: 100%;
         object-fit: contain;
     }
+}
+.img-center {
+    object-position: center center;
 }
 
 .logo {
@@ -41,6 +46,18 @@ body {
     position: relative;
     width: 100%;
     margin-top: 158px;
+    box-sizing: border-box;
+    padding: 60px;
+}
+
+.container-2 {
+    position: relative;
+    width: 100%;
+    min-height: 420px;
+    margin-top: 158px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     box-sizing: border-box;
     padding: 60px;
 }

@@ -1,0 +1,76 @@
+.empty-cart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    .button {
+        padding: 16px 56px;
+    }
+}
+
+.order-goods {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 220px;
+    grid-auto-rows: 220px;
+    row-gap: 16px;
+    margin-top: 30px;
+    .order-good {
+        position: relative;
+        display: grid;
+        width: 100%;
+        height: 100%;
+        grid-template-columns: 35% 65%;
+        grid-template-rows: 100%;
+        grid-auto-columns: 35% 65%;
+        grid-auto-rows: 100%;
+        border-radius: 2px;
+        color: $primary-dark;
+        &::after {
+            content: url("../img/line.png");
+            width: 100%;
+            overflow: hidden;
+            position: absolute;
+            left: 0px;
+            bottom: -18px;
+        }
+        .subtitle {
+            color: $primary-dark;
+            .good-cost {
+                color: $description;
+            }
+        }
+        &_data {
+            padding-left: 20px;
+            padding-right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .added_controls {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            justify-content: space-between;
+            width: 25%;
+            .controls {
+                &_minus, &_plus {
+                    width: 36px;
+                    height: 36px;
+                }
+                &_value {
+                    width: fit-content;
+                }
+            }
+        }
+        .delete {
+            width: 60px;
+            height: 60px;
+            border-radius: 120px;
+            &:active {
+                background-color: $accent-pastel;
+            }
+        }
+    }
+}

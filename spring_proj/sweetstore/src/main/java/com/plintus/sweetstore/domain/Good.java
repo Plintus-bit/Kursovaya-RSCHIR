@@ -1,20 +1,35 @@
 package com.plintus.sweetstore.domain;
 
 import jakarta.persistence.*;
+import lombok.ToString;
+import org.hibernate.annotations.GeneratedColumn;
+
 
 @Entity
 public class Good {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
     private Integer article;
     private String name;
     private String descript;
-    private Integer count;
+    private Integer cost;
     private String url;
 
-//    Getters
-    public Integer getId() {
+    public Good(Integer article, String name, String descript, Integer cost, String url){
+        this.article = article;
+        this.name = name;
+        this.descript = descript;
+        this.cost = cost;
+        this.url = url;
+    }
+
+    public Good() {
+
+    }
+
+    //    Getters
+    public Long getId() {
         return id;
     }
 
@@ -30,16 +45,18 @@ public class Good {
         return descript;
     }
 
-    public Integer getCount() {
-        return count;
+    public Integer getCost() {
+        return cost;
     }
 
     public String getUrl() {
         return url;
     }
 
+
 //    Setters
-    public void setId(Integer id) {
+
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -55,11 +72,23 @@ public class Good {
         this.descript = descript;
     }
 
-    public void setCount(Integer count) {
-        this.count = count;
+    public void setCost(Integer cost) {
+        this.cost = cost;
     }
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    @Override
+    public String toString() {
+        return "Good{" +
+                "id=" + id +
+                ", article=" + article +
+                ", name='" + name + '\'' +
+                ", descript='" + descript + '\'' +
+                ", cost=" + cost +
+                ", url='" + url + '\'' +
+                '}';
     }
 }

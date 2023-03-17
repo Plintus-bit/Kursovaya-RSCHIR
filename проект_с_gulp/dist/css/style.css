@@ -245,33 +245,165 @@ footer .offer .offer_data {
   padding: 1.2em;
   display: grid;
   gap: 0.6em;
-  grid-template-areas: "A A A A A B B B B B B" "A A A A A B B B B B B" "A A A A A B B B B B B" "A A A A A B B B B B B" "A A A A A . D D D D D" "C C C C C C D D D D D" "C C C C C C D D D D D" "C C C C C C D D D D D" "C C C C C C D D D D D" "E E E E E F F F F F F" "E E E E E F F F F F F" "E E E E E F F F F F F" "E E E E E F F F F F F" "E E E E E . H H H H H" "G G G G G G H H H H H" "G G G G G G H H H H H" "G G G G G G H H H H H" "G G G G G G H H H H H";
+  grid-template-areas: "a a a a a b b b b b b" "a a a a a b b b b b b" "a a a a a b b b b b b" "a a a a a b b b b b b" "a a a a a . d d d d d" "c c c c c c d d d d d" "c c c c c c d d d d d" "c c c c c c d d d d d" "c c c c c c d d d d d" "e e e e e f f f f f f" "e e e e e f f f f f f" "e e e e e f f f f f f" "e e e e e f f f f f f" "e e e e e . h h h h h" "g g g g g g h h h h h" "g g g g g g h h h h h" "g g g g g g h h h h h" "g g g g g g h h h h h" "i i i i i j j j j j j" "i i i i i j j j j j j" "i i i i i j j j j j j" "i i i i i j j j j j j" "i i i i i . l l l l l" "k k k k k k l l l l l" "k k k k k k l l l l l" "k k k k k k l l l l l" "k k k k k k l l l l l" "m m m m m n n n n n n" "m m m m m n n n n n n" "m m m m m n n n n n n" "m m m m m n n n n n n" "m m m m m . p p p p p" "o o o o o o p p p p p" "o o o o o o p p p p p" "o o o o o o p p p p p" "o o o o o o p p p p p" "q q q q q r r r r r r" "q q q q q r r r r r r" "q q q q q r r r r r r" "q q q q q r r r r r r" "q q q q q . t t t t t" "s s s s s s t t t t t" "s s s s s s t t t t t" "s s s s s s t t t t t" "s s s s s s t t t t t" "u u u u u v v v v v v" "u u u u u v v v v v v" "u u u u u v v v v v v" "u u u u u v v v v v v" "u u u u u . x x x x x" "w w w w w w x x x x x" "w w w w w w x x x x x" "w w w w w w x x x x x" "w w w w w w x x x x x" "y y y y y z z z z z z" "y y y y y z z z z z z" "y y y y y z z z z z z" "y y y y y z z z z z z" "y y y y y . B B B B B" "A A A A A A B B B B B" "A A A A A A B B B B B" "A A A A A A B B B B B" "A A A A A A B B B B B" "C C C C C D D D D D D" "C C C C C D D D D D D" "C C C C C D D D D D D" "C C C C C D D D D D D" "C C C C C . F F F F F" "E E E E E E F F F F F" "E E E E E E F F F F F" "E E E E E E F F F F F" "E E E E E E F F F F F" "G G G G G H H H H H H" "G G G G G H H H H H H" "G G G G G H H H H H H" "G G G G G H H H H H H" "G G G G G . J J J J J" "I I I I I I J J J J J" "I I I I I I J J J J J" "I I I I I I J J J J J" "I I I I I I J J J J J" "K K K K K L L L L L L" "K K K K K L L L L L L" "K K K K K L L L L L L" "K K K K K L L L L L L" "K K K K K . N N N N N" "M M M M M M N N N N N" "M M M M M M N N N N N" "M M M M M M N N N N N" "M M M M M M N N N N N" "O O O O O P P P P P P" "O O O O O P P P P P P" "O O O O O P P P P P P" "O O O O O P P P P P P" "O O O O O . R R R R R" "Q Q Q Q Q Q R R R R R" "Q Q Q Q Q Q R R R R R" "Q Q Q Q Q Q R R R R R" "Q Q Q Q Q Q R R R R R" "S S S S S T T T T T T" "S S S S S T T T T T T" "S S S S S T T T T T T" "S S S S S T T T T T T" "S S S S S . V V V V V" "U U U U U U V V V V V" "U U U U U U V V V V V" "U U U U U U V V V V V" "U U U U U U V V V V V" "W W W W W X X X X X X" "W W W W W X X X X X X" "W W W W W X X X X X X" "W W W W W X X X X X X" "W W W W W . Z Z Z Z Z" "Y Y Y Y Y Y Z Z Z Z Z" "Y Y Y Y Y Y Z Z Z Z Z" "Y Y Y Y Y Y Z Z Z Z Z" "Y Y Y Y Y Y Z Z Z Z Z";
   grid-auto-columns: 3.7em;
   grid-auto-rows: 3.7em;
 }
 #menu-container #category1 {
-  grid-area: A;
+  grid-area: a;
 }
 #menu-container #category2 {
-  grid-area: B;
+  grid-area: b;
 }
 #menu-container #category3 {
-  grid-area: C;
+  grid-area: c;
 }
 #menu-container #category4 {
-  grid-area: D;
+  grid-area: d;
 }
 #menu-container #category5 {
-  grid-area: E;
+  grid-area: e;
 }
 #menu-container #category6 {
-  grid-area: F;
+  grid-area: f;
 }
 #menu-container #category7 {
-  grid-area: G;
+  grid-area: g;
 }
 #menu-container #category8 {
+  grid-area: h;
+}
+#menu-container #category9 {
+  grid-area: i;
+}
+#menu-container #category10 {
+  grid-area: j;
+}
+#menu-container #category11 {
+  grid-area: k;
+}
+#menu-container #category12 {
+  grid-area: l;
+}
+#menu-container #category13 {
+  grid-area: m;
+}
+#menu-container #category14 {
+  grid-area: n;
+}
+#menu-container #category15 {
+  grid-area: o;
+}
+#menu-container #category16 {
+  grid-area: p;
+}
+#menu-container #category17 {
+  grid-area: q;
+}
+#menu-container #category18 {
+  grid-area: r;
+}
+#menu-container #category19 {
+  grid-area: s;
+}
+#menu-container #category20 {
+  grid-area: t;
+}
+#menu-container #category21 {
+  grid-area: u;
+}
+#menu-container #category22 {
+  grid-area: v;
+}
+#menu-container #category23 {
+  grid-area: w;
+}
+#menu-container #category24 {
+  grid-area: x;
+}
+#menu-container #category25 {
+  grid-area: y;
+}
+#menu-container #category26 {
+  grid-area: z;
+}
+#menu-container #category27 {
+  grid-area: A;
+}
+#menu-container #category28 {
+  grid-area: B;
+}
+#menu-container #category29 {
+  grid-area: C;
+}
+#menu-container #category30 {
+  grid-area: D;
+}
+#menu-container #category31 {
+  grid-area: E;
+}
+#menu-container #category32 {
+  grid-area: F;
+}
+#menu-container #category33 {
+  grid-area: G;
+}
+#menu-container #category34 {
   grid-area: H;
+}
+#menu-container #category35 {
+  grid-area: I;
+}
+#menu-container #category36 {
+  grid-area: J;
+}
+#menu-container #category37 {
+  grid-area: K;
+}
+#menu-container #category38 {
+  grid-area: L;
+}
+#menu-container #category39 {
+  grid-area: M;
+}
+#menu-container #category40 {
+  grid-area: N;
+}
+#menu-container #category41 {
+  grid-area: O;
+}
+#menu-container #category42 {
+  grid-area: P;
+}
+#menu-container #category43 {
+  grid-area: Q;
+}
+#menu-container #category44 {
+  grid-area: R;
+}
+#menu-container #category45 {
+  grid-area: S;
+}
+#menu-container #category46 {
+  grid-area: T;
+}
+#menu-container #category47 {
+  grid-area: U;
+}
+#menu-container #category48 {
+  grid-area: V;
+}
+#menu-container #category49 {
+  grid-area: W;
+}
+#menu-container #category50 {
+  grid-area: X;
+}
+#menu-container #category51 {
+  grid-area: Y;
+}
+#menu-container #category52 {
+  grid-area: Z;
 }
 
 #filter-menu {
@@ -301,6 +433,19 @@ footer .offer .offer_data {
   grid-template-columns: 33% 33% 33%;
   grid-auto-rows: 500px;
   height: max-content;
+}
+
+#orders-info {
+  margin-bottom: 20px;
+}
+
+#orders-place {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-rows: 160px;
+  grid-template-columns: 33% 33% 33%;
+  gap: 15px;
 }
 
 #menu-container .category {
@@ -478,6 +623,146 @@ footer .offer .offer_data {
 .good-card .good-card_info .info_activities .activities_added .delete {
   width: 60px;
   height: 60px;
+  border-radius: 120px;
+}
+.good-card .good-card_info .info_activities .activities_added .delete:active {
+  background-color: #FFEDED;
+}
+
+#orders-place div.order {
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  background-color: white;
+  border-radius: 4px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  transition: 0.1s;
+}
+#orders-place div.order .order_icon {
+  width: 130px;
+  height: 100%;
+  background-color: #F5E3E3;
+  border-radius: 2px;
+  margin-right: 15px;
+}
+#orders-place div.order .order_info {
+  height: 100%;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+#orders-place div.order .order_info .info_title {
+  font-size: 30px;
+  color: #2F3543;
+}
+#orders-place div.order .order_info .info_subtitle {
+  font-size: 24px;
+}
+#orders-place div.order:nth-child(4n-1) .order_icon {
+  background-color: #ACB0B9;
+}
+#orders-place div.order:nth-child(2n) .order_icon {
+  background-color: #FF6B81;
+}
+#orders-place div.order:nth-child(4n) .order_icon {
+  background-color: #525A6D;
+}
+#orders-place div.order:hover {
+  background-color: #FFEDED;
+}
+#orders-place div.order-progress .order_info {
+  width: 50%;
+}
+#orders-place div.order-done .order_info {
+  width: 60%;
+}
+
+button.orders_button {
+  background-color: transparent;
+  height: 50px;
+  border-radius: 100px;
+}
+button.orders_button:active {
+  background-color: #FFEDED;
+}
+
+.empty-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+.empty-cart .button {
+  padding: 16px 56px;
+}
+
+.order-goods {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 220px;
+  grid-auto-rows: 220px;
+  row-gap: 16px;
+  margin-top: 30px;
+}
+.order-goods .order-good {
+  position: relative;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: 35% 65%;
+  grid-template-rows: 100%;
+  grid-auto-columns: 35% 65%;
+  grid-auto-rows: 100%;
+  border-radius: 2px;
+  color: #2F3543;
+}
+.order-goods .order-good::after {
+  content: url("../img/line.png");
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  left: 0px;
+  bottom: -18px;
+}
+.order-goods .order-good .subtitle {
+  color: #2F3543;
+}
+.order-goods .order-good .subtitle .good-cost {
+  color: #ACB0B9;
+}
+.order-goods .order-good_data {
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.order-goods .order-good .added_controls {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: space-between;
+  width: 25%;
+}
+.order-goods .order-good .added_controls .controls_minus, .order-goods .order-good .added_controls .controls_plus {
+  width: 36px;
+  height: 36px;
+}
+.order-goods .order-good .added_controls .controls_value {
+  width: fit-content;
+}
+.order-goods .order-good .delete {
+  width: 60px;
+  height: 60px;
+  border-radius: 120px;
+}
+.order-goods .order-good .delete:active {
+  background-color: #FFEDED;
 }
 
 body {
@@ -485,16 +770,20 @@ body {
   position: relative;
 }
 
-.img {
+.img, .img-center {
   inline-size: 100%;
   block-size: 100%;
   object-fit: cover;
   object-position: left top;
 }
-.img-full {
+.img-full, .img-center-full {
   inline-size: 100%;
   block-size: 100%;
   object-fit: contain;
+}
+
+.img-center {
+  object-position: center center;
 }
 
 .logo {
@@ -513,6 +802,18 @@ body {
   position: relative;
   width: 100%;
   margin-top: 158px;
+  box-sizing: border-box;
+  padding: 60px;
+}
+
+.container-2 {
+  position: relative;
+  width: 100%;
+  min-height: 420px;
+  margin-top: 158px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
   padding: 60px;
 }

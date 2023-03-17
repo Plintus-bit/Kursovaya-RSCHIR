@@ -1,1 +1,4 @@
-node_modules/
+tmp
+Картинки_для_выгрузки
+проект_с_gulp/node_modules
+проект_с_gulp/dist

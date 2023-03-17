@@ -1,0 +1,75 @@
+#orders-place {
+    div.order {
+        width: 100%;
+        height: 100%;
+        padding: 15px;
+        background-color: $backgroung;
+        border-radius: 4px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
+        transition: 0.1s;
+
+        .order_icon {
+            width: 130px;
+            height: 100%;
+            background-color: $accent-medium;
+            border-radius: 2px;
+            margin-right: 15px;
+        }
+        .order_info {
+            height: 100%;
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+            .info_title {
+                font-size: $font-descript;
+                color: $primary-dark;
+            }
+            .info_subtitle {
+                font-size: $font-small;
+            }
+        }
+        // childs
+        &:nth-child(4n-1) {
+            .order_icon {
+                background-color: $description;
+            }
+        }
+        &:nth-child(2n) {
+            .order_icon {
+                background-color: $contrast-text;
+            }
+        }
+        &:nth-child(4n) {
+            .order_icon {
+                background-color: $primary-light;
+            }
+        }
+        &:hover {
+            background-color: $accent-pastel;
+        }
+    }
+    div.order-progress {
+        .order_info {
+            width: 50%;
+        }
+    }
+    div.order-done {
+        .order_info {
+            width: 60%;
+        }
+    }
+
+}
+
+button.orders_button {
+    background-color: transparent;
+    height: 50px;
+    border-radius: 100px;
+    &:active {
+        background-color: $accent-pastel;
+    }
+}

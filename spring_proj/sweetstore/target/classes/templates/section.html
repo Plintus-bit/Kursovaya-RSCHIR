@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Главная страница</title>
+    </head>
+    <body>
+        <form method="post">
+            <input type="number" name="article" placeholder="артикул">
+            <input type="text" name="name" placeholder="название">
+            <input type="text" name="descript" placeholder="описание">
+            <input type="number" name="cost" placeholder="цена">
+            <input type="text" name="url" placeholder="фото (url)">
+            <button type="submit">Добавить</button>
+        </form>
+        <p>Список товаров</p>
+        <div th:each="good : ${goods}">
+            <p th:text="${good.name}"/>
+            <p th:text="${good.descript}"/>
+            <img th:src="${good.url}">
+        </div>
+    </body>
+</html>

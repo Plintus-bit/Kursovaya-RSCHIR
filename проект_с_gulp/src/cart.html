@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+    @@include("html/head.html", {
+        "title": "Категории"
+    })
+<body>
+    <div class="wrapper">
+        @@include("html/header.html", {})
+        <div class="main">
+            <!-- не пустая корзина -->
+            <div class="container">
+                <p class="title">
+                    Номер заказа: <span id="order_number">10292391</span>
+                </p>
+                <div class="order-goods">
+                    <!-- начало товара -->
+                    <div class="order-good">
+                        <img src="https://i.ibb.co/RQxQy88/13.jpg" alt="" class="img-center">
+                        <div class="order-good_data">
+                            <p class="subtitle">Торт тортов
+                                <span class="good-cost">| 
+                                    <span class="cost">100</span> p.
+                                </span>
+                            </p>
+                            <p class="data_cost">
+                                <span class="cost">1000</span> p.
+                            </p>
+                            <div class="added_controls">
+                                <div class="controls_minus">
+                                    <img src="./img/minus.png" alt="" class="img-full">
+                                </div>
+                                <div class="controls_value">
+                                    <span class="value_value">
+                                        10
+                                    </span> шт.
+                                </div>
+                                <div class="controls_plus">
+                                    <img src="./img/plus.png" alt="" class="img-full">
+                                </div>
+                            </div>
+                            <button class="delete">
+                                <img src="./img/delete.png" alt="" class="img-full">
+                            </button>
+                        </div>
+                    </div>
+                    <!-- конец товара -->
+
+                    <!-- начало товара -->
+                    <div class="order-good">
+                        <img src="https://i.ibb.co/RQxQy88/13.jpg" alt="" class="img-center">
+                        <div class="order-good_data">
+                            <p class="subtitle">Торт тортов
+                                <span class="good-cost">| 
+                                    <span class="cost">100</span> p.
+                                </span>
+                            </p>
+                            <p class="data_cost">
+                                <span class="cost">1000</span> p.
+                            </p>
+                            <div class="added_controls">
+                                <div class="controls_minus">
+                                    <img src="./img/minus.png" alt="" class="img-full">
+                                </div>
+                                <div class="controls_value">
+                                    <span class="value_value">
+                                        10
+                                    </span> шт.
+                                </div>
+                                <div class="controls_plus">
+                                    <img src="./img/plus.png" alt="" class="img-full">
+                                </div>
+                            </div>
+                            <button class="delete">
+                                <img src="./img/delete.png" alt="" class="img-full">
+                            </button>
+                        </div>
+                    </div>
+                    <!-- конец товара -->
+                </div>
+                
+            </div>
+        </div>
+        @@include("html/footer.html", {})
+    </div>
+</body>
+</html>
