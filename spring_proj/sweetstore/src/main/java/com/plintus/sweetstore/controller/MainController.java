@@ -1,23 +1,26 @@
 package com.plintus.sweetstore.controller;
 
-import com.plintus.sweetstore.domain.Good;
+import com.plintus.sweetstore.domain.GoodSubtypes;
+import com.plintus.sweetstore.domain.GoodTypes;
+import com.plintus.sweetstore.domain.Goods;
 import com.plintus.sweetstore.repos.GoodRepository;
-import lombok.extern.java.Log;
+import com.plintus.sweetstore.repos.GoodSubtypesRepository;
+import com.plintus.sweetstore.repos.GoodTypesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.Console;
+import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 @Controller
 public class MainController {
-
     @Autowired
     private GoodRepository good_rep;
-
-
+    @Autowired
+    private GoodSubtypesRepository good_subtypes_rep;
+    @Autowired
+    private GoodTypesRepository good_types_rep;
     @GetMapping("/")
     public String home() {
         return "index";
@@ -27,27 +30,21 @@ public class MainController {
     public String main() {
         return "main";
     }
-
     @GetMapping("/section")
-    public String loadGoods(Map<String, Object> model) {
-        Iterable<Good> goods = good_rep.findAll();
-        model.put("goods", goods);
+    public String loadTypes(Map<String, Object> model) {
+        Iterable<GoodTypes> types = good_types_rep.findAll();
+        model.put("types", types);
         return "section";
     }
 
     // изменить mapping, добавить get
     @PostMapping("/section")
-    public String addGood(@RequestParam Integer article,
-                          @RequestParam String name,
-                          @RequestParam String descript,
-                          @RequestParam Integer cost,
-                          @RequestParam String url,
+    public String addType(@RequestParam String name,
                           Map<String, Object> model) {
-        Good new_good = new Good(article, name, descript, cost, url);
-        good_rep.save(new_good);
-        // нужно рефакторить
-        Iterable<Good> goods = good_rep.findAll();
-        model.put("goods", goods);
+        GoodTypes type = new GoodTypes(name);
+        good_types_rep.save(type);
+        Iterable<GoodTypes> types = good_types_rep.findAll();
+        model.put("types", types);
         return "section";
     }
 }

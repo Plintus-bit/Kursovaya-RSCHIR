@@ -1,36 +1,49 @@
 package com.plintus.sweetstore.domain;
 
 import jakarta.persistence.*;
-import lombok.ToString;
-import org.hibernate.annotations.GeneratedColumn;
+import org.hibernate.annotations.ColumnDefault;
 
 
 @Entity
-public class Good {
+public class Goods {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
     private Integer article;
     private String name;
     private String descript;
     private Integer cost;
     private String url;
+    private Integer count;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "subtype_id")
+    private GoodSubtypes subtype;
 
-    public Good(Integer article, String name, String descript, Integer cost, String url){
+    public Goods() {
+
+    }
+
+    public Goods(Integer article, String name,
+                 String descript, String url,
+                 Integer count, GoodSubtypes subtype) {
+        this.article = article;
+        this.name = name;
+        this.descript = descript;
+        this.url = url;
+        this.count = count;
+        this.subtype = subtype;
+        this.cost = 100;
+    }
+
+    public Goods(Integer article, String name,
+                 String descript, Integer cost,
+                 String url, Integer count,
+                 GoodSubtypes subtype) {
         this.article = article;
         this.name = name;
         this.descript = descript;
         this.cost = cost;
         this.url = url;
-    }
-
-    public Good() {
-
-    }
-
-    //    Getters
-    public Long getId() {
-        return id;
+        this.count = count;
+        this.subtype = subtype;
     }
 
     public Integer getArticle() {
@@ -53,13 +66,6 @@ public class Good {
         return url;
     }
 
-
-//    Setters
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public void setArticle(Integer article) {
         this.article = article;
     }
@@ -80,11 +86,26 @@ public class Good {
         this.url = url;
     }
 
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public GoodSubtypes getSubtype() {
+        return subtype;
+    }
+
+    public void setSubtype(GoodSubtypes subtype) {
+        this.subtype = subtype;
+    }
+
     @Override
     public String toString() {
-        return "Good{" +
-                "id=" + id +
-                ", article=" + article +
+        return "Goods{" +
+                "article=" + article +
                 ", name='" + name + '\'' +
                 ", descript='" + descript + '\'' +
                 ", cost=" + cost +

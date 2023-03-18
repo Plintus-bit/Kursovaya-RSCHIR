@@ -21,11 +21,18 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String addUser(User user, Map<String, Object> model) {
+        if (user.getUsername().length() < 1) {
+            model.put("message", "Пользователь не может быть без имени");
+            return "registration";
+        }
+        if (user.getPassword().length() < 1) {
+            model.put("message", "Слишком маленький пароль");
+            return "registration";
+        }
         if (!user_service.saveUser(user)) {
             model.put("message", "Пользователь уже существует.");
             return "registration";
         }
-
         return "redirect:/login";
     }
 }
