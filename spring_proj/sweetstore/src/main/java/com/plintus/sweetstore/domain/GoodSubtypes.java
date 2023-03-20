@@ -5,21 +5,15 @@ import jakarta.persistence.*;
 @Entity
 public class GoodSubtypes {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer subtype_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String name;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "type_id")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "parentId", referencedColumnName = "id")
     private GoodTypes parent;
 
     public GoodSubtypes() {
 
-    }
-
-    public GoodSubtypes(Integer subtype_id, String name, GoodTypes parent) {
-        this.subtype_id = subtype_id;
-        this.name = name;
-        this.parent = parent;
     }
 
     public GoodSubtypes(String name, GoodTypes parent) {
@@ -27,12 +21,12 @@ public class GoodSubtypes {
         this.parent = parent;
     }
 
-    public Integer getSubtype_id() {
-        return subtype_id;
+    public Integer getId() {
+        return id;
     }
 
-    public void setSubtype_id(Integer subtype_id) {
-        this.subtype_id = subtype_id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {

@@ -1,34 +1,36 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <head>
-        <meta charset="UTF-8">
-        <title>Вход</title>
-    </head>
-    <body>
-
-        <div>
-            <p th:text="${message}">Придумайте своё имя пользователя</p>
-        </div>
-<!--        Добавление нового пользователя-->
-        <form th:action="@{/registration}" method="post">
-            <div>
-                <label>
-                    Имя пользователя:
-                    <input type="text" name="username"/>
-                </label>
-            </div>
-            <div>
-                <label>
-                    Пароль:
-                    <input type="password" name="password"/>
-                </label>
-            </div>
-            <input type="hidden" th:name="_csrf" th:value="${_csrf.token}" />
-            <div>
-                <input type="submit" value="Зарегистрироваться"/>
-            </div>
-        </form>
-    </body>
+<html lang="ru"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css">
+    <title>Регистрация</title>
+</head>
+<body>
+<div class="wrapper">
+    <div class="main">
+        <picture><source srcset="https://i.ibb.co/S3WXL11/14.webp" type="image/webp"><img src="https://i.ibb.co/S3WXL11/14.jpg" alt="background" class="background-img img"></picture>
+        <section class="container-3 full-colored">
+            <form id="logging" th:action="@{/registration}" method="post">
+                <p class="title">Вход</p>
+                <div class="logging_inputs">
+                    <p th:text="${message}" text=""/>
+                    <input type="text" name="username" class="input" placeholder="Имя пользователя">
+                    <input type="password" name="password" class="input" placeholder="Пароль">
+                    <input type="email" name="email" class="input" placeholder="some@some.com">
+                    <input type="hidden" th:name="_csrf" th:value="${_csrf.token}" />
+                    <input type="submit" class="button-2" value="Зарегистрироваться">
+                </div>
+                <p class="link-subtitle">
+                    <a th:href="@{/login}" class="link">Вернуться на страницу входа</a>
+                </p>
+            </form>
+        </section>
+    </div>
+</div>
+<script src="/static/js/app.min.js?_v=20230318220724"></script>
+</body>
 </html>

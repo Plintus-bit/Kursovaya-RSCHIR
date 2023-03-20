@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+    @@include("html/head.html", {
+        "title": "Категории"
+    })
+<body>
+    <div class="wrapper">
+        @@include("html/header.html", {})
+        <div class="main">
+            <section id="good_container">
+                <div class="good_container_photo">
+                    <img src="https://i.ibb.co/s3zsZD9/8.jpg" alt="Фото товара" class="img-center">
+                </div>
+                <div class="good_container_info">
+                    <p class="title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci perspiciatis reiciendis quia dolorum ut, iste fuga?</p>
+                    <p class="description">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti sit, veritatis veniam provident alias, ipsam voluptatum incidunt aliquam nostrum, doloribus voluptate? Tempora repellendus reiciendis similique, delectus officia modi quod exercitationem est pariatur natus unde nemo vero molestias praesentium quos sed.
+                    </p>
+                    <table class="kbj">
+                        <thead>
+                            <tr>
+                                <td>Название</td>
+                                <td>Количество</td>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td>Калорийность</td>
+                            <td><span>0</span> Кк</td>
+                        </tr>
+                        <tr>
+                            <td>Белки</td>
+                            <td><span>0</span> г</td>
+                        </tr>
+                        <tr>
+                            <td>Жиры</td>
+                            <td><span>0</span> г</td>
+                        </tr>
+                        <tr>
+                            <td>Углеводы</td>
+                            <td><span>0</span> г</td>
+                        </tr>
+                        <tr>
+                            <td>Пищевые волокна</td>
+                            <td><span>0</span> г</td>
+                        </tr>
+                        <tr>
+                            <td>Вода</td>
+                            <td><span>0</span> мл</td>
+                        </tr>
+                    </table>
+                    <p class="subtitle">
+                        Состав: <span>lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam doloribus quas perspiciatis nihil dignissimos? Sed, dolor!</span>
+                    </p>
+                    <div class="activities_added">
+                        <div class="added_controls">
+                            <div class="controls_minus">
+                                <img src="./img/minus.png" alt="" class="img-full">
+                            </div>
+                            <div class="controls_value">
+                                <span class="value_value">
+                                    10
+                                </span> шт.
+                            </div>
+                            <div class="controls_plus">
+                                <img src="./img/plus.png" alt="" class="img-full">
+                            </div>
+                        </div>
+                        <button class="add button">
+                            Добавить
+                        </button>
+                        <button class="delete">
+                            <img src="./img/delete.png" alt="delete" class="img-full">
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+        @@include("html/footer.html", {})
+    </div>
+</body>
+</html>

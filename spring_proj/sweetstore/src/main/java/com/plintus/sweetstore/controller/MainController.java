@@ -1,26 +1,29 @@
 package com.plintus.sweetstore.controller;
 
-import com.plintus.sweetstore.domain.GoodSubtypes;
 import com.plintus.sweetstore.domain.GoodTypes;
-import com.plintus.sweetstore.domain.Goods;
 import com.plintus.sweetstore.repos.GoodRepository;
 import com.plintus.sweetstore.repos.GoodSubtypesRepository;
 import com.plintus.sweetstore.repos.GoodTypesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
 import java.util.Map;
 
 @Controller
 public class MainController {
     @Autowired
-    private GoodRepository good_rep;
+    private GoodRepository goodRep;
     @Autowired
-    private GoodSubtypesRepository good_subtypes_rep;
+    private GoodSubtypesRepository good_subtypesRep;
     @Autowired
-    private GoodTypesRepository good_types_rep;
+    private GoodTypesRepository goodTypesRep;
     @GetMapping("/")
     public String home() {
         return "index";
@@ -32,19 +35,19 @@ public class MainController {
     }
     @GetMapping("/section")
     public String loadTypes(Map<String, Object> model) {
-        Iterable<GoodTypes> types = good_types_rep.findAll();
+        Iterable<GoodTypes> types = goodTypesRep.findAll();
         model.put("types", types);
         return "section";
     }
 
     // изменить mapping, добавить get
-    @PostMapping("/section")
-    public String addType(@RequestParam String name,
-                          Map<String, Object> model) {
-        GoodTypes type = new GoodTypes(name);
-        good_types_rep.save(type);
-        Iterable<GoodTypes> types = good_types_rep.findAll();
-        model.put("types", types);
-        return "section";
-    }
+//    @PostMapping("/section")
+//    public String addType(@RequestParam String name,
+//                          Map<String, Object> model) {
+//        GoodTypes type = new GoodTypes(name, "");
+//        goodTypesRep.save(type);
+//        Iterable<GoodTypes> types = goodTypesRep.findAll();
+//        model.put("types", types);
+//        return "section";
+//    }
 }

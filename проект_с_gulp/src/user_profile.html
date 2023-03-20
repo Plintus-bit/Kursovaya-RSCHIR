@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+    @@include("html/head.html", {
+        "title": "Категории"
+    })
+<body>
+    <div class="wrapper">
+        @@include("html/header.html", {})
+        <div class="main">
+            <section class="container">
+                <div class="params_block">
+                    <p class="title">Настройки</p>
+                    <a href="./useredit">
+                        <button class="params_block_button">
+                            Мои данные
+                        </button>
+                    </a>
+                </div>
+                <div class="params_block">
+                    <p class="title">Управление заказами</p>
+                    <a href="./orders.html">
+                        <button class="params_block_button">
+                            Мои заказы
+                        </button>
+                    </a>
+                    <a href="./cart.html">
+                        <button class="params_block_button">
+                            Корзина
+                        </button>
+                    </a>
+                </div>
+                <div class="params_block">
+                    <p class="title">Управление БД</p>
+                    <a href="./add_new.html">
+                        <button class="params_block_button">
+                            Добавить товар
+                        </button>
+                    </a>
+                </div>
+            </section>
+        </div>
+        @@include("html/footer.html", {})
+    </div>
+</body>
+</html>

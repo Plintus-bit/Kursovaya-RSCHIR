@@ -4,22 +4,29 @@ import com.plintus.sweetstore.domain.Role;
 import com.plintus.sweetstore.domain.User;
 import com.plintus.sweetstore.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.util.StringUtils;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService implements UserDetailsService {
     @Autowired
-    private UserRepository user_rep;
+    private MailSender mailSender;
+    @Autowired
+    private UserRepository userRep;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = user_rep.findByUsername(username);
+        User user = userRep.findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException("Пользователь " + username + " не найден");
         }
@@ -31,17 +38,58 @@ public class UserService implements UserDetailsService {
     }
 
     public List<User> findAll() {
-        return user_rep.findAll();
+        return userRep.findAll();
     }
 
     public boolean saveUser(User user) {
-        User user_from_db = user_rep.findByUsername(user.getUsername());
-        if (user_from_db != null) {
+        User userFromDB = userRep.findByUsername(user.getUsername());
+        if (userFromDB != null) {
             return false;
         }
-//        user.setRole("USER");
+        user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
-        user_rep.save(user);
+        user.setActivationCode(UUID.randomUUID().toString());
+        userRep.save(user);
+
+        if (!StringUtils.isEmpty(user.getEmail())) {
+            String message = String.format(
+                    "Приветствую Вас, %s, в нашем магазине вкусностей!\n" +
+                            "Для подтверждения перейдите по ссылке: http://localhost:8080/activate/%s",
+                    user.getUsername(),
+                    user.getActivationCode()
+            );
+            mailSender.send(user.getEmail(), "Activation code", message);
+        }
+
         return true;
+    }
+
+    public User getUserByUsername(String name) {
+        return userRep.findByUsername(name);
+    }
+
+    public boolean activateUser(String code) {
+        User user = userRep.findByActivationCode(code);
+
+        if (user == null) {
+            return false;
+        }
+        user.setActivationCode(null);
+        userRep.save(user);
+        return true;
+    }
+
+    public void saveUser(User user, String username, Map<String, String> form) {
+        user.setUsername(username);
+        Set<String> roles = Arrays.stream(Role.values())
+                .map(Role::name)
+                .collect(Collectors.toSet());
+        user.getRoles().clear();
+        for (String key : form.keySet()) {
+            if (roles.contains(key)) {
+                user.getRoles().add(Role.valueOf(key));
+            }
+        }
+        userRep.save(user);
     }
 }

@@ -20,11 +20,8 @@
         <a href="../menu.html" class="nav_link">
             <div class="link_button">Товары</div>
         </a>
-        <a href="#" class="nav_link">
-            <div class="link_button">Избранное</div>
-        </a>
-        <a href="../orders.html" class="nav_link">
-            <div class="link_button">Мои заказы</div>
+        <a href="../user_profile.html" class="nav_link">
+            <div class="link_button">Мой профиль</div>
         </a>
         <a href="../cart.html" class="nav_link">
             <div class="link_button">Корзина</div>
@@ -32,7 +29,7 @@
     </nav>
 </header>
         <div class="main">
-            <section class="container" id="section-container">
+            <section class="container section-container">
                 <section id="filter-menu">
                     <p class="filter-menu_header title">
                         Фильтры
@@ -62,33 +59,35 @@
                 </section>
                 <section id="goods_place">
                     <!-- card start -->
-                    <div class="good-card">
-                        <div class="good-card_photo">
-                            <img src="https://i.ibb.co/s3zsZD9/8.jpg" alt="Фото товара" class="img">
-                        </div>
-                        <div class="good-card_info">
-                            <div class="info_name-cost">
-                                <p class="name-cost_name">
-                                    Товар
-                                </p>
-                                <p class="name-cost_cost">
-                                    <span class="cost-value">
-                                        200
-                                    </span> p.
-                                </p>
+                    <a href="good.html">
+                        <div class="good-card">
+                            <div class="good-card_photo">
+                                <img src="https://i.ibb.co/s3zsZD9/8.jpg" alt="Фото товара" class="img">
                             </div>
-                            <p class="info_description subtitle">
-                                Очень длинное описание товара, кошмар, а ж прочитать невозможно какое длинное, жесть.
-                            </p>
-                            <div class="info_activities">
-                                <div class="activities_not-added">
-                                    <button class="add button">
-                                        Добавить
-                                    </button>
+                            <div class="good-card_info">
+                                <div class="info_name-cost">
+                                    <p class="name-cost_name">
+                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit
+                                    </p>
+                                    <p class="name-cost_cost">
+                                        <span class="cost-value">
+                                            200
+                                        </span> p.
+                                    </p>
+                                </div>
+                                <p class="info_description subtitle">
+                                    Очень длинное описание товара, кошмар, а ж прочитать невозможно какое длинное, жесть.
+                                </p>
+                                <div class="info_activities">
+                                    <div class="activities_not-added">
+                                        <button class="add button">
+                                            Добавить
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                     <!-- card end -->
 
                     <!-- card start -->
@@ -141,9 +140,25 @@
                                 Очень длинное описание товара, кошмар, а ж прочитать невозможно какое длинное, жесть.
                             </p>
                             <div class="info_activities">
-                                <div class="activities_not-added">
-                                    <button class="add button">
-                                        Добавить
+                                <div class="activities_added">
+                                    <div class="added_controls">
+                                        <div class="controls_minus">
+                                            <img src="./img/minus.png" alt="" class="img-full">
+                                        </div>
+                                        <div class="controls_value">
+                                            <span class="value_value">
+                                                10
+                                            </span> шт.
+                                        </div>
+                                        <div class="controls_plus">
+                                            <img src="./img/plus.png" alt="" class="img-full">
+                                        </div>
+                                    </div>
+                                    <button class="delete">
+                                        <img src="./img/add.png" alt="delete" class="img-full">
+                                    </button>
+                                    <button class="delete">
+                                        <img src="./img/delete.png" alt="delete" class="img-full">
                                     </button>
                                 </div>
                             </div>

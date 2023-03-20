@@ -9,11 +9,10 @@
 @import "card";
 @import "orders";
 @import "cart";
-
-body {
-    background: $backgroung;
-    position: relative;
-}
+@import "index";
+@import "order_making";
+@import "good";
+@import "profile";
 
 .img, .img-center {
     inline-size: 100%;
@@ -49,12 +48,33 @@ body {
     box-sizing: border-box;
     padding: 60px;
 }
+.container_center_align {
+    position: relative;
+    width: 100%;
+    margin-top: 158px;
+    box-sizing: border-box;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
 
 .container-2 {
     position: relative;
     width: 100%;
     min-height: 420px;
     margin-top: 158px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 60px;
+}
+.container-3 {
+    width: 100%;
+    min-height: 420px;
+    top: 10%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -69,15 +89,35 @@ body {
 .title {
     font-size: $font-header-regular;
     font-family: 'Mulish';
-    color: $primary-light;
+    color: $primary-dark;
 }
 
-.subtitle {
+.subtitle, .description {
     color: $description;
     font-size: $font-descript;
 }
 
-.button, .button-inactive {
+.description {
+    color: $primary-light;
+}
+
+.link-subtitle {
+    font-family: 'Mulish';
+    color: $card-links;
+    font-size: $font-small;
+    a, span  {
+        font-family: inherit;
+        color: $contrast-text;
+    }
+}
+
+form {
+    a {
+        color: $contrast-text;
+    }
+}
+
+.button, .button-2, .button-inactive {
     width: 100%;
     padding: 12px 0px;
     border-radius: 100px;
@@ -88,7 +128,14 @@ body {
     background-color: $backgroung;
 }
 
-.button:hover {
+.button-2 {
+    width: fit-content;
+    min-width: 200px;
+    padding: 12px 20px;
+    box-sizing: content-box;
+}
+
+.button:hover, .button-2:hover {
     color: $backgroung;
     background-color: $primary-dark;
 }
@@ -97,4 +144,8 @@ body {
     background-color: $button-light;
     color: $description;
     border: none;
+}
+
+.hidden {
+    display: none;
 }

@@ -1,0 +1,41 @@
+.params_block {
+    width: 50%;
+    height: fit-content;
+    display: grid;
+    grid-auto-columns: 100%;
+    grid-auto-rows: 60px;
+    padding: 20px;
+    gap: 1px;
+    border-bottom: 2px solid $card-links-4e;
+    margin-bottom: 20px;
+    a {
+        .params_block_button {
+            color: $primary-light;
+            font-size: $font-descript;
+            background-color: $backgroung;
+            width: 100%;
+            height: fit-content;
+            padding: 12px;
+            text-align: left;
+            transition: 0.09s;
+            &:hover {
+                background-color: $card-links-4e;
+            }
+        }
+    }
+}
+
+.dao {
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    flex-direction: column;
+    gap: 10px;
+    .button, .button-2 {
+        align-self: flex-end;
+    }
+    .title {
+        margin-bottom: 20px;
+        align-self: center;
+    }
+}

@@ -7,29 +7,31 @@ import java.util.Set;
 @Entity
 public class GoodTypes {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer type_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String name;
-    private
+    private String url;
+
+    @OneToMany(mappedBy = "parent",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    private Set<GoodSubtypes> subtypes;
+
     GoodTypes() {
 
     }
 
-    public GoodTypes(Integer type_id, String name) {
-        this.type_id = type_id;
+    public GoodTypes(String name, String url) {
         this.name = name;
+        this.url = url;
     }
 
-    public GoodTypes(String name) {
-        this.name = name;
+    public Integer getId() {
+        return id;
     }
 
-    public Integer getType_id() {
-        return type_id;
-    }
-
-    public void setType_id(Integer type_id) {
-        this.type_id = type_id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -38,5 +40,21 @@ public class GoodTypes {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<GoodSubtypes> getSubtypes() {
+        return subtypes;
+    }
+
+    public void setSubtypes(Set<GoodSubtypes> subtypes) {
+        this.subtypes = subtypes;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

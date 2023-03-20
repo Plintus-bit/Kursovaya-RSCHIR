@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+    @@include("html/head.html", {
+        "title": "Главная"
+    })
+    <body>
+        <div class="wrapper">
+            <div class="main">
+                <img src="https://i.ibb.co/S3WXL11/14.jpg" alt="background" class="background-img img">
+                <section class="container-2 full-colored">
+                    <form id="logging" action="login" method="post">
+                        <p class="title">Вход</p>
+                        <div class="logging_inputs">
+                            <input type="text" class="input" placeholder="имя пользователя">
+                            <input type="text" class="input" placeholder="пароль">
+                            <input type="submit" class="button-2" value="Войти">
+                        </div>
+                        <a href="home.html" class="link">Домой</a>
+                    </form>
+                </section>
+            </div>
+        </div>
+        <script src="js/app.min.js"></script>
+    </body>
+</html>

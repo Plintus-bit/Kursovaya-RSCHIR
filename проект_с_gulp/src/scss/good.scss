@@ -1,0 +1,50 @@
+.good_container_photo {
+    width: 100%;
+    border-radius: 6px;
+    overflow: hidden;
+    min-height: 400px;
+    max-height: 620px;
+}
+.good_container_info {
+    display: grid;
+    width: 100%;
+    grid-auto-columns: 100%;
+    grid-auto-rows: max-content;
+    gap: 12px;
+    p.title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 12px;
+    }
+    .activities_added {
+        grid-template-columns: 40% 40% 20%;
+        gap: 20px;
+        .delete {
+            width: 54px;
+            height: 54px;
+        }
+    }
+}
+.kbj {
+    background-color: $backgroung;
+    color: $primary-light;
+    border-spacing: 4px 4px;
+    tr {
+        td {
+            background-color: $backgroung;
+            border: 2px solid $table-back;
+            padding: 9px 20px;
+            width: 50%;
+        }
+    }
+    thead {
+        tr {
+            td {
+                background-color: $table-thead-back;
+                text-align: center;
+                border: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+<html lang="ru"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+
+<!--<header id="main-header">-->
+    <header>
+        <div class="logo">
+          <img src="/static/img/logo.svg" alt="logo" class="logo">
+        </div>
+        <nav class="nav-mainpage">
+            <a th:href="@{/}" class="nav_link">
+              <div class="link_button-active">Главная</div>
+            </a>
+            <a th:href="@{/menu}" class="nav_link">
+              <div class="link_button">Товары</div>
+            </a>
+            <a th:href="@{/profile}" class="nav_link">
+              <div class="link_button">Мой профиль</div>
+            </a>
+            <a th:href="@{/cart}" class="nav_link">
+              <div class="link_button">Корзина</div>
+            </a>
+            <form th:action="@{/logout}" method="post">
+              <input type="submit" class="link" value="Выйти"/>
+            </form>
+        </nav>
+    </header>
+</html>

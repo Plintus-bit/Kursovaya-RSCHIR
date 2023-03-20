@@ -1,11 +1,48 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8">
-        <title>Главная страница</title>
-    </head>
-    <body>
-        <p>Привет, пользователь</p>
-        <a th:href="@{/main}">Перейти на очень главную страницу</a>
-    </body>
+<html lang="ru"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Главная</title>
+</head>
+<body>
+    <div class="wrapper">
+        <picture><source srcset="https://i.ibb.co/rFJ76xd/background.webp" type="image/webp"><img src="https://i.ibb.co/rFJ76xd/background.png" alt="background" class="background-img img"></picture>
+        <header id="main-header">
+            <div class="logo">
+                <img src="/static/img/logo.svg" alt="logo" class="logo">
+            </div>
+            <nav class="nav-mainpage">
+                <a th:href="@{/}" class="nav_link">
+                    <div class="link_button-active">Главная</div>
+                </a>
+                <a th:href="@{/menu}" class="nav_link">
+                    <div class="link_button">Товары</div>
+                </a>
+                <a th:href="@{/profile}" class="nav_link">
+                    <div class="link_button">Мой профиль</div>
+                </a>
+                <a th:href="@{/cart}" class="nav_link">
+                    <div class="link_button">Корзина</div>
+                </a>
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" class="link" value="Выйти"/>
+                </form>
+            </nav>
+        </header>
+        <div class="main">
+            <section class="container">
+                <p id="mainheader">
+                    Сладкое <span class="contrast-text">не вредно</span> <br>
+                    Вредно - запрещать
+                </p>
+            </section>
+        </div>
+    </div>
+    <script src="/static/js/app.min.js?_v=20230318220724"></script>
+</body>
 </html>

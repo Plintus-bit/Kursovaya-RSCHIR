@@ -1,21 +1,23 @@
-#menu-container {
+.menu-container {
     .category {
+        width: 100%;
+        height: 100%;
         position: relative;
         border-radius: 2px;
         overflow: hidden;
         &:hover {
             .category_title {
-                height: 50%;
-                width: 100%;
-                padding: 40px;
+                height: 1000%;
+                width: 50%;
+                padding: 30px 20px;
             }
         }
         .background-img {
             position: absolute;
         }
         &_title {
-            width: 100%;
-            height: 0%;
+            width: 0%;
+            height: 100%;
             // statics
             position: absolute;
             overflow: hidden;
@@ -31,19 +33,12 @@
             backdrop-filter: blur(1px);
             transition: ease-in-out 0.3s;
             transition-delay: 0.05ms;
-            .descriptions-block {
-                display: flex;
-                flex-direction: row;
-                align-items: flex-end;
-                justify-content: flex-start;
-                gap: 30px;
-            }
-            .description, .descriptions-block .description {
+            .description {
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
                 justify-content: flex-end;
-                gap: 10px;
+                gap: 5px;
                 &_typename {
                     font-size: $font-descript;
                     color: $card-links;
@@ -53,42 +48,40 @@
                 margin-top: 30px;
             }
         }
-        &:nth-child(even) {
-            .category_title {
-                width: 0%;
-                height: 100%;
+    }
+}
+
+.or {
+    width: 100%;
+    height: fit-content;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: 47% 6% 47%;
+    grid-auto-columns: 44% 12% 44%;
+}
+
+.data-container {
+    width: 100%;
+    height: fit-content;
+    max-height: 300px;
+    overflow: scroll;
+    .table {
+        border-spacing: 0px 4px;
+        tr {
+            background-color: $card-header-place-f3;
+            td {
+                padding: 10px 20px;
             }
-            &:hover {
-                .category_title {
-                    width: 50%;
-                    height: 100%;
-                }
+            &:nth-child(2n) {
+                background-color: $backgroung;
             }
         }
-        
-        &:nth-child(4n) {
-            .category_title {
-                height: 0%;
-                width: 100%;
-            }
-            &:hover {
-                .category_title {
-                    height: 50%;
-                    width: 100%;
-                }
-            }
-        }
-        
-        &:nth-child(4n - 1) {
-            .category_title {
-                width: 0%;
-                height: 100%;
-            }
-            &:hover {
-                .category_title {
-                    width: 50%;
-                    height: 100%;
-                }
+        thead {
+            td {
+                background-color: $primary-light;
+                color: $backgroung;
+                font-family: 'Mulish';
             }
         }
     }

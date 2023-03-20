@@ -1,7 +1,6 @@
 package com.plintus.sweetstore.config;
 
 import com.plintus.sweetstore.config.manager.AuthManager;
-import com.plintus.sweetstore.domain.User;
 import com.plintus.sweetstore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -23,6 +22,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.ldap.EmbeddedLdapServerContextSourceFactoryBean;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
@@ -46,15 +46,21 @@ import java.util.Arrays;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig {
     @Autowired
-    private AuthManager auth_manager;
+    public AuthManager authManager;
+
+    @Bean
+    public PasswordEncoder getPasswordEncoder() {
+        return new BCryptPasswordEncoder(8);
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 //        http
 //                .cors().and().csrf().disable();
         http
-                .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/home", "/registration").permitAll()
+                .authorizeHttpRequests((authz) -> authz
+                        .requestMatchers("/", "/home", "/registration", "/static/**",
+                                "/activate/*").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
@@ -66,22 +72,22 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public UserDetailsManager users(DataSource dataSource) {
+    public UserDetailsManager userDetailsManager (DataSource dataSource) {
         JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
-        users.setAuthenticationManager(auth_manager);
+        users.setAuthenticationManager(authManager);
         return users;
     }
 
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration conf = new CorsConfiguration();
-        conf.setAllowedOrigins(Arrays.asList("*"));
-        conf.setAllowedMethods(Arrays.asList("*"));
-        conf.setAllowedHeaders(Arrays.asList("*"));
-        conf.setAllowCredentials(true);
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", conf);
-        return source;
-    }
+//    @Bean
+//    CorsConfigurationSource corsConfigurationSource() {
+//        CorsConfiguration conf = new CorsConfiguration();
+//        conf.setAllowedOrigins(Arrays.asList("*"));
+//        conf.setAllowedMethods(Arrays.asList("*"));
+//        conf.setAllowedHeaders(Arrays.asList("*"));
+//        conf.setAllowCredentials(true);
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", conf);
+//        return source;
+//    }
 
 }

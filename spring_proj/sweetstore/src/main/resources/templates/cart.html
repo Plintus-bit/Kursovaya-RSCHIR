@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css">
+    <title>Корзина</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="logo">
+                <img src="/static/img/logo.svg" alt="logo" class="logo">
+            </div>
+            <nav class="nav-mainpage">
+                <a th:href="@{/}" class="nav_link">
+                    <div class="link_button-active">Главная</div>
+                </a>
+                <a th:href="@{/menu}" class="nav_link">
+                    <div class="link_button">Товары</div>
+                </a>
+                <a th:href="@{/profile}" class="nav_link">
+                    <div class="link_button">Мой профиль</div>
+                </a>
+                <a th:href="@{/cart}" class="nav_link">
+                    <div class="link_button">Корзина</div>
+                </a>
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" class="link" value="Выйти"/>
+                </form>
+            </nav>
+        </header>
+        <div class="main">
+            <div class="container-2" th:class="'container-2 ' + ${#lists.size(ogs) == 0 ? '' : 'hidden'}">
+                <div class="empty-cart">
+                    <p class="title">
+                        Ваша корзина пуста
+                    </p>
+                    <a th:href="@{/menu}">
+                        <button class="button-2">
+                            Отправиться на поиски
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <!-- не пустая корзина -->
+            <div class="container" th:class="'container ' + ${#lists.size(ogs) == 0 ? 'hidden' : ''}">
+                <p class="title">
+                    Номер заказа: <span id="order_number" th:text="${orderId}">-1</span>
+                </p>
+                <div class="order-goods" th:each="curOgs : ${ogs}">
+                    <!-- начало товара -->
+                    <div class="order-good" th:each="good : ${curOgs.article}">
+                        <img th:src="${good.url}" alt="url" class="img-center">
+                        <div class="order-good_data">
+                            <p class="subtitle" th:text="${good.name}" text="Товар">
+                                <span class="good-cost">|
+                                    <span class="cost" th:text="${good.cost}">-1</span>
+                                </span>
+                            </p>
+                            <p class="data_cost">
+                                <span class="cost" th:text="${good.cost * good.count}">-1</span>
+                            </p>
+                            <div class="added_controls">
+                                <div class="controls_minus">
+                                    <img src="/static/img/minus.png" alt="" class="img-full">
+                                </div>
+                                <div class="controls_value">
+                                    <span class="value_value">
+                                        0
+                                    </span> шт.
+                                </div>
+                                <div class="controls_plus">
+                                    <img src="/static/img/plus.png" alt="" class="img-full">
+                                </div>
+                            </div>
+                            <button class="delete">
+                                <img src="/static/img/delete.png" alt="" class="img-full">
+                            </button>
+                        </div>
+                    </div>
+                    <!-- конец товара -->
+                </div>
+                <div class="final_cost">
+                    <p class="title">
+                        Итог: <span th:text="${final_cost}">-1</span> р.
+                    </p>
+                    <a th:href="@{/order_making}"><button class="button-2">Оформить заказ</button></a>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="info">
+                <div class="contact-data">
+                    <img src="/static/img/logo.svg" alt="logo" class="logo">
+                    <div class="contact-data_contacts">
+                        <p class="contacts_contact">Быкова Софья</p>
+                        <p class="contacts_contact">sofa.byk@mail.ru</p>
+                        <p class="contacts_contact">89851*7****</p>
+                    </div>
+                </div>
+                <div class="follows">
+                    <div class="background_pict">
+                        <img src="/static/img/footer_pict.png" alt="img" class="img">
+                        <div class="pelena"></div>
+                    </div>
+                    <p class="follows_header">Follow</p>
+                    <a href="#" class="follows_link">@camshel</a>
+                </div>
+            </div>
+            <div class="offer">
+                <p class="offer_warning">
+                    * данное лицо не претендует на получение высшего балла, но было бы очень радо такому событию
+                </p>
+                <div class="offer_data">
+                    <p class="data_what">Курсовая работа</p>
+                    <p class="data_support">При поддержке РТУ МИРЭА</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

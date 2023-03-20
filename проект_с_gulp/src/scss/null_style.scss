@@ -13,18 +13,20 @@
 a {
     cursor: pointer;
     text-decoration: none;
-    font-family: 'Mulish';
-    font-weight: 500;
     font-size: $font-small;
+    font-family: 'AlegreyaSans';
+    font-weight: 400;
+    color: $primary-dark;
 }
 
 button {
     cursor: pointer;
-    font-family: 'Mulish';
-    font-weight: 500;
     outline: none;
     border: none;
     background-color: $backgroung;
+    font-family: 'AlegreyaSans';
+    font-weight: 400;
+    color: $primary-dark;
 }
 
 ul, ol, li {
@@ -61,4 +63,14 @@ body {
 
 .main {
     flex: 1 1 auto;
+}
+
+p {
+    font-family: 'AlegreyaSans';
+    color: $primary-light;
+}
+
+body {
+    background: $backgroung;
+    position: relative;
 }

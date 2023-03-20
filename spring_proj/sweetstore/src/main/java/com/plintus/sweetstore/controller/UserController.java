@@ -2,31 +2,29 @@ package com.plintus.sweetstore.controller;
 
 import com.plintus.sweetstore.domain.Role;
 import com.plintus.sweetstore.domain.User;
-import com.plintus.sweetstore.repos.UserRepository;
+import com.plintus.sweetstore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/user")
-@PreAuthorize("hasAuthority('ADMIN')")
 public class UserController {
     @Autowired
-    private UserRepository user_repo;
+    private UserService userService;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping
     public String getUserList(Model model) {
-        model.addAttribute("users", user_repo.findAll());
+        model.addAttribute("users", userService.findAll());
         return "userlist";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("{user}")
     public String getUserEditForm(@PathVariable User user, Model model) {
         model.addAttribute("user", user);
@@ -38,17 +36,7 @@ public class UserController {
     public String saveUser(@RequestParam String username,
                            @RequestParam Map<String, String> form,
                            @RequestParam("user_id") User user){
-        user.setUsername(username);
-        Set<String> roles = Arrays.stream(Role.values())
-                .map(Role::name)
-                .collect(Collectors.toSet());
-        user.getRoles().clear();
-        for (String key : form.keySet()) {
-            if (roles.contains(key)) {
-                user.getRoles().add(Role.valueOf(key));
-            }
-        }
-        user_repo.save(user);
+        userService.saveUser(user, username, form);
         return "redirect:/user";
     }
 }

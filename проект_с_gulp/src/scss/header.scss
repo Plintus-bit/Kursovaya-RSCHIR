@@ -19,6 +19,9 @@ header {
         justify-content: center;
         align-items: center;
         padding: 0px;
+        a {
+            font-family: 'Mulish';
+        }
         // 40px
         gap: 40px;
         .nav_link {
@@ -30,7 +33,7 @@ header {
                 padding: 14px 0px;
                 background-color: transparent;
                 color: $description;
-                transition: ease-in-out 0.3s;
+                transition: ease-in-out 0.2s;
                 transform-origin: center;
                 transition-delay: 50ms;
                 // &::before, &::after {
@@ -53,9 +56,9 @@ header {
                 &:hover {
                     border-radius: 100px;
                     // 14px 64px
-                    padding: 14px 64px;
-                    background-color: $contrast-text-b0;
-                    color: $backgroung;
+                    // padding: 14px 64px;
+                    // background-color: $contrast-text-b0;
+                    color: $contrast-text-b0;
                     // &::after, &::before {
                     //     opacity: 1;
                     // }
@@ -63,20 +66,21 @@ header {
                 &-active {
                     border-radius: 100px;
                     // 14px 64px
-                    padding: 14px 64px;
-                    background-color: $header-buttons-d0;
-                    color: $primary-light;
-                    &::before, &::after {
-                        position: absolute;
-                        content: '';
-                        top: 48%;
-                        left: 46px;
-                        width: 5px;
-                        height: 5px;
-                        border-radius: 10px;
-                        background-color: $primary-light;
-                        opacity: 1;
-                    }
+                    // padding: 14px 64px;
+                    // background-color: $header-buttons-d0;
+                    // color: $primary-light;
+                    color: $contrast-text;
+                    // &::before, &::after {
+                    //     position: absolute;
+                    //     content: '';
+                    //     top: 48%;
+                    //     left: 46px;
+                    //     width: 5px;
+                    //     height: 5px;
+                    //     border-radius: 10px;
+                    //     background-color: $primary-light;
+                    //     opacity: 1;
+                    // }
                     &::after {
                         left: auto;
                         // 48px
