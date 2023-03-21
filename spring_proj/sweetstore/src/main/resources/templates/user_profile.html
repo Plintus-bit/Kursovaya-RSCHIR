@@ -62,6 +62,11 @@
 				<div class="params_block"
 				     th:class="'params_block ' + ${isAdmin == false ? 'hidden' : ''}">
 					<p class="title">Управление БД</p>
+						<a th:href="@{/profile/admins/users}">
+							<button class="params_block_button">
+								Пользователи
+							</button>
+						</a>
 						<a th:href="@{/profile/admins?type=goods}">
 							<button class="params_block_button">
 								Товары

@@ -388,28 +388,36 @@ footer .offer .offer_data {
   grid-auto-columns: 44% 12% 44%;
 }
 
-.data-container {
+.data-container, .data-container-big {
   width: 100%;
-  height: fit-content;
-  max-height: 300px;
+  min-height: 320px;
+  max-height: 360px;
   overflow: scroll;
+  padding: 0px 4px;
+  border: 2px solid rgba(245, 245, 245, 0.9529411765);
 }
-.data-container .table {
+.data-container .table, .data-container-big .table {
   border-spacing: 0px 4px;
 }
-.data-container .table tr {
+.data-container .table tr, .data-container-big .table tr {
   background-color: rgba(245, 245, 245, 0.9529411765);
 }
-.data-container .table tr td {
+.data-container .table tr td, .data-container-big .table tr td {
   padding: 10px 20px;
+  color: #525A6D;
 }
-.data-container .table tr:nth-child(2n) {
+.data-container .table tr:nth-child(2n), .data-container-big .table tr:nth-child(2n) {
   background-color: white;
 }
-.data-container .table thead td {
+.data-container .table thead td, .data-container-big .table thead td {
   background-color: #525A6D;
   color: white;
   font-family: "Mulish";
+}
+
+.data-container-big {
+  min-height: 520px;
+  max-height: 620px;
 }
 
 #filter-menu .filter-menu_header {

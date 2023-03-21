@@ -7,7 +7,7 @@ public class ProductMethods {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "method_id",  referencedColumnName = "id")
     private MethodTypes methodId;
     private String address;

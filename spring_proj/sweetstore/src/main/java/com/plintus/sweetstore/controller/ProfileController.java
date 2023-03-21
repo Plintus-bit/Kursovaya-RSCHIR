@@ -1,5 +1,6 @@
 package com.plintus.sweetstore.controller;
 
+import com.plintus.sweetstore.domain.Role;
 import com.plintus.sweetstore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -15,12 +16,10 @@ public class ProfileController {
     @Autowired
     private UserService userService;
 
-    private Authentication auth;
-
     @GetMapping
     public String profile(Model model) {
-        model.addAttribute("isAdmin", true);
-        auth = SecurityContextHolder.getContext().getAuthentication();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("isAdmin", auth.getAuthorities().contains(Role.ADMIN));
         return "user_profile";
     }
 

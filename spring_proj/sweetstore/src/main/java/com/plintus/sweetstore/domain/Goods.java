@@ -13,7 +13,7 @@ public class Goods {
     private Integer cost;
     private String url;
     private Integer count;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "subtypeId", referencedColumnName = "id")
     private GoodSubtypes subtype;
 

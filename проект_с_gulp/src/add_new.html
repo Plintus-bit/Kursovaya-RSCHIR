@@ -32,6 +32,75 @@
                             </tr>
                         </table>
                     </div>
+
+                    <div class="data-container">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <td>ID</td>
+                                <td>Название</td>
+                            </tr>
+                            </thead>
+                            <tr th:each="ing : ${all}">
+                                <td th:text="${ing.id}">id</td>
+                                <td th:text="${ing.name}">name</td>
+                            </tr>
+                            <tr th:each="ing : ${all}">
+                                <td th:text="${ing.id}">id</td>
+                                <td th:text="${ing.name}">name</td>
+                            </tr>
+                            <tr th:each="ing : ${all}">
+                                <td th:text="${ing.id}">id</td>
+                                <td th:text="${ing.name}">name</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="data-container-big">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <td>ID</td>
+                                <td>Название</td>
+                            </tr>
+                            </thead>
+                            <tr th:each="ing : ${all}">
+                                <td th:text="${ing.id}">id</td>
+                                <td th:text="${ing.name}">name</td>
+                            </tr>
+                            <tr th:each="ing : ${all}">
+                                <td th:text="${ing.id}">id</td>
+                                <td th:text="${ing.name}">name</td>
+                            </tr>
+                            <tr th:each="ing : ${all}">
+                                <td th:text="${ing.id}">id</td>
+                                <td th:text="${ing.name}">name</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="data-container">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <td>ID</td>
+                                <td>Название</td>
+                            </tr>
+                            </thead>
+                            <tr th:each="ing : ${all}">
+                                <td th:text="${ing.id}">id</td>
+                                <td th:text="${ing.name}">name</td>
+                            </tr>
+                            <tr th:each="ing : ${all}">
+                                <td th:text="${ing.id}">id</td>
+                                <td th:text="${ing.name}">name</td>
+                            </tr>
+                            <tr th:each="ing : ${all}">
+                                <td th:text="${ing.id}">id</td>
+                                <td th:text="${ing.name}">name</td>
+                            </tr>
+                        </table>
+                    </div>
                     <form class="dao" action="add" method="post">
                         <div class="or">
                             <input type="text" class="input" name="article" placeholder="артикулы товаров">

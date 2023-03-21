@@ -1,12 +1,11 @@
 package com.plintus.sweetstore.controller;
 
-import com.plintus.sweetstore.domain.GoodSubtypes;
-import com.plintus.sweetstore.domain.GoodTypes;
-import com.plintus.sweetstore.domain.Ingredients;
+import com.plintus.sweetstore.domain.*;
 import com.plintus.sweetstore.repos.GoodRepository;
 import com.plintus.sweetstore.service.GoodsService;
 import com.plintus.sweetstore.service.IngsService;
 import com.plintus.sweetstore.service.TypesService;
+import com.plintus.sweetstore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -25,6 +24,31 @@ public class AdminsController {
     private TypesService typesService;
     @Autowired
     private GoodsService goodsService;
+
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("/users")
+    public String getUserList(Model model) {
+        model.addAttribute("users", userService.findAll());
+        return "userlist";
+    }
+
+    @GetMapping("/users/{user}")
+    public String getUserEditForm(@PathVariable User user, Model model) {
+        model.addAttribute("user", user);
+        model.addAttribute("roles", Role.values());
+        return "useredit";
+    }
+
+    @PostMapping("/users")
+    public String saveUser(@RequestParam String username,
+                           @RequestParam Map<String, String> form,
+                           @RequestParam("user_id") User user){
+        userService.saveUser(user, username, form);
+        return "redirect:/users";
+    }
+
     @GetMapping
     public String adminsPage(@RequestParam String type) {
         return "redirect:/profile/admins/edit_db?type=" + type;
@@ -44,14 +68,21 @@ public class AdminsController {
         if (Objects.equals(act, "upd") || Objects.equals(act, "del")) {
             model.addAttribute("oldIng", new Ingredients());
         }
-        if (Objects.equals(type, "ings")) {
-            model.addAttribute("all", ingsService.getAllIngredients());
-        }
-        else if (Objects.equals(type, "gtypes")) {
-            model.addAttribute("all", typesService.getAllTypes());
-        }
-        else if (Objects.equals(type, "gsubts")) {
-            model.addAttribute("all", typesService.getAllSubtypes());
+        switch (type) {
+            case "ings":
+                model.addAttribute("all", ingsService.getAllIngredients());
+                break;
+            case "gtypes":
+                model.addAttribute("all", typesService.getAllTypes());
+                break;
+            case "gsubts":
+                model.addAttribute("all", typesService.getAllSubtypes());
+                model.addAttribute("allTypes", typesService.getAllTypes());
+                break;
+            case "goods":
+                model.addAttribute("all", goodsService.getAllGoods());
+                model.addAttribute("allSubtypes", typesService.getAllSubtypes());
+                break;
         }
         return type;
     }
@@ -116,6 +147,36 @@ public class AdminsController {
     @PostMapping("gsubts/del")
     public String gsubtsDel(@RequestParam String names) {
         typesService.deleteSubtypes(names);
+        return "redirect:/profile";
+    }
+
+    @PostMapping("goods/ins")
+    public String goodsIns(@RequestParam String article,
+                           @RequestParam String name,
+                           @RequestParam String descript,
+                           @RequestParam String subtype,
+                           @RequestParam String cost,
+                           @RequestParam String count,
+                           @RequestParam String url) {
+        goodsService.addGoods(article, name, descript, subtype, cost, count, url);
+        return "redirect:/profile";
+    }
+
+    @PostMapping("goods/upd")
+    public String goodsUpd(@RequestParam String oldArticle,
+                           @RequestParam String article,
+                           @RequestParam String name,
+                           @RequestParam String descript,
+                           @RequestParam String subtype,
+                           @RequestParam String cost,
+                           @RequestParam String count,
+                           @RequestParam String url) {
+        return "redirect:/profile";
+    }
+
+    @PostMapping("goods/del")
+    public String goodsDel(@RequestParam String article) {
+        goodsService.deleteGoods(article);
         return "redirect:/profile";
     }
 

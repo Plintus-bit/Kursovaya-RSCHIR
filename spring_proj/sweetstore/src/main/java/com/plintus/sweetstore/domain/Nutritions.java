@@ -7,7 +7,7 @@ public class Nutritions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "article",
             referencedColumnName = "article")
     private Goods article;

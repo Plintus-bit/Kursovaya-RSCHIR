@@ -11,7 +11,7 @@ public class IngStructures {
     @JoinColumn(name = "article",
             referencedColumnName = "article")
     private Goods article;;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "ingId",
             referencedColumnName = "id")
     private Ingredients ingId;

@@ -17,4 +17,10 @@ public interface GoodRepository extends CrudRepository<Goods, Integer> {
             nativeQuery = true
     )
     List<Goods> findAllByArticleIn(Collection<Integer> article);
+
+    @Query(
+            value = "SELECT article FROM goods",
+            nativeQuery = true
+    )
+    List<Integer> findAllArticle();
 }

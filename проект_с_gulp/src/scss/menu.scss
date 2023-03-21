@@ -61,17 +61,20 @@
     grid-auto-columns: 44% 12% 44%;
 }
 
-.data-container {
+.data-container, .data-container-big {
     width: 100%;
-    height: fit-content;
-    max-height: 300px;
+    min-height: 320px;
+    max-height: 360px;
     overflow: scroll;
+    padding: 0px 4px;
+    border: 2px solid $card-header-place-f3;
     .table {
         border-spacing: 0px 4px;
         tr {
             background-color: $card-header-place-f3;
             td {
                 padding: 10px 20px;
+                color: $primary-light;
             }
             &:nth-child(2n) {
                 background-color: $backgroung;
@@ -85,4 +88,9 @@
             }
         }
     }
+}
+
+.data-container-big {
+    min-height: 520px;
+    max-height: 620px;
 }

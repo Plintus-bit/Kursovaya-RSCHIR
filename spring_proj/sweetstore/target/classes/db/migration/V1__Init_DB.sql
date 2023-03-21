@@ -103,9 +103,6 @@ create table usr (
     primary key (id)
 );
 
-create table usr_seq (next_val bigint) ;
-insert into usr_seq values ( 1 );
-
 alter table ingredients add constraint ing_uk unique (name);
 alter table method_types add constraint method_type_uk unique (name);
 alter table order_statuses add constraint order_statuses_uk unique (name);

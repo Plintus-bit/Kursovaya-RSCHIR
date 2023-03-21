@@ -39,15 +39,4 @@ public class MainController {
         model.put("types", types);
         return "section";
     }
-
-    // изменить mapping, добавить get
-//    @PostMapping("/section")
-//    public String addType(@RequestParam String name,
-//                          Map<String, Object> model) {
-//        GoodTypes type = new GoodTypes(name, "");
-//        goodTypesRep.save(type);
-//        Iterable<GoodTypes> types = goodTypesRep.findAll();
-//        model.put("types", types);
-//        return "section";
-//    }
 }
