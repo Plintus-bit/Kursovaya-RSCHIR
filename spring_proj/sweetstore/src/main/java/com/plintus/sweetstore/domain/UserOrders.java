@@ -7,7 +7,7 @@ import java.util.Date;
 @Entity
 public class UserOrders {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Temporal(TemporalType.TIMESTAMP)
     private Date orderDate;

@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface NutritionsRepository extends CrudRepository<Nutritions, Integer> {
     @Query(
-            value = "SELECT * FROM nutritions WHERE article=:article",
+            value = "SELECT * FROM nutritions WHERE good_id=:id",
             nativeQuery = true
     )
-    Optional<Nutritions> findByArticle(Integer article);
+    Optional<Nutritions> findByGoodId(Integer id);
 }

@@ -1,4 +1,5 @@
 create table goods (
+    id integer not null auto_increment,
     article integer not null,
     cost integer,
     count integer,
@@ -6,7 +7,7 @@ create table goods (
     name varchar(255),
     url varchar(255),
     subtype_id integer not null,
-    primary key (article)
+    primary key (id)
 );
 
 create table good_subtypes (
@@ -31,7 +32,7 @@ create table ingredients (
 
 create table ing_structures (
     id integer not null auto_increment,
-    article integer not null,
+    good_id integer not null,
     ing_id integer not null,
     primary key (id)
 );
@@ -50,14 +51,14 @@ create table nutritions (
     fats float(23),
     proteins float(23),
     water float(23),
-    article integer not null,
+    good_id integer not null,
     primary key (id)
 );
 
 create table order_good_structs (
     id integer not null auto_increment,
     count integer,
-    article integer not null,
+    good_id integer not null,
     order_id integer not null,
     primary key (id)
 );
@@ -75,16 +76,13 @@ create table product_methods (
     primary key (id)
 );
 
-create table user_orders_seq (next_val bigint);
-insert into user_orders_seq values ( 1 );
-
 create table user_role (
     user_id bigint not null,
     roles varchar(255)
 );
 
 create table user_orders (
-    id integer not null,
+    id integer not null auto_increment,
     cust_phone varchar(20),
     order_date datetime(6),
     customer_id bigint,
@@ -104,14 +102,15 @@ create table usr (
 );
 
 alter table ingredients add constraint ing_uk unique (name);
+alter table goods add constraint good_uk unique (article);
 alter table method_types add constraint method_type_uk unique (name);
 alter table order_statuses add constraint order_statuses_uk unique (name);
 alter table goods add constraint good_subtype_fk foreign key (subtype_id) references good_subtypes (id);
 alter table good_subtypes add constraint subtype_type_fk foreign key (parent_id) references good_types (id);
-alter table ing_structures add constraint ingstruct_goods_fk foreign key (article) references goods (article);
+alter table ing_structures add constraint ingstruct_goods_fk foreign key (good_id) references goods (id);
 alter table ing_structures add constraint ingstruct_ings_fk foreign key (ing_id) references ingredients (id);
-alter table nutritions add constraint nutr_good_fk foreign key (article) references goods (article);
-alter table order_good_structs add constraint ogs_goods_fk foreign key (article) references goods (article);
+alter table nutritions add constraint nutr_good_fk foreign key (good_id) references goods (id);
+alter table order_good_structs add constraint ogs_goods_fk foreign key (good_id) references goods (id);
 alter table order_good_structs add constraint ogs_orders_fk foreign key (order_id) references user_orders (id);
 alter table product_methods add constraint prmethods_methodtypes_fk foreign key (method_id) references method_types (id);
 alter table user_role add constraint role_usr_fk foreign key (user_id) references usr (id);

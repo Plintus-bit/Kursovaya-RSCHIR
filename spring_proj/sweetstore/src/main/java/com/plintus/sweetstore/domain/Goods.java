@@ -7,6 +7,9 @@ import org.hibernate.annotations.ColumnDefault;
 @Entity
 public class Goods {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column(unique = true)
     private Integer article;
     private String name;
     private String descript;
@@ -102,6 +105,14 @@ public class Goods {
         this.subtype = subtype;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Goods{" +
@@ -110,6 +121,8 @@ public class Goods {
                 ", descript='" + descript + '\'' +
                 ", cost=" + cost +
                 ", url='" + url + '\'' +
+                ", counts=" + count +
+                ", subtype=" + subtype +
                 '}';
     }
 }

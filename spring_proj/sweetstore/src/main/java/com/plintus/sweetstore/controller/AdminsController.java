@@ -46,7 +46,7 @@ public class AdminsController {
                            @RequestParam Map<String, String> form,
                            @RequestParam("user_id") User user){
         userService.saveUser(user, username, form);
-        return "redirect:/users";
+        return "redirect:/profile/admins/users";
     }
 
     @GetMapping
@@ -171,6 +171,7 @@ public class AdminsController {
                            @RequestParam String cost,
                            @RequestParam String count,
                            @RequestParam String url) {
+        goodsService.updateGoods(oldArticle, article, name, descript, subtype, cost, count, url);
         return "redirect:/profile";
     }
 

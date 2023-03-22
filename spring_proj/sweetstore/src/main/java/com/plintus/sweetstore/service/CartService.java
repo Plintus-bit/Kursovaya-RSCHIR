@@ -46,8 +46,4 @@ public class CartService {
 
     }
 
-    public List<Goods> getGoodsByOrderId() {
-        return null;
-    }
-
 }

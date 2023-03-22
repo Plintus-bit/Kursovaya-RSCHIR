@@ -20,14 +20,16 @@
         .info_name-cost {
             width: 100%;
             font-size: $font-descript;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 70% 30%;
             margin-bottom: 5px;
             .name-cost_name {
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
+            }
+            .name-cost_cost {
+                justify-self: flex-end;
             }
         }
         .info_description {
@@ -48,10 +50,19 @@
     }
 }
 
-.activities_added {
-    display: grid;
-    grid-template-columns: 60% 15% 15%;
+.row-form {
+    display: flex;
+    flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.activities_added {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     gap: 5px;
     .controls {
         &_minus, &_plus {
@@ -65,7 +76,28 @@
     .added_controls {
         display: grid;
         grid-template-columns: auto auto auto;
+        gap: 10px;
         justify-content: space-between;
+
+        .controls_value {
+            display: grid;
+            grid-template-columns: 80px 30px;
+            align-items: center;
+            justify-content: flex-start;
+            justify-items: flex-start;
+            .value_value {
+                font-size: $font-descript;
+                font-family: 'AlegreyaSans';
+                background-color: transparent;
+                color: $primary-light;
+                border: none;
+                max-width: 100px;
+            }
+            .value_value:focus {
+                border: none;
+                outline: none;
+            }
+        }
     }
     .delete {
         width: 40px;

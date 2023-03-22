@@ -8,9 +8,9 @@ public class Nutritions {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @OneToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "article",
-            referencedColumnName = "article")
-    private Goods article;
+    @JoinColumn(name = "goodId",
+            referencedColumnName = "id")
+    private Goods goodId;
     private Float caloric;
     private Float proteins;
     private Float fats;
@@ -21,8 +21,8 @@ public class Nutritions {
     public Nutritions() {
     }
 
-    public Nutritions(Goods article, Float caloric, Float proteins, Float fats, Float carbhyd, Float diet_fiber, Float water) {
-        this.article = article;
+    public Nutritions(Goods goodId, Float caloric, Float proteins, Float fats, Float carbhyd, Float diet_fiber, Float water) {
+        this.goodId = goodId;
         this.caloric = caloric;
         this.proteins = proteins;
         this.fats = fats;
@@ -31,12 +31,12 @@ public class Nutritions {
         this.water = water;
     }
 
-    public Goods getArticle() {
-        return article;
+    public Goods getGoodId() {
+        return goodId;
     }
 
-    public void setArticle(Goods article) {
-        this.article = article;
+    public void setGoodId(Goods goodId) {
+        this.goodId = goodId;
     }
 
     public Float getCaloric() {

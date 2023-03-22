@@ -72,52 +72,60 @@
 			</section>
 			<section id="goods_place">
 				<!-- card start -->
-				<a th:each="good : ${goods}"
-				   th:href="@{/menu/section/good?id=} + ${good.article}">
-					<div class="good-card">
+				<div class="good-card" th:each="good : ${goods}">
+					<a th:href="@{/menu/section/good?id=} + ${good.id}">
 						<div class="good-card_photo">
 							<img th:src="${good.url}" alt="Фото товара" class="img">
 						</div>
-						<div class="good-card_info">
-							<div class="info_name-cost">
-								<p class="name-cost_name" th:text="${good.name}">
-									Товар
-								</p>
-								<p class="name-cost_cost">
-                                    <span class="cost-value" th:text="${good.cost}">
-                                        0
-                                    </span> p.
-								</p>
-							</div>
-							<p class="info_description subtitle" th:text="${good.descript}">
-								Описание товара
+					</a>
+					<div class="good-card_info">
+						<div class="info_name-cost">
+							<p class="name-cost_name" th:text="${good.name}">
+								Товар
 							</p>
-							<div class="info_activities">
-								<div class="activities_added">
+							<p class="name-cost_cost">
+								<span class="cost-value" th:text="${good.cost}">
+									0
+								</span> p.
+							</p>
+						</div>
+						<p class="info_description subtitle" th:text="${good.descript}">
+							Описание товара
+						</p>
+						<div class="info_activities">
+							<div class="activities_added">
+								<form th:action="'section/edit_cart?act=ins&good_id=' + ${good.id}" method="post"
+								      class="row-form">
 									<div class="added_controls">
 										<div class="controls_minus">
 											<img src="/static/img/minus.png" alt="" class="img-full">
 										</div>
 										<div class="controls_value">
-                                            <span class="value_value">
-                                                0
-                                            </span> шт.
+											<div class="controls_value">
+												<input type="number" class="value_value"
+												       name="value" value="0" th:max="${good.count}"
+												       readonly>
+												<p>шт.</p>
+											</div>
 										</div>
 										<div class="controls_plus">
 											<img src="/static/img/plus.png" alt="" class="img-full">
 										</div>
 									</div>
-									<button class="delete">
+									<button type="submit" class="delete">
 										<img src="/static/img/add.png" alt="delete" class="img-full">
 									</button>
+								</form>
+								<form th:action="'section/edit_cart?act=ins&good_id=' + ${good.id}"
+								      method="post" class="row-form">
 									<button class="delete">
 										<img src="/static/img/delete.png" alt="delete" class="img-full">
 									</button>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>
-				</a>
+				</div>
 				<!-- card end -->
 			</section>
 		</section>
@@ -151,6 +159,7 @@
 			</div>
 		</div>
 	</footer>
+	<script src="/static/js/goods.js"></script>
 </div>
 </body>
 </html>

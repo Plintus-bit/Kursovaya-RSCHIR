@@ -7,7 +7,7 @@
 </head>
 <body>
     <p>Редактирование пользователя</p>
-    <form action="/user" method="post">
+    <form action="/profile/admins/users" method="post">
         <input type="text" name="username" placeholder="имя пользователя" th:value="${user.username}">
         <div th:each="role : ${roles}">
             <label>

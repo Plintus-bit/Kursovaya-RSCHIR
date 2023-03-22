@@ -12,7 +12,7 @@ insert into good_subtypes (name, parent_id) values
     ("Берлинер", 4),
     ("Бисквитный", 2);
 
-insert into goods values
+insert into goods (article, cost, count, name, descript, url, subtype_id) values
     (123043, 120, 405, "Вкусно", "Шоколадный торт без взбитых сливок", "https://i.ibb.co/s3zsZD9/8.jpg", 6),
     (109043, 120, 405, "Слишком сладко, но сладкое это хорошо, очень хорошо, просто чудесно, я чувствую, что скоро умру от того как это сладко или просто умру, посмотрим", 'Самокритичное печенье "для тупого меня"', "https://i.ibb.co/Ybz0fY7/img-not-exist.png", 1);
 
@@ -39,10 +39,10 @@ insert into ingredients (name) values
     ("посыпка"),
     ("миндаль");
 
-insert into ing_structures (article, ing_id) values
-    (123043, 1),
-    (109043, 1),
-    (123043, 4),
-    (123043, 5),
-    (109043, 2),
-    (109043, 3);
+insert into ing_structures (good_id, ing_id) values
+    (1, 1),
+    (2, 1),
+    (1, 4),
+    (1, 5),
+    (2, 2),
+    (2, 3);

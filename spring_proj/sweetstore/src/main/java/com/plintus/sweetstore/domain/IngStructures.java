@@ -7,20 +7,20 @@ public class IngStructures {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "article",
-            referencedColumnName = "article")
-    private Goods article;;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "goodId",
+                referencedColumnName = "id")
+    private Goods goodId;;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "ingId",
-            referencedColumnName = "id")
+                referencedColumnName = "id")
     private Ingredients ingId;
 
     public IngStructures() {
     }
 
-    public IngStructures(Goods article, Ingredients ingId) {
-        this.article = article;
+    public IngStructures(Goods goodId, Ingredients ingId) {
+        this.goodId = goodId;
         this.ingId = ingId;
     }
 
@@ -32,12 +32,12 @@ public class IngStructures {
         this.id = id;
     }
 
-    public Goods getArticle() {
-        return article;
+    public Goods getGoodId() {
+        return goodId;
     }
 
-    public void setArticle(Goods article) {
-        this.article = article;
+    public void setGoodId(Goods goodId) {
+        this.goodId = goodId;
     }
 
     public Ingredients getIngId() {

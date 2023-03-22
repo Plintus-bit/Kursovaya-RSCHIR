@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface IngStructuresRepository extends CrudRepository<IngStructures, Integer> {
     @Query(
-            value = "SELECT ing_id FROM ing_structures i WHERE i.article = :article",
+            value = "SELECT ing_id FROM ing_structures i WHERE i.good_id = :id",
             nativeQuery = true
     )
-    public List<Integer> findIngIdByArticle(Integer article);
+    public List<Integer> findIngIdByGoodId(Integer id);
 }

@@ -392,7 +392,7 @@ footer .offer .offer_data {
   width: 100%;
   min-height: 320px;
   max-height: 360px;
-  overflow: scroll;
+  overflow-y: scroll;
   padding: 0px 4px;
   border: 2px solid rgba(245, 245, 245, 0.9529411765);
 }
@@ -480,15 +480,17 @@ footer .offer .offer_data {
 .good-card .good-card_info .info_name-cost {
   width: 100%;
   font-size: 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 70% 30%;
   margin-bottom: 5px;
 }
 .good-card .good-card_info .info_name-cost .name-cost_name {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.good-card .good-card_info .info_name-cost .name-cost_cost {
+  justify-self: flex-end;
 }
 .good-card .good-card_info .info_description {
   width: 100%;
@@ -504,10 +506,19 @@ footer .offer .offer_data {
   font-size: 20px;
 }
 
-.activities_added {
-  display: grid;
-  grid-template-columns: 60% 15% 15%;
+.row-form {
+  display: flex;
+  flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.activities_added {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   gap: 5px;
 }
 .activities_added .controls_minus, .activities_added .controls_plus {
@@ -520,7 +531,27 @@ footer .offer .offer_data {
 .activities_added .added_controls {
   display: grid;
   grid-template-columns: auto auto auto;
+  gap: 10px;
   justify-content: space-between;
+}
+.activities_added .added_controls .controls_value {
+  display: grid;
+  grid-template-columns: 80px 30px;
+  align-items: center;
+  justify-content: flex-start;
+  justify-items: flex-start;
+}
+.activities_added .added_controls .controls_value .value_value {
+  font-size: 24px;
+  font-family: "AlegreyaSans";
+  background-color: transparent;
+  color: #525A6D;
+  border: none;
+  max-width: 100px;
+}
+.activities_added .added_controls .controls_value .value_value:focus {
+  border: none;
+  outline: none;
 }
 .activities_added .delete {
   width: 40px;

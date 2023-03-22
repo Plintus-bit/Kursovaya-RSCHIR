@@ -12,17 +12,17 @@ public class OrderGoodStructs {
             referencedColumnName = "id")
     private UserOrders orderId;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "article",
-            referencedColumnName = "article")
-    private Goods article;
+    @JoinColumn(name = "goodId",
+            referencedColumnName = "id")
+    private Goods goodId;
     private Integer count;
 
     public OrderGoodStructs() {
     }
 
-    public OrderGoodStructs(UserOrders orderId, Goods article, Integer count) {
+    public OrderGoodStructs(UserOrders orderId, Goods goodId, Integer count) {
         this.orderId = orderId;
-        this.article = article;
+        this.goodId = goodId;
         this.count = count;
     }
 
@@ -42,12 +42,12 @@ public class OrderGoodStructs {
         this.orderId = orderId;
     }
 
-    public Goods getArticle() {
-        return article;
+    public Goods getGoodId() {
+        return goodId;
     }
 
-    public void setArticle(Goods article) {
-        this.article = article;
+    public void setGoodId(Goods article) {
+        this.goodId = article;
     }
 
     public Integer getCount() {

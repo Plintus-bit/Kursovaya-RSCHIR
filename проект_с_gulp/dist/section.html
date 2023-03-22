@@ -140,27 +140,37 @@
                                 Очень длинное описание товара, кошмар, а ж прочитать невозможно какое длинное, жесть.
                             </p>
                             <div class="info_activities">
-                                <div class="activities_added">
-                                    <div class="added_controls">
-                                        <div class="controls_minus">
-                                            <img src="./img/minus.png" alt="" class="img-full">
-                                        </div>
-                                        <div class="controls_value">
-                                            <span class="value_value">
-                                                10
-                                            </span> шт.
-                                        </div>
-                                        <div class="controls_plus">
-                                            <img src="./img/plus.png" alt="" class="img-full">
-                                        </div>
+                                    <div class="activities_added">
+                                        <form class="row-form" action="#" method="post">
+                                            <div class="added_controls">
+                                                <div class="controls_minus">
+                                                    <img src="./img/minus.png" alt="" class="img-full">
+                                                </div>
+                                                <div class="controls_value">
+                                                    <input type="number" class="value_value" name="value" value="1" max="4" readonly>
+                                                    <p>шт.</p>
+                                                </div>
+                                                <div class="controls_plus">
+                                                    <img src="./img/plus.png" alt="" class="img-full">
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="delete">
+                                                <img src="./img/add.png" alt="delete" class="img-full">
+                                            </button>
+                                        </form>
+                                        <form class="row-form" action="#" method="post">    
+                                            <button type="submit" class="delete">
+                                                <img src="./img/delete.png" alt="delete" class="img-full">
+                                            </button>
+                                        </form>
                                     </div>
-                                    <button class="delete">
-                                        <img src="./img/add.png" alt="delete" class="img-full">
-                                    </button>
-                                    <button class="delete">
-                                        <img src="./img/delete.png" alt="delete" class="img-full">
-                                    </button>
-                                </div>
+                                    <div class="activities_not-added hidden">
+                                        <a href="#">
+                                            <button class="add button">
+                                                Добавить
+                                            </button>
+                                        </a>
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -228,5 +238,8 @@
     </div>
 </footer>
     </div>
+    <script src="./js/goods.js">
+
+    </script>
 </body>
 </html>
