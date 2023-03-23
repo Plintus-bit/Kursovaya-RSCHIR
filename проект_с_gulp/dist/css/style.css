@@ -521,27 +521,29 @@ footer .offer .offer_data {
   justify-content: space-between;
   gap: 5px;
 }
-.activities_added .controls_minus, .activities_added .controls_plus {
+
+.controls_minus, .controls_plus {
   width: 36px;
   height: 36px;
 }
-.activities_added .controls_value {
+.controls_value {
   width: fit-content;
 }
-.activities_added .added_controls {
+
+.added_controls {
   display: grid;
   grid-template-columns: auto auto auto;
   gap: 10px;
   justify-content: space-between;
 }
-.activities_added .added_controls .controls_value {
+.added_controls .controls_value {
   display: grid;
   grid-template-columns: 80px 30px;
   align-items: center;
   justify-content: flex-start;
   justify-items: flex-start;
 }
-.activities_added .added_controls .controls_value .value_value {
+.added_controls .controls_value .value_value {
   font-size: 24px;
   font-family: "AlegreyaSans";
   background-color: transparent;
@@ -549,16 +551,17 @@ footer .offer .offer_data {
   border: none;
   max-width: 100px;
 }
-.activities_added .added_controls .controls_value .value_value:focus {
+.added_controls .controls_value .value_value:focus {
   border: none;
   outline: none;
 }
-.activities_added .delete {
+
+.delete {
   width: 40px;
   height: 40px;
   border-radius: 120px;
 }
-.activities_added .delete:active {
+.delete:active {
   background-color: #FFEDED;
 }
 
@@ -655,6 +658,18 @@ button.orders_button:active {
   border-radius: 2px;
   color: #2F3543;
 }
+.order-goods .order-good .data_subtitle-cost {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.order-goods .order-good p {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .order-goods .order-good::after {
   content: url("../img/line.png");
   width: 100%;
@@ -666,7 +681,7 @@ button.orders_button:active {
 .order-goods .order-good .subtitle {
   color: #2F3543;
 }
-.order-goods .order-good .subtitle .good-cost {
+.order-goods .order-good .good-cost {
   color: #ACB0B9;
 }
 .order-goods .order-good_data {

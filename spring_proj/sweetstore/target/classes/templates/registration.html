@@ -15,12 +15,19 @@
         <picture><source srcset="https://i.ibb.co/S3WXL11/14.webp" type="image/webp"><img src="https://i.ibb.co/S3WXL11/14.jpg" alt="background" class="background-img img"></picture>
         <section class="container-3 full-colored">
             <form id="logging" th:action="@{/registration}" method="post">
-                <p class="title">Вход</p>
+                <p class="title">Регистрация</p>
                 <div class="logging_inputs">
-                    <p th:text="${message}" text=""/>
+                    <p th:text="${messageUserExist}"></p>
+                    <p th:text="${messageUsername}"></p>
                     <input type="text" name="username" class="input" placeholder="Имя пользователя">
+                    <p th:text="${messagePasswd}"></p>
                     <input type="password" name="password" class="input" placeholder="Пароль">
+                    <p th:text="${messagePasswdConf}"></p>
+                    <input type="password" name="passwordConfirm" class="input" placeholder="Повторите пароль">
+                    <p th:text="${messageEmail}"></p>
                     <input type="email" name="email" class="input" placeholder="some@some.com">
+                    <p th:text="${messagePhone}"></p>
+                    <input type="tel" name="phone" class="input" placeholder="78885553311">
                     <input type="hidden" th:name="_csrf" th:value="${_csrf.token}" />
                     <input type="submit" class="button-2" value="Зарегистрироваться">
                 </div>

@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/static/css/style.css" type="text/css">
-	<title th:text="${good_type}"></title>
+	<title th:text="${good_type.name}"></title>
 </head>
 <body>
 <div class="wrapper">
@@ -94,7 +94,7 @@
 						</p>
 						<div class="info_activities">
 							<div class="activities_added">
-								<form th:action="'section/edit_cart?act=ins&good_id=' + ${good.id}" method="post"
+								<form th:action="'/cart/edit_cart?act=ins&goodId=' + ${good.id} + '&cId=' + ${good_type.id}" method="post"
 								      class="row-form">
 									<div class="added_controls">
 										<div class="controls_minus">
@@ -116,7 +116,7 @@
 										<img src="/static/img/add.png" alt="delete" class="img-full">
 									</button>
 								</form>
-								<form th:action="'section/edit_cart?act=ins&good_id=' + ${good.id}"
+								<form th:action="'/cart/edit_cart?act=del&goodId=' + ${good.id} + '&cId=' + ${good_type.id}"
 								      method="post" class="row-form">
 									<button class="delete">
 										<img src="/static/img/delete.png" alt="delete" class="img-full">

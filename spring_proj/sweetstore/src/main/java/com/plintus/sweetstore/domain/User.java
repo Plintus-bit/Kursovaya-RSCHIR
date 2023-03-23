@@ -1,6 +1,7 @@
 package com.plintus.sweetstore.domain;
 
 import jakarta.persistence.*;
+import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -16,6 +17,7 @@ public class User {
 
     private String username;
     private String password;
+    private String phone;
     private boolean active;
 
     private String email;
@@ -25,7 +27,10 @@ public class User {
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
-//    private String role;
+
+    public User() {
+
+    }
 
     // Getters
     public Long getId() {
@@ -78,7 +83,29 @@ public class User {
         return activationCode;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public void setActivationCode(String activationCode) {
         this.activationCode = activationCode;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", active=" + active +
+                ", email='" + email + '\'' +
+                ", activationCode='" + activationCode + '\'' +
+                ", roles=" + roles +
+                '}';
     }
 }

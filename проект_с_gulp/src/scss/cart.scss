@@ -28,6 +28,18 @@
         grid-auto-rows: 100%;
         border-radius: 2px;
         color: $primary-dark;
+        .data_subtitle-cost {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        p {
+            max-width: 200px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
         &::after {
             content: url("../img/line.png");
             width: 100%;
@@ -38,9 +50,9 @@
         }
         .subtitle {
             color: $primary-dark;
-            .good-cost {
-                color: $description;
-            }
+        }
+        .good-cost {
+            color: $description;
         }
         &_data {
             padding-left: 20px;

@@ -14,7 +14,6 @@ public class UserOrders {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(referencedColumnName = "id")
     private User customer;
-    private String custPhone;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(referencedColumnName = "id")
     private ProductMethods prM;
@@ -25,17 +24,15 @@ public class UserOrders {
     public UserOrders() {
     }
 
-    public UserOrders(Date orderDate, User customer, String custPhone, ProductMethods prM, OrderStatuses status) {
+    public UserOrders(Date orderDate, User customer, ProductMethods prM, OrderStatuses status) {
         this.orderDate = orderDate;
         this.customer = customer;
-        this.custPhone = custPhone;
         this.prM = prM;
         this.status = status;
     }
-    public UserOrders(Date orderDate, User customer, String custPhone, OrderStatuses status) {
+    public UserOrders(Date orderDate, User customer, OrderStatuses status) {
         this.orderDate = orderDate;
         this.customer = customer;
-        this.custPhone = custPhone;
         this.status = status;
     }
 
@@ -61,14 +58,6 @@ public class UserOrders {
 
     public void setCustomer(User customer) {
         this.customer = customer;
-    }
-
-    public String getCustPhone() {
-        return custPhone;
-    }
-
-    public void setCustPhone(String custPhone) {
-        this.custPhone = custPhone;
     }
 
     public ProductMethods getPrM() {

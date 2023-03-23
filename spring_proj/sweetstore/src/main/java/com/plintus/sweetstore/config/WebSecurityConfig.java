@@ -47,12 +47,6 @@ import java.util.Arrays;
 public class WebSecurityConfig {
     @Autowired
     public AuthManager authManager;
-
-    @Bean
-    public PasswordEncoder getPasswordEncoder() {
-        return new BCryptPasswordEncoder(8);
-    }
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 //        http

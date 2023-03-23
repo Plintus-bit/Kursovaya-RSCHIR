@@ -64,47 +64,48 @@
     align-items: center;
     justify-content: space-between;
     gap: 5px;
-    .controls {
-        &_minus, &_plus {
-            width: 36px;
-            height: 36px;
-        }
-        &_value {
-            width: fit-content;
-        }
-    }
-    .added_controls {
-        display: grid;
-        grid-template-columns: auto auto auto;
-        gap: 10px;
-        justify-content: space-between;
+}
 
-        .controls_value {
-            display: grid;
-            grid-template-columns: 80px 30px;
-            align-items: center;
-            justify-content: flex-start;
-            justify-items: flex-start;
-            .value_value {
-                font-size: $font-descript;
-                font-family: 'AlegreyaSans';
-                background-color: transparent;
-                color: $primary-light;
-                border: none;
-                max-width: 100px;
-            }
-            .value_value:focus {
-                border: none;
-                outline: none;
-            }
+.controls {
+    &_minus, &_plus {
+        width: 36px;
+        height: 36px;
+    }
+    &_value {
+        width: fit-content;
+    }
+}
+.added_controls {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+    justify-content: space-between;
+
+    .controls_value {
+        display: grid;
+        grid-template-columns: 80px 30px;
+        align-items: center;
+        justify-content: flex-start;
+        justify-items: flex-start;
+        .value_value {
+            font-size: $font-descript;
+            font-family: 'AlegreyaSans';
+            background-color: transparent;
+            color: $primary-light;
+            border: none;
+            max-width: 100px;
+        }
+        .value_value:focus {
+            border: none;
+            outline: none;
         }
     }
-    .delete {
-        width: 40px;
-        height: 40px;
-        border-radius: 120px;
-        &:active {
-            background-color: $accent-pastel;
-        }
+}
+.delete {
+    width: 40px;
+    height: 40px;
+    border-radius: 120px;
+    &:active {
+        background-color: $accent-pastel;
     }
 }

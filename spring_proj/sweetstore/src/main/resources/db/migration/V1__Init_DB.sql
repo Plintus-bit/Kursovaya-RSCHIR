@@ -83,7 +83,6 @@ create table user_role (
 
 create table user_orders (
     id integer not null auto_increment,
-    cust_phone varchar(20),
     order_date datetime(6),
     customer_id bigint,
     prm_id integer,
@@ -95,6 +94,7 @@ create table usr (
     id bigint not null auto_increment,
     activation_code varchar(255),
     active bit not null,
+    phone varchar(20),
     email varchar(255),
     password varchar(255),
     username varchar(255),
