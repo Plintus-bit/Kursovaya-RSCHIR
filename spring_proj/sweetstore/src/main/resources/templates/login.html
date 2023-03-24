@@ -16,14 +16,16 @@
                 <section class="container-3 full-colored">
                     <form id="logging" th:action="@{/login}" method="post">
                         <p class="title">Вход</p>
-                        <p class="link-subtitle" th:text="${message}"></p>
+                        <div th:if="${status != null}"
+                             th:class="'subtitle-' + ${status ? 'ok' : 'error'}"
+                             th:text="${message}"></div>
                         <div class="logging_inputs">
                             <input type="text" name="username" class="input" placeholder="имя пользователя">
                             <input type="password" name="password" class="input" placeholder="пароль">
                             <input type="submit" class="button-2" value="Войти">
                         </div>
                         <p class="link-subtitle">Нет аккаунта? Тогда
-                            <a th:href="@{registration}" class="link">зарегистрируйтесь</a>!
+                            <a th:href="@{/registration}" class="link">зарегистрируйтесь</a>!
                         </p>
                     </form>
                 </section>

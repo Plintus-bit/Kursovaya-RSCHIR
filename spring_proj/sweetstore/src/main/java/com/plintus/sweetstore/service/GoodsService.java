@@ -12,6 +12,8 @@ public class GoodsService {
     @Autowired
     private GoodRepository goodRep;
     @Autowired
+    private UserOrdersRepository UORep;
+    @Autowired
     private OrderGoodStructsRepository OGSRep;
     @Autowired
     private GoodTypesRepository goodTypeRep;
@@ -23,6 +25,8 @@ public class GoodsService {
     private IngredientsRepository ingsRep;
     @Autowired
     private NutritionsRepository nutrRep;
+    @Autowired
+    private OrderStatusesRepository OStRep;
 
     public List<GoodSubtypes> getSubtypesByParentId(Integer parentId) {
         return goodSubtypeRep.findByParentId(parentId);
@@ -236,6 +240,40 @@ public class GoodsService {
             }
             goodRep.saveAll(willUpdated);
         }
+    }
+
+    public boolean updateGoodsCount(UserOrders order) {
+        List<OrderGoodStructs> ogs = OGSRep.findAllByOrderId(order.getId());
+        List<Goods> willBeSavedGoods = new ArrayList<>();
+        for (OrderGoodStructs curOGS : ogs) {
+            Goods curGood = curOGS.getGoodId();
+            int newCount = curGood.getCount() - curOGS.getCount();
+            if (newCount < 0) {
+                return false;
+            }
+            curGood.setCount(newCount);
+            willBeSavedGoods.add(curGood);
+        }
+        goodRep.saveAll(willBeSavedGoods);
+        checkGoodsInCarts(willBeSavedGoods, order.getId());
+        return true;
+    }
+
+    public void checkGoodsInCarts(List<Goods> wasUpdatedGoods, Integer orderIdToNotChange) {
+        List<Integer> goodIds = new ArrayList<>();
+        List<Integer> orderIds = UORep.findAllIdByStatusAndNotId(1, orderIdToNotChange);
+        for (Goods g : wasUpdatedGoods) {
+            goodIds.add(g.getId());
+        }
+        List<OrderGoodStructs> ogsToCheck = OGSRep.findByOrderIdInAndGoodIdIn(orderIds, goodIds);
+        List<OrderGoodStructs> ogsToDelete = new ArrayList<>();
+        for (OrderGoodStructs curOGS : ogsToCheck) {
+            Integer newGoodsCount = curOGS.getGoodId().getCount();
+            if (curOGS.getCount() > newGoodsCount) {
+                ogsToDelete.add(curOGS);
+            }
+        }
+        OGSRep.deleteAll(ogsToDelete);
     }
 
     public void deleteGoods(String articles) {

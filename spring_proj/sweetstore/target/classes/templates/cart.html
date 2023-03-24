@@ -17,7 +17,7 @@
 		</div>
 		<nav class="nav-mainpage">
 			<a th:href="@{/}" class="nav_link">
-				<div class="link_button-active">Главная</div>
+				<div class="link_button">Главная</div>
 			</a>
 			<a th:href="@{/menu}" class="nav_link">
 				<div class="link_button">Товары</div>
@@ -26,7 +26,7 @@
 				<div class="link_button">Мой профиль</div>
 			</a>
 			<a th:href="@{/cart}" class="nav_link">
-				<div class="link_button">Корзина</div>
+				<div class="link_button-active">Корзина</div>
 			</a>
 			<form th:action="@{/logout}" method="post">
 				<input type="submit" class="link" value="Выйти"/>
@@ -67,26 +67,30 @@
 						<p class="data_cost">
 							<span class="cost" th:text="${curOGS.goodId.cost * curOGS.count}">-1</span>
 						</p>
-						<form method="post"
-						      class="row-form">
-							<div class="added_controls">
-								<div class="controls_minus">
+						<div class="added_controls">
+							<form th:action="@{/cart/edit_good_in_cart?type=minus&goodId=} + ${curOGS.goodId.id}"
+							      method="post" class="row-form">
+								<button type="submit" class="controls_minus">
 									<img src="/static/img/minus.png" alt="" class="img-full">
-								</div>
+								</button>
+							</form>
+							<div class="controls_value">
 								<div class="controls_value">
-									<div class="controls_value">
-										<input type="number" class="value_value"
-										       name="value" th:value="${curOGS.count}" th:max="${curOGS.goodId.count}"
-										       readonly>
-										<p>шт.</p>
-									</div>
-								</div>
-								<div class="controls_plus">
-									<img src="/static/img/plus.png" alt="" class="img-full">
+									<input type="number" class="value_value"
+									       name="value" th:value="${curOGS.count}" th:max="${curOGS.goodId.count}"
+									       readonly>
+									<p>шт.</p>
 								</div>
 							</div>
-						</form>
-						<form method="post"
+							<form th:action="@{/cart/edit_good_in_cart?type=plus&goodId=} + ${curOGS.goodId.id}"
+							      method="post" class="row-form">
+								<button type="submit" class="controls_plus">
+									<img src="/static/img/plus.png" alt="" class="img-full">
+								</button>
+							</form>
+						</div>
+						<form th:action="'/cart/edit_cart?act=del&goodId=' + ${curOGS.goodId.id}"
+						      method="post"
 						      class="row-form">
 							<button class="delete">
 								<img src="/static/img/delete.png" alt="delete" class="img-full">
@@ -100,7 +104,7 @@
 				<p class="title">
 					Итог: <span th:text="${finalCost}">-1</span> р.
 				</p>
-				<a th:href="@{/order_making}">
+				<a th:href="@{/cart/order_making}">
 					<button class="button-2">Оформить заказ</button>
 				</a>
 			</div>

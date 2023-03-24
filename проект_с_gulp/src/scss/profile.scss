@@ -25,7 +25,7 @@
     }
 }
 
-.dao {
+.dao, .dao-small {
     display: flex;
     width: 100%;
     height: fit-content;
@@ -38,4 +38,8 @@
         margin-bottom: 20px;
         align-self: center;
     }
+}
+.dao-small {
+    height: 512px;
+    overflow: scroll;
 }

@@ -7,10 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class CartService {
@@ -67,7 +64,11 @@ public class CartService {
 
     public void deleteGoodFromCart(String username,
                                    Integer goodId) {
-
+        UserOrders order = getOrderIdOrCreateNewByUsername(username);
+        List<OrderGoodStructs> ogsWithGood = OGSRep.findByOrderIdAndGoodId(order.getId(), goodId);
+        if (ogsWithGood != null) {
+            OGSRep.deleteAll(ogsWithGood);
+        }
     }
 
     public void insertGoodInCart(String username,
@@ -93,6 +94,33 @@ public class CartService {
             if (currentOGS != null) {
                 OGSRep.save(currentOGS);
             }
+        }
+    }
+
+    public void updateGoodInCart(String username,
+                                 Integer goodId,
+                                 String type) {
+        UserOrders order = getOrderIdOrCreateNewByUsername(username);
+        List<OrderGoodStructs> ogsWithGood = OGSRep.findByOrderIdAndGoodId(order.getId(), goodId);
+        if (ogsWithGood.size() == 1) {
+            OrderGoodStructs currentOGS = ogsWithGood.get(0);
+            Integer goodCountInCart = currentOGS.getCount();
+            Goods good = currentOGS.getGoodId();
+            if (Objects.equals(type, "plus")) {
+                if (goodCountInCart + 1 > good.getCount()) {
+                    currentOGS.setCount(good.getCount());
+                } else {
+                    currentOGS.setCount(goodCountInCart + 1);
+                }
+            } else if (Objects.equals(type, "minus")) {
+                if (goodCountInCart - 1 > 0) {
+                    currentOGS.setCount(goodCountInCart - 1);
+                } else {
+                    OGSRep.delete(currentOGS);
+                    return;
+                }
+            }
+            OGSRep.save(currentOGS);
         }
     }
 

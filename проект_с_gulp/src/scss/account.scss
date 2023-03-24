@@ -1,0 +1,29 @@
+.form {
+    display: grid;
+    gap: 10px;
+    .title {
+        margin-bottom: 12px;
+    }
+    .label {
+        background-color: $card-header-place-f3;
+        padding: 7px;
+        transition: 0.02s;
+        &:hover {
+            background-color: $card-links-4e;
+        }
+    }
+    .input {
+        color: $primary-light;
+        border: none;
+        &:hover {
+            background-color: $backgroung;
+        }
+        &:focus {
+            outline: none;
+            border: none;
+        }
+    }
+    .button-2, .button {
+        justify-self: right;
+    }
+}

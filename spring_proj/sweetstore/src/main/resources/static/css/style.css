@@ -384,12 +384,13 @@ footer .offer .offer_data {
   display: grid;
   justify-items: center;
   align-items: center;
-  grid-template-columns: 47% 6% 47%;
+  grid-template-columns: 46% 8% 46%;
   grid-auto-columns: 44% 12% 44%;
 }
 
 .data-container, .data-container-big {
-  width: 100%;
+  min-width: 100%;
+  width: fit-content;
   min-height: 320px;
   max-height: 360px;
   overflow-y: scroll;
@@ -403,6 +404,7 @@ footer .offer .offer_data {
   background-color: rgba(245, 245, 245, 0.9529411765);
 }
 .data-container .table tr td, .data-container-big .table tr td {
+  width: fit-content;
   padding: 10px 20px;
   color: #525A6D;
 }
@@ -450,10 +452,6 @@ footer .offer .offer_data {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-}
-.filter-category_checkboxes .input_type + label {
-  font-size: 20px;
-  color: #2F3543;
 }
 
 .good-card {
@@ -657,6 +655,10 @@ button.orders_button:active {
   grid-auto-rows: 100%;
   border-radius: 2px;
   color: #2F3543;
+}
+.order-goods .order-good .order-good_data {
+  display: grid;
+  grid-template-columns: 40% 20% 30% 10%;
 }
 .order-goods .order-good .data_subtitle-cost {
   display: flex;
@@ -878,19 +880,54 @@ input.link {
   background-color: rgba(243, 175, 175, 0.3058823529);
 }
 
-.dao {
+.dao, .dao-small {
   display: flex;
   width: 100%;
   height: fit-content;
   flex-direction: column;
   gap: 10px;
 }
-.dao .button, .dao .button-2 {
+.dao .button, .dao .button-2, .dao-small .button, .dao-small .button-2 {
   align-self: flex-end;
 }
-.dao .title {
+.dao .title, .dao-small .title {
   margin-bottom: 20px;
   align-self: center;
+}
+
+.dao-small {
+  height: 512px;
+  overflow: scroll;
+}
+
+.form {
+  display: grid;
+  gap: 10px;
+}
+.form .title {
+  margin-bottom: 12px;
+}
+.form .label {
+  background-color: rgba(245, 245, 245, 0.9529411765);
+  padding: 7px;
+  transition: 0.02s;
+}
+.form .label:hover {
+  background-color: rgba(243, 175, 175, 0.3058823529);
+}
+.form .input {
+  color: #525A6D;
+  border: none;
+}
+.form .input:hover {
+  background-color: white;
+}
+.form .input:focus {
+  outline: none;
+  border: none;
+}
+.form .button-2, .form .button {
+  justify-self: right;
 }
 
 .img, .img-center {
@@ -956,7 +993,7 @@ input.link {
 .container-3 {
   width: 100%;
   min-height: 420px;
-  top: 10%;
+  margin: 7% 0%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -977,6 +1014,44 @@ input.link {
 .subtitle, .description {
   color: #ACB0B9;
   font-size: 24px;
+}
+.subtitle-small, .description-small {
+  color: #ACB0B9;
+  font-size: 20px;
+}
+.subtitle-bright, .description-bright {
+  color: #F3AFAF;
+  font-size: #ACB0B9;
+}
+.subtitle-pr-light, .description-pr-light {
+  color: #525A6D;
+  font-size: #ACB0B9;
+}
+.subtitle-small-bright, .description-small-bright {
+  color: #F3AFAF;
+  font-size: 20px;
+}
+.subtitle-error, .subtitle-warning, .subtitle-ok, .description-error, .description-warning, .description-ok {
+  width: 100%;
+  align-self: flex-start;
+  text-align: left;
+  font-family: "AlegreyaSans";
+  font-size: 20px;
+  color: #f0a2a2;
+  background-color: #fde3e0;
+  border: 2px solid #f0a2a2;
+  padding: 7px;
+  border-radius: 3px;
+}
+.subtitle-warning, .description-warning {
+  color: #e9c5a2;
+  background-color: #fdefdb;
+  border-color: #e9c5a2;
+}
+.subtitle-ok, .description-ok {
+  color: #b5e8a6;
+  background-color: #eefcde;
+  border-color: #b5e8a6;
 }
 
 .description {
@@ -1028,4 +1103,50 @@ form a {
 
 .hidden {
   display: none;
+}
+
+.checkboxes_input {
+  display: grid;
+  min-height: 220px;
+  max-height: 320px;
+  grid-template-columns: repeat(7, 14%);
+  grid-template-rows: 20px;
+  justify-items: flex-start;
+  align-items: center;
+  gap: 7px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.checkbox-block {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 7px;
+}
+.checkbox-block:nth-child(n) {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.input_type {
+  width: 16px;
+  height: 16px;
+}
+
+.label-for_checkbox {
+  font-family: "AlegreyaSans";
+}
+
+.double-column-container {
+  width: 100%;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-auto-columns: 50% 50%;
+  gap: 10px;
 }

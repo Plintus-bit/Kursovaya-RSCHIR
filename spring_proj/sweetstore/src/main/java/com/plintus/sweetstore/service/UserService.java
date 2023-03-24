@@ -8,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -66,6 +67,22 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
+    public boolean updateUser(String firstName,
+                              String lastName, String dadName) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userRep.findByUsername(auth.getName());
+        if (user != null) {
+            String newCustFullame = lastName + " " + firstName + " " + dadName;
+            if (user.getCustFullname() == null
+                    || !Objects.equals(user.getCustFullname(), newCustFullame)) {
+                user.setCustFullname(newCustFullame);
+                userRep.save(user);
+            }
+            return true;
+        }
+        return false;
+    }
+
     public User getUserByUsername(String name) {
         return userRep.findByUsername(name);
     }
@@ -93,5 +110,22 @@ public class UserService implements UserDetailsService {
             }
         }
         userRep.save(user);
+    }
+
+    private String[] getUserFullnameFromString(String fullname) {
+        if (fullname == null) {
+            String[] result = new String[3];
+            result[0] = "";
+            result[1] = "";
+            result[2] = "";
+            return result;
+        }
+        return fullname.split(" ");
+    }
+
+    public String[] getUserFullname() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userRep.findByUsername(auth.getName());
+        return getUserFullnameFromString(user.getCustFullname());
     }
 }

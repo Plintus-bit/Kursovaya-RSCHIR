@@ -18,6 +18,8 @@ public class User {
     private String username;
     private String password;
     private String phone;
+
+    private String custFullname;
     private boolean active;
 
     private String email;
@@ -95,17 +97,11 @@ public class User {
         this.activationCode = activationCode;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", phone='" + phone + '\'' +
-                ", active=" + active +
-                ", email='" + email + '\'' +
-                ", activationCode='" + activationCode + '\'' +
-                ", roles=" + roles +
-                '}';
+    public String getCustFullname() {
+        return custFullname;
+    }
+
+    public void setCustFullname(String custFullname) {
+        this.custFullname = custFullname;
     }
 }

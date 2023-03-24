@@ -7,9 +7,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/static/css/style.css" type="text/css">
-	<title>Товар</title>
+	<title>Заказ</title>
 </head>
-<body>
 <div class="wrapper">
 	<header>
 		<div class="logo">
@@ -33,33 +32,11 @@
 			</form>
 		</nav>
 	</header>
-	
 	<div class="main">
-		<section class="container">
-			<div class="params_block">
-				<p class="title">
-					Тип запроса
-				</p>
-				<a th:href="@{/profile/admins/} + ${type} + '?act=ins'">
-					<button class="params_block_button">
-						Добавить
-					</button>
-				</a>
-				<a th:href="@{/profile/admins/} + ${type} + '?act=upd'">
-					<button class="params_block_button">
-						Обновить
-					</button>
-				</a>
-				<a th:href="@{/profile/admins/} + ${type} + '?act=del'">
-					<button class="params_block_button">
-						Удалить
-					</button>
-				</a>
-				
-			</div>
-		</section>
-	</div>
 	
+	
+	
+	</div>
 	<footer>
 		<div class="info">
 			<div class="contact-data">
@@ -89,6 +66,7 @@
 			</div>
 		</div>
 	</footer>
+	<script src="/static/js/goods.js"></script>
 </div>
 </body>
 </html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+    @@include("html/head.html", {
+        "title": "Категории"
+    })
+<body>
+    <div class="wrapper">
+        @@include("html/header.html", {})
+        <div class="main">
+            <section class="container">
+                <form class="form" action="#">
+                    <p class="title">Профиль пользователя</p>
+                    <label class="label subtitle-small" maxlength="60" for="name"> Никнейм: 
+                        <input name="name" type="text" class="input subtitle" value="Plintus_ick" placeholder="Имя пользователя">
+                    </label>
+                    <label class="label subtitle-small" for="name"> Имя: 
+                        <input name="name" type="text" maxlength="60" class="input subtitle" placeholder="Имя пользователя">
+                    </label>
+                    <label class="label subtitle-small" for="name"> Фамилия: 
+                        <input name="name" type="text" maxlength="60" class="input subtitle" value="Plintus_ick" placeholder="Имя пользователя">
+                    </label>
+                    <button type="submit" class="button-2">Сохранить</button>
+                </form>
+            </section>
+        </div>
+        @@include("html/footer.html", {})
+    </div>
+</body>
+</html>

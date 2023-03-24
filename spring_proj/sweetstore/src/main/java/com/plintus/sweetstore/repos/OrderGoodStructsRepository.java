@@ -5,6 +5,7 @@ import com.plintus.sweetstore.domain.OrderGoodStructs;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface OrderGoodStructsRepository extends CrudRepository<OrderGoodStructs, Integer> {
@@ -19,4 +20,10 @@ public interface OrderGoodStructsRepository extends CrudRepository<OrderGoodStru
             nativeQuery = true
     )
     List<OrderGoodStructs> findByOrderIdAndGoodId(Integer orderId, Integer goodId);
+
+    @Query(
+            value = "SELECT * FROM order_good_structs WHERE order_id in :orderIds and good_id in :goodIds",
+            nativeQuery = true
+    )
+    List<OrderGoodStructs> findByOrderIdInAndGoodIdIn(Collection<Integer> orderIds, Collection<Integer> goodIds);
 }

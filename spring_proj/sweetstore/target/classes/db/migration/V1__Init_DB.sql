@@ -93,6 +93,7 @@ create table user_orders (
 create table usr (
     id bigint not null auto_increment,
     activation_code varchar(255),
+    cust_fullname varchar(200),
     active bit not null,
     phone varchar(20),
     email varchar(255),

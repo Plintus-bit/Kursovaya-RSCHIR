@@ -13,4 +13,14 @@ public interface UserOrdersRepository extends CrudRepository<UserOrders, Integer
             nativeQuery = true
     )
     List<UserOrders> findByCustomerAndStatus(Long customer, Integer status);
+    @Query(
+            value = "SELECT id FROM user_orders WHERE status_id = :status",
+            nativeQuery = true
+    )
+    List<Integer> findAllIdByStatus(Integer status);
+    @Query(
+            value = "SELECT id FROM user_orders WHERE status_id = :status and id != :id",
+            nativeQuery = true
+    )
+    List<Integer> findAllIdByStatusAndNotId(Integer status, Integer id);
 }

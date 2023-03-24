@@ -28,6 +28,10 @@
         grid-auto-rows: 100%;
         border-radius: 2px;
         color: $primary-dark;
+        .order-good_data {
+            display: grid;
+            grid-template-columns: 40% 20% 30% 10%;
+        }
         .data_subtitle-cost {
             display: flex;
             flex-direction: row;

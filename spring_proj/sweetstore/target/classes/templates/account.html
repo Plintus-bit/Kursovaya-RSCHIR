@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/static/css/style.css" type="text/css">
-	<title>Товар</title>
+	<title>Оформление заказа</title>
 </head>
 <body>
 <div class="wrapper">
@@ -23,7 +23,7 @@
 				<div class="link_button">Товары</div>
 			</a>
 			<a th:href="@{/profile}" class="nav_link">
-				<div class="link_button">Мой профиль</div>
+				<div class="link_button-active">Мой профиль</div>
 			</a>
 			<a th:href="@{/cart}" class="nav_link">
 				<div class="link_button">Корзина</div>
@@ -33,33 +33,51 @@
 			</form>
 		</nav>
 	</header>
-	
 	<div class="main">
 		<section class="container">
-			<div class="params_block">
-				<p class="title">
-					Тип запроса
-				</p>
-				<a th:href="@{/profile/admins/} + ${type} + '?act=ins'">
-					<button class="params_block_button">
-						Добавить
-					</button>
-				</a>
-				<a th:href="@{/profile/admins/} + ${type} + '?act=upd'">
-					<button class="params_block_button">
-						Обновить
-					</button>
-				</a>
-				<a th:href="@{/profile/admins/} + ${type} + '?act=del'">
-					<button class="params_block_button">
-						Удалить
-					</button>
-				</a>
+			<form class="form" action="/profile/account" method="post">
+				<p class="title">Профиль пользователя</p>
 				
-			</div>
+				<div th:if="${status != null}"
+				     th:class="'subtitle-' + ${status ? 'ok' : 'error'}"
+				     th:text="${message}"></div>
+				
+				<div th:class="'subtitle-error ' + ${messageUsername == null ? 'hidden' : ''}"
+				     th:text="${messageUsername}"></div>
+				<label class="label subtitle-small" for="username"> Никнейм:
+					<input name="username" type="text" maxlength="60"
+					       class="input subtitle" placeholder="Никнейм"
+					       th:value="${username}" readonly>
+				</label>
+				
+				<div th:class="'subtitle-error ' + ${messageLastName == null ? 'hidden' : ''}"
+				     th:text="${messageLastName}"></div>
+				<label class="label subtitle-small" for="lastName"> Фамилия:
+					<input name="lastName" type="text" maxlength="60"
+					       class="input subtitle" placeholder="Фамилия"
+					       th:value="${lastName}">
+				</label>
+				
+				<div th:class="'subtitle-error ' + ${messageFirstName == null ? 'hidden' : ''}"
+				     th:text="${messageFirstName}"></div>
+				<label class="label subtitle-small" for="firstName"> Имя:
+					<input name="firstName" type="text" maxlength="60"
+					       class="input subtitle" placeholder="Имя"
+					       th:value="${firstName}">
+				</label>
+				
+				<div th:class="'subtitle-error ' + ${messageDadName == null ? 'hidden' : ''}"
+				     th:text="${messageDadName}"></div>
+				<label class="label subtitle-small" for="dadName"> Отчество:
+					<input name="dadName" type="text" maxlength="60"
+					       class="input subtitle" placeholder="Отчество"
+					       th:value="${dadName}">
+				</label>
+				<input type="hidden" th:name="_csrf" th:value="${_csrf.token}" />
+				<button type="submit" class="button-2">Сохранить</button>
+			</form>
 		</section>
 	</div>
-	
 	<footer>
 		<div class="info">
 			<div class="contact-data">
