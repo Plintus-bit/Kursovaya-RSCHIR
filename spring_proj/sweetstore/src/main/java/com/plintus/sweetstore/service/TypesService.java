@@ -33,21 +33,46 @@ public class TypesService {
         return goodTypesRep.findById(id).get();
     }
 
+    public void insertSubtypes(String subtypes, String parentType) {
+        List<String> subtypesData = UtilService.getStringListFromStringData(subtypes);
+        List<String> parentTypeData = UtilService.getStringListFromStringData(parentType);
+        List<String> allNames = goodSubtypesRep.findAllName();
+        List<GoodSubtypes> subtypesToInsert = new ArrayList<>();
+        if (parentTypeData.size() == 1) {
+            GoodTypes parent = goodTypesRep.findByName(parentType).get(0);
+            if (parent != null) {
+                for (String item : subtypesData) {
+                    if (!allNames.contains(item)) {
+                        subtypesToInsert.add(new GoodSubtypes(item, parent));
+                    }
+                }
+            }
+        } else if (parentTypeData.size() == subtypesData.size()) {
+            for (int i = 0; i < subtypesData.size(); ++i) {
+                if (!allNames.contains(subtypesData.get(i))) {
+                    subtypesToInsert.add(
+                            new GoodSubtypes(subtypesData.get(i),
+                                    goodTypesRep.findByName(parentTypeData.get(i)).get(0)));
+                }
+            }
+        }
+        goodSubtypesRep.saveAll(subtypesToInsert);
+    }
     public void insertTypes(String types, String urls) {
-        String[] itemsData = types.split(",");
-        String[] urlsData = urls.split(",");
-        List<GoodTypes> res = new ArrayList<GoodTypes>();
+        List<String> itemsData = UtilService.getStringListFromStringData(types);
+        List<String> urlsData = UtilService.getStringListFromStringData(urls)
+;       List<GoodTypes> res = new ArrayList<GoodTypes>();
         List<String> all = goodTypesRep.findAllName();
-        if (urlsData.length == 1) {
+        if (urlsData.size() == 1) {
             for (String item : itemsData) {
                 if (!all.contains(item)) {
                     res.add(new GoodTypes(item, urls));
                 }
             }
-        } else if (itemsData.length == urlsData.length) {
-            for (int i = 0; i < itemsData.length; ++i) {
-                if (!all.contains(itemsData[i])) {
-                    res.add(new GoodTypes(itemsData[i], urlsData[i]));
+        } else if (itemsData.size() == urlsData.size()) {
+            for (int i = 0; i < itemsData.size(); ++i) {
+                if (!all.contains(itemsData.get(i))) {
+                    res.add(new GoodTypes(itemsData.get(i), urlsData.get(i)));
                 }
             }
         }
@@ -66,40 +91,40 @@ public class TypesService {
     public void updateTypes(String oldNames,
                             String newNames,
                             String urls) {
-        String[] oldNamesList = oldNames.split(",");
-        String[] newNamesList = newNames.split(",");
-        String[] newUrls = urls.split(",");
+        List<String> oldNamesList = UtilService.getStringListFromStringData(oldNames);
+        List<String> newNamesList = UtilService.getStringListFromStringData(newNames);
+        List<String> newUrls = UtilService.getStringListFromStringData(urls);
         List<String> allIngsNames = goodTypesRep.findAllName();
-        List<GoodTypes> willUpdate = goodTypesRep.findAllByNameIn(Arrays.stream(oldNamesList).toList());
+        List<GoodTypes> willUpdate = goodTypesRep.findAllByNameIn(oldNamesList);
 
         if (willUpdate != null) {
-            if (willUpdate.size() == newNamesList.length) {
-                if (newUrls.length == 1) {
-                    for (int i = 0; i < newNamesList.length; ++i) {
-                        if (!allIngsNames.contains(newNamesList[i])) {
+            if (willUpdate.size() == newNamesList.size()) {
+                if (newUrls.size() == 1) {
+                    for (int i = 0; i < newNamesList.size(); ++i) {
+                        if (!allIngsNames.contains(newNamesList.get(i))) {
                             GoodTypes item = willUpdate.get(i);
-                            item.setName(newNamesList[i]);
+                            item.setName(newNamesList.get(i));
                             item.setUrl(urls);
                             willUpdate.set(i, item);
                         }
                     }
                 } else {
-                    for (int i = 0; i < newNamesList.length; ++i) {
-                        if (!allIngsNames.contains(newNamesList[i])) {
+                    for (int i = 0; i < newNamesList.size(); ++i) {
+                        if (!allIngsNames.contains(newNamesList.get(i))) {
                             GoodTypes item = willUpdate.get(i);
-                            item.setName(newNamesList[i]);
-                            item.setUrl(newUrls[i]);
+                            item.setName(newNamesList.get(i));
+                            item.setUrl(newUrls.get(i));
                             willUpdate.set(i, item);
                         }
                     }
                 }
-            } else if (willUpdate.size() == newUrls.length) {
-                for (int i = 0; i < newUrls.length; ++i) {
+            } else if (willUpdate.size() == newUrls.size()) {
+                for (int i = 0; i < newUrls.size(); ++i) {
                     GoodTypes item = willUpdate.get(i);
-                    item.setUrl(newUrls[i]);
+                    item.setUrl(newUrls.get(i));
                     willUpdate.set(i, item);
                 }
-            } else if (newUrls.length == 1) {
+            } else if (newUrls.size() == 1) {
                 for (int i = 0; i < willUpdate.size(); ++i) {
                     GoodTypes item = willUpdate.get(i);
                     item.setUrl(urls);
@@ -113,48 +138,48 @@ public class TypesService {
     public void updateSubtypes(String oldNames,
                                String newNames,
                                String newParentIds) {
-        String[] oldNamesList = oldNames.split(",");
-        String[] newNamesList = newNames.split(",");
-        String[] newParents = newParentIds.split(",");
+        List<String> oldNamesList = UtilService.getStringListFromStringData(oldNames);
+        List<String> newNamesList = UtilService.getStringListFromStringData(newNames);
+        List<String> newParents = UtilService.getStringListFromStringData(newParentIds);
         List<String> allNames = goodTypesRep.findAllName();
-        List<GoodSubtypes> willUpdate = goodSubtypesRep.findAllByNameIn(Arrays.stream(oldNamesList).toList());
-        List<GoodTypes> parents = goodTypesRep.findAllByNameIn(Arrays.stream(newParents).toList());
+        List<GoodSubtypes> willUpdate = goodSubtypesRep.findAllByNameIn(oldNamesList);
+        List<GoodTypes> parents = goodTypesRep.findAllByNameIn(newParents);
         if (willUpdate != null) {
-            if (willUpdate.size() == newNamesList.length) {
-                if (newParents.length == 1) {
-                    for (int i = 0; i < newNamesList.length; ++i) {
-                        if (!allNames.contains(newNamesList[i])) {
+            if (willUpdate.size() == newNamesList.size()) {
+                if (newParents.size() == 1) {
+                    for (int i = 0; i < newNamesList.size(); ++i) {
+                        if (!allNames.contains(newNamesList.get(i))) {
                             GoodSubtypes item = willUpdate.get(i);
-                            item.setName(newNamesList[i]);
+                            item.setName(newNamesList.get(i));
                             item.setParent(parents.get(0));
                             willUpdate.set(i, item);
                         }
                     }
-                } else if (newParents.length == 0) {
-                    for (int i = 0; i < newNamesList.length; ++i) {
-                        if (!allNames.contains(newNamesList[i])) {
+                } else if (newParents.size() == 0) {
+                    for (int i = 0; i < newNamesList.size(); ++i) {
+                        if (!allNames.contains(newNamesList.get(i))) {
                             GoodSubtypes item = willUpdate.get(i);
-                            item.setName(newNamesList[i]);
+                            item.setName(newNamesList.get(i));
                             willUpdate.set(i, item);
                         }
                     }
                 } else {
-                    for (int i = 0; i < newNamesList.length; ++i) {
-                        if (!allNames.contains(newNamesList[i])) {
+                    for (int i = 0; i < newNamesList.size(); ++i) {
+                        if (!allNames.contains(newNamesList.get(i))) {
                             GoodSubtypes item = willUpdate.get(i);
-                            item.setName(newNamesList[i]);
+                            item.setName(newNamesList.get(i));
                             item.setParent(parents.get(i));
                             willUpdate.set(i, item);
                         }
                     }
                 }
-            } else if (willUpdate.size() == newParents.length) {
-                for (int i = 0; i < newParents.length; ++i) {
+            } else if (willUpdate.size() == newParents.size()) {
+                for (int i = 0; i < newParents.size(); ++i) {
                     GoodSubtypes item = willUpdate.get(i);
                     item.setParent(parents.get(i));
                     willUpdate.set(i, item);
                 }
-            } else if (newParents.length == 1) {
+            } else if (newParents.size() == 1) {
                 for (int i = 0; i < willUpdate.size(); ++i) {
                     GoodSubtypes item = willUpdate.get(i);
                     item.setParent(parents.get(0));
@@ -167,13 +192,14 @@ public class TypesService {
 
 
     public void deleteTypes(String names) {
-        String[] listNames = names.split(",");
-        List<GoodTypes> willUpdateIngs = goodTypesRep.findAllByNameIn(Arrays.stream(listNames).toList());
+        List<String> listNames = UtilService.getStringListFromStringData(names);
+        List<GoodTypes> willUpdateIngs = goodTypesRep.findAllByNameIn(listNames);
         if (willUpdateIngs != null) {
             List<Integer> ids = new ArrayList<>();
             for (GoodTypes elem : willUpdateIngs) {
                 ids.add(elem.getId());
             }
+            deleteFromSubtypes(ids);
             goodTypesRep.deleteAll(willUpdateIngs);
         }
     }
@@ -192,8 +218,8 @@ public class TypesService {
     }
 
     public void deleteSubtypes(String names) {
-        String[] listNames = names.split(",");
-        List<GoodSubtypes> willDeleted = goodSubtypesRep.findAllByNameIn(Arrays.stream(listNames).toList());
+        List<String> listNames = UtilService.getStringListFromStringData(names);
+        List<GoodSubtypes> willDeleted = goodSubtypesRep.findAllByNameIn(listNames);
         if (willDeleted != null) {
             List<Integer> ids = new ArrayList<>();
             for (GoodSubtypes elem : willDeleted) {

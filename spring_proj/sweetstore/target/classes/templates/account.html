@@ -73,6 +73,14 @@
 					       class="input subtitle" placeholder="Отчество"
 					       th:value="${dadName}">
 				</label>
+				
+				<div th:class="'subtitle-error ' + ${messagePhone == null ? 'hidden' : ''}"
+				     th:text="${messagePhone}"></div>
+				<label class="label subtitle-small" for="phone"> Номер телефона:
+					<input name="phone" type="tel" maxlength="20"
+					       class="input subtitle" placeholder="79998885533"
+					       th:value="${phone}">
+				</label>
 				<input type="hidden" th:name="_csrf" th:value="${_csrf.token}" />
 				<button type="submit" class="button-2">Сохранить</button>
 			</form>

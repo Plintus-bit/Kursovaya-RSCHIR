@@ -100,51 +100,27 @@ public class GoodsService {
         }
     }
 
-    public List<Integer> getIntegerListFromStringList(List<String> array) {
-        List<Integer> resultArray = new ArrayList<>();
-        for (String item : array) {
-            if (!Objects.equals(item, "")) {
-                resultArray.add(Integer.parseInt(item));
-            }
-        }
-        return resultArray;
-    }
-
-    public List<String> getStringListFromStringData(String data, String separator) {
-        List<String> resultData = new ArrayList<>();
-        if (data.contains(separator)) {
-            resultData.addAll(Arrays.stream(data.split(separator)).toList());
-        } else if (!data.equals("")){
-            resultData.add(data);
-        }
-        return resultData;
-    }
-
-    public List<String> getStringListFromStringData(String data) {
-        return getStringListFromStringData(data, ",");
-    }
-
-    public void addGoods(String articles,
+    public void insertGoods(String articles,
                          String names,
                          String descripts,
                          String subtypes,
                          String costs,
                          String counts,
                          String urls) {
-        List<Integer> newArticles = getIntegerListFromStringList(
-                getStringListFromStringData(articles)
+        List<Integer> newArticles = UtilService.getIntegerListFromStringList(
+                UtilService.getStringListFromStringData(articles)
         );
         if (newArticles.size() != 0) {
             List<Integer> allGoodsArticles = goodRep.findAllArticle();
-            List<String> newNames = getStringListFromStringData(names);
-            List<String> newDescripts = getStringListFromStringData(descripts, ";");
-            List<String> newSubtypes = getStringListFromStringData(subtypes);
+            List<String> newNames = UtilService.getStringListFromStringData(names);
+            List<String> newDescripts = UtilService.getStringListFromStringData(descripts, ";");
+            List<String> newSubtypes = UtilService.getStringListFromStringData(subtypes);
             List<GoodSubtypes> newSubtypeObjs = goodSubtypeRep.findAllByNameIn(newSubtypes);
-            List<Integer> newCosts = getIntegerListFromStringList(
-                    getStringListFromStringData(costs));
-            List<Integer> newCounts = getIntegerListFromStringList(
-                    getStringListFromStringData(counts));
-            List<String> newUrls = getStringListFromStringData(urls);
+            List<Integer> newCosts = UtilService.getIntegerListFromStringList(
+                    UtilService.getStringListFromStringData(costs));
+            List<Integer> newCounts = UtilService.getIntegerListFromStringList(
+                    UtilService.getStringListFromStringData(counts));
+            List<String> newUrls = UtilService.getStringListFromStringData(urls);
 
             // Проверка совпадения размеров
             boolean hasOneUrl = newUrls.size() == 1;
@@ -184,25 +160,25 @@ public class GoodsService {
                             String counts,
                             String urls) {
         List<Goods> willUpdated = goodRep.findAllByArticleIn(
-                getIntegerListFromStringList(
-                        getStringListFromStringData(oldArticles)));
+                UtilService.getIntegerListFromStringList(
+                        UtilService.getStringListFromStringData(oldArticles)));
         int length = willUpdated != null ? willUpdated.size() : 0;
         if (length > 0) {
             List<Integer> allGoodsArticles = goodRep.findAllArticle();
-            List<String> newNames = getStringListFromStringData(names);
-            List<String> newDescripts = getStringListFromStringData(descripts, ";");
-            List<String> newSubtypes = getStringListFromStringData(subtypes);
+            List<String> newNames = UtilService.getStringListFromStringData(names);
+            List<String> newDescripts = UtilService.getStringListFromStringData(descripts, ";");
+            List<String> newSubtypes = UtilService.getStringListFromStringData(subtypes);
             List<GoodSubtypes> newSubtypeObjs = goodSubtypeRep.findAllByNameIn(newSubtypes);
-            List<Integer> newCosts = getIntegerListFromStringList(
-                    getStringListFromStringData(costs));
-            List<Integer> newCounts = getIntegerListFromStringList(
-                    getStringListFromStringData(counts));
-            List<String> newUrls = getStringListFromStringData(urls);
+            List<Integer> newCosts = UtilService.getIntegerListFromStringList(
+                    UtilService.getStringListFromStringData(costs));
+            List<Integer> newCounts = UtilService.getIntegerListFromStringList(
+                    UtilService.getStringListFromStringData(counts));
+            List<String> newUrls = UtilService.getStringListFromStringData(urls);
             // Проверка совпадения размеров
             boolean hasOneUrl = newUrls.size() == 1;
             boolean hasOneSubtype = newSubtypes.size() == 1;
-            List<Integer> newArticles = getIntegerListFromStringList(
-                    getStringListFromStringData(articles));
+            List<Integer> newArticles = UtilService.getIntegerListFromStringList(
+                    UtilService.getStringListFromStringData(articles));
             for (int i = 0; i < length; ++i) {
                 try {
                     Goods item = willUpdated.get(i);

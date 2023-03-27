@@ -48,23 +48,27 @@
 						Добавление ингредиентов
 					</p>
 				</div>
-				<div th:switch="${act}">
-					<form class="dao" method="post" action="ings/ins" th:case="'ins'">
-						<input type="text" class="input" name="name" placeholder="названия ингредиентов через запятую">
-						<input type="hidden" th:name="_csrf" th:value="${_csrf.token}" >
-						<input type="submit" class="button-2" value="Добавить">
-					</form>
-					<form class="dao" method="post" action="ings/upd" th:case="'upd'">
-						<input type="text" class="input" name="oldNames" placeholder="старые ингредиенты через запятую">
-						<input type="text" class="input" name="newNames" placeholder="новые ингредиенты через запятую">
-						<input type="hidden" th:name="_csrf" th:value="${_csrf.token}" >
-						<input type="submit" class="button-2" value="Изменить">
-					</form>
-					<form class="dao" method="post" action="ings/del" th:case="'del'">
-						<input type="text" class="input" name="names" placeholder="названия ингредиентов через запятую">
-						<input type="hidden" th:name="_csrf" th:value="${_csrf.token}" >
-						<input type="submit" class="button-2" value="Удалить">
-					</form>
+			</div>
+			<div class="double-column-container">
+				<div class="dao">
+					<div th:switch="${act}">
+						<form class="dao" method="post" action="ings/ins" th:case="'ins'">
+							<input type="text" class="input" name="name" placeholder="названия ингредиентов через запятую">
+							<input type="hidden" th:name="_csrf" th:value="${_csrf.token}">
+							<input type="submit" class="button-2" value="Добавить">
+						</form>
+						<form class="dao" method="post" action="ings/upd" th:case="'upd'">
+							<input type="text" class="input" name="oldNames" placeholder="старые ингредиенты через запятую">
+							<input type="text" class="input" name="newNames" placeholder="новые ингредиенты через запятую">
+							<input type="hidden" th:name="_csrf" th:value="${_csrf.token}">
+							<input type="submit" class="button-2" value="Изменить">
+						</form>
+						<form class="dao" method="post" action="ings/del" th:case="'del'">
+							<input type="text" class="input" name="names" placeholder="названия ингредиентов через запятую">
+							<input type="hidden" th:name="_csrf" th:value="${_csrf.token}">
+							<input type="submit" class="button-2" value="Удалить">
+						</form>
+					</div>
 				</div>
 				<div class="data-container">
 					<table class="table">
@@ -81,38 +85,38 @@
 					</table>
 				</div>
 			</div>
-		</section>
+	</section>
+</div>
+
+<footer>
+	<div class="info">
+		<div class="contact-data">
+			<img src="/static/img/logo.svg" alt="logo" class="logo">
+			<div class="contact-data_contacts">
+				<p class="contacts_contact">Быкова Софья</p>
+				<p class="contacts_contact">sofa.byk@mail.ru</p>
+				<p class="contacts_contact">89851*7****</p>
+			</div>
+		</div>
+		<div class="follows">
+			<div class="background_pict">
+				<img src="/static/img/footer_pict.png" alt="img" class="img">
+				<div class="pelena"></div>
+			</div>
+			<p class="follows_header">Follow</p>
+			<a href="#" class="follows_link">@camshel</a>
+		</div>
 	</div>
-	
-	<footer>
-		<div class="info">
-			<div class="contact-data">
-				<img src="/static/img/logo.svg" alt="logo" class="logo">
-				<div class="contact-data_contacts">
-					<p class="contacts_contact">Быкова Софья</p>
-					<p class="contacts_contact">sofa.byk@mail.ru</p>
-					<p class="contacts_contact">89851*7****</p>
-				</div>
-			</div>
-			<div class="follows">
-				<div class="background_pict">
-					<img src="/static/img/footer_pict.png" alt="img" class="img">
-					<div class="pelena"></div>
-				</div>
-				<p class="follows_header">Follow</p>
-				<a href="#" class="follows_link">@camshel</a>
-			</div>
+	<div class="offer">
+		<p class="offer_warning">
+			* данное лицо не претендует на получение высшего балла, но было бы очень радо такому событию
+		</p>
+		<div class="offer_data">
+			<p class="data_what">Курсовая работа</p>
+			<p class="data_support">При поддержке РТУ МИРЭА</p>
 		</div>
-		<div class="offer">
-			<p class="offer_warning">
-				* данное лицо не претендует на получение высшего балла, но было бы очень радо такому событию
-			</p>
-			<div class="offer_data">
-				<p class="data_what">Курсовая работа</p>
-				<p class="data_support">При поддержке РТУ МИРЭА</p>
-			</div>
-		</div>
-	</footer>
+	</div>
+</footer>
 </div>
 </body>
 </html>

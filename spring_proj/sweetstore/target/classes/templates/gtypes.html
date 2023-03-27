@@ -39,36 +39,40 @@
 			<div class="dao">
 				<div th:switch="${act}">
 					<p class="title" th:case="'upd'">
-						Обновление ингредиентов
+						Обновление категорий
 					</p>
 					<p class="title" th:case="'del'">
-						Удаление ингредиентов
+						Удаление категорий
 					</p>
 					<p class="title" th:case="'ins'">
-						Добавление ингредиентов
+						Добавление категорий
 					</p>
 				</div>
-				<div th:switch="${act}">
-					<form class="dao" method="post" action="gtypes/ins" th:case="'ins'">
-						<input type="text" class="input" name="name" placeholder="категории через запятую">
-						<input type="text" class="input" name="url" placeholder="все url через запятую или один для всех">
-						<input type="hidden" th:name="_csrf" th:value="${_csrf.token}" >
-						<input type="submit" class="button-2" value="Добавить">
-					</form>
-					
-					<form class="dao" method="post" action="gtypes/upd" th:case="'upd'">
-						<input type="text" class="input" name="oldNames" placeholder="старые категории через запятую">
-						<input type="text" class="input" name="newNames" placeholder="новые категории через запятую">
-						<input type="text" class="input" name="urls" placeholder="новые url через запятую">
-						<input type="hidden" th:name="_csrf" th:value="${_csrf.token}" >
-						<input type="submit" class="button-2" value="Изменить">
-					</form>
-					
-					<form class="dao" method="post" action="gtypes/del" th:case="'del'">
-						<input type="text" class="input" name="names" placeholder="категории через запятую">
-						<input type="hidden" th:name="_csrf" th:value="${_csrf.token}" >
-						<input type="submit" class="button-2" value="Удалить">
-					</form>
+			</div>
+			<section class="double-column-container">
+				<div class="dao">
+					<div th:switch="${act}">
+						<form class="dao" method="post" action="gtypes/ins" th:case="'ins'">
+							<input type="text" class="input" name="name" placeholder="категории через запятую">
+							<input type="text" class="input" name="url" placeholder="все url через запятую или один для всех">
+							<input type="hidden" th:name="_csrf" th:value="${_csrf.token}">
+							<input type="submit" class="button-2" value="Добавить">
+						</form>
+						
+						<form class="dao" method="post" action="gtypes/upd" th:case="'upd'">
+							<input type="text" class="input" name="oldNames" placeholder="старые категории через запятую">
+							<input type="text" class="input" name="newNames" placeholder="новые категории через запятую">
+							<input type="text" class="input" name="urls" placeholder="новые url через запятую">
+							<input type="hidden" th:name="_csrf" th:value="${_csrf.token}">
+							<input type="submit" class="button-2" value="Изменить">
+						</form>
+						
+						<form class="dao" method="post" action="gtypes/del" th:case="'del'">
+							<input type="text" class="input" name="names" placeholder="категории через запятую">
+							<input type="hidden" th:name="_csrf" th:value="${_csrf.token}">
+							<input type="submit" class="button-2" value="Удалить">
+						</form>
+					</div>
 				</div>
 				<div class="data-container">
 					<table class="table">
@@ -86,7 +90,7 @@
 						</tr>
 					</table>
 				</div>
-			</div>
+			</section>
 		</section>
 	</div>
 	

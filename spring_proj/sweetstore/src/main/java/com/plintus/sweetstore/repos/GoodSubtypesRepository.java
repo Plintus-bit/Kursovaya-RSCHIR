@@ -16,4 +16,9 @@ public interface GoodSubtypesRepository extends CrudRepository<GoodSubtypes, Int
             nativeQuery = true
     )
     List<GoodSubtypes> findAllByNameIn(Collection<String> names);
+    @Query(
+            value = "SELECT name FROM good_subtypes",
+            nativeQuery = true
+    )
+    List<String> findAllName();
 }

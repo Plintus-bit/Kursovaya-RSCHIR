@@ -2,10 +2,8 @@ package com.plintus.sweetstore.controller;
 
 import com.plintus.sweetstore.domain.OrderGoodStructs;
 import com.plintus.sweetstore.domain.User;
-import com.plintus.sweetstore.service.CartService;
-import com.plintus.sweetstore.service.DeliveryService;
-import com.plintus.sweetstore.service.OrderService;
-import com.plintus.sweetstore.service.UserService;
+import com.plintus.sweetstore.service.*;
+import jdk.jshell.execution.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -74,12 +72,27 @@ public class CartController {
 
     @GetMapping("/order_making")
     public String orderMaking(Model model) {
-        String[] userFullname = userService.getUserFullname();
+        User user = userService.getCurrentAuthUser();
+        String[] userFullname = UtilService.getCustomerArrayFullname(user.getCustFullname());
         model.addAttribute("firstName", userFullname[1]);
         model.addAttribute("lastName", userFullname[0]);
         model.addAttribute("dadName", userFullname[2]);
+        model.addAttribute("phone", user.getPhone());
         model.addAttribute("deliveryTypes", deliveryService.getDeliveryTypes());
         return "order_making";
+    }
+
+    @GetMapping("/order_making/order_is_placed")
+    public String orderPlaced(@RequestParam boolean status,
+                              Model model) {
+        if (status) {
+            model.addAttribute("messageTitle", "Заказ оформлен!");
+            model.addAttribute("message", "Ваш заказ был успешно оформлен! Спасибо за то, что выбрали нас");
+        } else {
+            model.addAttribute("messageTitle", "Произошла ошибка!");
+            model.addAttribute("message", "К сожалению, мы не смогли оформить Ваш заказ. Попробуйте ещё раз позже");
+        }
+        return "order_is_placed";
     }
 
     @PostMapping("/order_making/place_order")
@@ -87,15 +100,39 @@ public class CartController {
                              @RequestParam String firstName,
                              @RequestParam String lastName,
                              @RequestParam String dadName,
+                             @RequestParam String phone,
                              @RequestParam Integer delivery_type,
                              @RequestParam String address) {
-        boolean status = orderService.placeOrder(firstName, lastName, dadName, delivery_type, address);
-        model.addAttribute("status", status);
-        if (status) {
-            model.addAttribute("message", "Заказ успешно оформлен!");
-        } else {
-            model.addAttribute("message", "Произошла ошибка. Приносим извинения :(");
+        boolean hasErrors = false;
+        if (firstName.length() < 1) {
+            hasErrors = true;
+            model.addAttribute("messageFirstName", "Укажите имя");
         }
-        return "order_is_placed";
+        if (lastName.length() < 1) {
+            hasErrors = true;
+            model.addAttribute("messageLastName", "Укажите фамилию");
+        }
+        if (dadName.length() < 1) {
+            hasErrors = true;
+            model.addAttribute("messageDadName", "Укажите отчество");
+        }
+        if (phone.length() < 1) {
+            hasErrors = true;
+            model.addAttribute("messagePhone", "Укажите номер телефона");
+        }
+        if (address.length() < 1) {
+            hasErrors = true;
+            model.addAttribute("messageAddress", "Укажите адрес");
+        }
+        if (hasErrors) {
+            model.addAttribute("firstName", firstName);
+            model.addAttribute("lastName", lastName);
+            model.addAttribute("dadName", dadName);
+            model.addAttribute("phone", phone);
+            model.addAttribute("deliveryTypes", deliveryService.getDeliveryTypes());
+            return "order_making";
+        }
+        boolean status = orderService.placeOrder(firstName, lastName, dadName, phone, delivery_type, address);
+        return "redirect:/cart/order_making/order_is_placed?status=" + status;
     }
 }

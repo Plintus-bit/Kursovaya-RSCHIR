@@ -42,11 +42,13 @@ public class ProfileController {
                                 @RequestParam String username,
                                 @RequestParam String firstName,
                                 @RequestParam String lastName,
-                                @RequestParam String dadName) {
+                                @RequestParam String dadName,
+                                @RequestParam String phone) {
         model.addAttribute("username", username);
         model.addAttribute("firstName", firstName);
         model.addAttribute("lastName", lastName);
         model.addAttribute("dadName", dadName);
+        model.addAttribute("dadName", phone);
         boolean hasErrors = false;
         if (firstName.length() < 1) {
             hasErrors = true;
@@ -60,10 +62,14 @@ public class ProfileController {
             hasErrors = true;
             model.addAttribute("messageDadName", "Укажите отчество");
         }
+        if (phone.length() < 1) {
+            hasErrors = true;
+            model.addAttribute("messagePhone", "Укажите номер телефона");
+        }
         if (hasErrors) {
             return "account";
         }
-        boolean status = userService.updateUser(firstName, lastName, dadName);
+        boolean status = userService.updateUser(firstName, lastName, dadName, phone);
         System.out.println(status);
         if (!status) {
             model.addAttribute("message", "Пользователь с таким никнеймом уже существует");

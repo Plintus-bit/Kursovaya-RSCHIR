@@ -3,94 +3,105 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="https://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/style.css" type="text/css">
-    <title>Мои заказы</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/static/css/style.css" type="text/css">
+	<title>Мои заказы</title>
 </head>
 <body>
 <div class="wrapper">
-    <header>
-        <div class="logo">
-            <img src="/static/img/logo.svg" alt="logo" class="logo">
-        </div>
-        <nav class="nav-mainpage">
-            <a th:href="@{/}" class="nav_link">
-                <div class="link_button">Главная</div>
-            </a>
-            <a th:href="@{/menu}" class="nav_link">
-                <div class="link_button">Товары</div>
-            </a>
-            <a th:href="@{/profile}" class="nav_link">
-                <div class="link_button">Мой профиль</div>
-            </a>
-            <a th:href="@{/cart}" class="nav_link">
-                <div class="link_button">Корзина</div>
-            </a>
-            <form th:action="@{/logout}" method="post">
-                <input type="submit" class="link" value="Выйти"/>
-            </form>
-        </nav>
-    </header>
-    <div class="main">
-        <section class="container">
-            <p class="subtitle" id="orders-info">
-                Всего заказов: <span id="orders-info_count" th:text="${orders_count}"/>
-            </p>
-            <div id="orders-place" th:each="order : ${orders}">
-                <!-- начало заказ -->
-                <a th:href="@{/order/} + ${order.id}">
-                    <div class="order" th:class="'order' + (${order.status == 5} ? 'order_done' : 'order-progress')">
-                        <div class="order_icon">
-                            <img src="/static/img/order.png" alt="Заказ" class="img">
-                        </div>
-                        <div class="order_info">
-                            <p class="descript info_title">
-                                Заказ №<span class="order-id" th:text="${order.id}" />
-                            </p>
-                            <p class="subtitle info_subtitle">
-                                Стоимость: <span class="order-cost" th:text="${final_cost}" />
-                            </p>
-                        </div>
-                        <button class="orders_button">
-                            <img src="/static/img/go.png" alt="Просмотреть" class="img-full">
-                        </button>
-                    </div>
-                </a>
-                <!-- конец заказа -->
-            </div>
-        </section>
-    </div>
-    <footer>
-        <div class="info">
-            <div class="contact-data">
-                <img src="/static/img/logo.svg" alt="logo" class="logo">
-                <div class="contact-data_contacts">
-                    <p class="contacts_contact">Быкова Софья</p>
-                    <p class="contacts_contact">sofa.byk@mail.ru</p>
-                    <p class="contacts_contact">89851*7****</p>
-                </div>
-            </div>
-            <div class="follows">
-                <div class="background_pict">
-                    <img src="/static/img/footer_pict.png" alt="img" class="img">
-                    <div class="pelena"></div>
-                </div>
-                <p class="follows_header">Follow</p>
-                <a href="#" class="follows_link">@camshel</a>
-            </div>
-        </div>
-        <div class="offer">
-            <p class="offer_warning">
-                * данное лицо не претендует на получение высшего балла, но было бы очень радо такому событию
-            </p>
-            <div class="offer_data">
-                <p class="data_what">Курсовая работа</p>
-                <p class="data_support">При поддержке РТУ МИРЭА</p>
-            </div>
-        </div>
-    </footer>
+	<header>
+		<div class="logo">
+			<img src="/static/img/logo.svg" alt="logo" class="logo">
+		</div>
+		<nav class="nav-mainpage">
+			<a th:href="@{/}" class="nav_link">
+				<div class="link_button">Главная</div>
+			</a>
+			<a th:href="@{/menu}" class="nav_link">
+				<div class="link_button">Товары</div>
+			</a>
+			<a th:href="@{/profile}" class="nav_link">
+				<div class="link_button">Мой профиль</div>
+			</a>
+			<a th:href="@{/cart}" class="nav_link">
+				<div class="link_button">Корзина</div>
+			</a>
+			<form th:action="@{/logout}" method="post">
+				<input type="submit" class="link" value="Выйти"/>
+			</form>
+		</nav>
+	</header>
+	<div class="main">
+		<section class="container_center_align"
+		         th:class="'container_center_align ' + ${#lists.size(orders) == 0 ? '' : 'hidden'}">
+			<p class="title">
+				Здесь пусто
+			</p>
+			<p class="link-subtitle">:(</p>
+		</section>
+		
+		<section th:class="'one-column-container ' + ${#lists.size(orders) == 0 ? 'hidden' : ''}">
+			<p class="title">Мои заказы</p>
+			<p class="subtitle" id="orders-info">
+				Всего заказов: <span id="orders-info_count" th:text="${#lists.size(orders)}"></span>
+			</p>
+			<div id="orders-place">
+				<div class="order order-progress"
+				     th:each="order : ${orders}">
+					<div class="order_icon">
+						<img src="/static/img/order.png" alt="Заказ" class="img">
+					</div>
+					<div class="order_info">
+						<p class="descript info_title">
+							Заказ №<span class="order-id" th:text="${order.id}"></span>
+						</p>
+						<div th:class="'mini-block block-status-' + (${order.status.id == lastStatusId} ? 'closed' : 'in-progress') + ' info_subtitle'"
+						     th:text="${order.status.name}">
+						</div>
+						<p class="subtitle info_subtitle">
+							Дата заказа: <br><span class="order-cost" th:text="${order.orderDate}"></span>
+						</p>
+					</div>
+					<a th:href="@{/orders/order_view?id=} + ${order.id}">
+						<button class="orders_button">
+							<img src="/static/img/go.png" alt="Просмотреть" class="img-full">
+						</button>
+					</a>
+				</div>
+			</div>
+		</section>
+	</div>
+	<footer>
+		<div class="info">
+			<div class="contact-data">
+				<img src="/static/img/logo.svg" alt="logo" class="logo">
+				<div class="contact-data_contacts">
+					<p class="contacts_contact">Быкова Софья</p>
+					<p class="contacts_contact">sofa.byk@mail.ru</p>
+					<p class="contacts_contact">89851*7****</p>
+				</div>
+			</div>
+			<div class="follows">
+				<div class="background_pict">
+					<img src="/static/img/footer_pict.png" alt="img" class="img">
+					<div class="pelena"></div>
+				</div>
+				<p class="follows_header">Follow</p>
+				<a href="#" class="follows_link">@camshel</a>
+			</div>
+		</div>
+		<div class="offer">
+			<p class="offer_warning">
+				* данное лицо не претендует на получение высшего балла, но было бы очень радо такому событию
+			</p>
+			<div class="offer_data">
+				<p class="data_what">Курсовая работа</p>
+				<p class="data_support">При поддержке РТУ МИРЭА</p>
+			</div>
+		</div>
+	</footer>
 </div>
 </body>
 </html>

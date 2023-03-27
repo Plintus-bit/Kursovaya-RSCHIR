@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/static/css/style.css" type="text/css">
-	<title>Мои заказы</title>
+	<title>Товар</title>
 </head>
 <body>
 <div class="wrapper">
@@ -33,46 +33,27 @@
 			</form>
 		</nav>
 	</header>
+	
 	<div class="main">
-		<section class="container_center_align"
-		         th:class="'container_center_align ' + ${#lists.size(orders) == 0 ? '' : 'hidden'}">
-			<p class="title">
-				Здесь пусто
-			</p>
-			<p class="link-subtitle">:(</p>
-		</section>
-		
-		<section th:class="'one-column-container ' + ${#lists.size(orders) == 0 ? 'hidden' : ''}">
-			<p class="title">Мои заказы</p>
-			<p class="subtitle" id="orders-info">
-				Всего заказов: <span id="orders-info_count" th:text="${#lists.size(orders)}"></span>
-			</p>
-			<div id="orders-place">
-				<div class="order order-progress"
-				     th:each="order : ${orders}">
-					<div class="order_icon">
-						<img src="/static/img/order.png" alt="Заказ" class="img">
-					</div>
-					<div class="order_info">
-						<p class="descript info_title">
-							Заказ №<span class="order-id" th:text="${order.id}"></span>
-						</p>
-						<div th:class="'mini-block block-status-' + (${order.status.id == lastStatusId} ? 'closed' : 'in-progress') + ' info_subtitle'"
-						     th:text="${order.status.name}">
-						</div>
-						<p class="subtitle info_subtitle">
-							Дата заказа: <br><span class="order-cost" th:text="${order.orderDate}"></span>
-						</p>
-					</div>
-					<a th:href="@{/orders/order_view?id=} + ${order.id}">
-						<button class="orders_button">
-							<img src="/static/img/go.png" alt="Просмотреть" class="img-full">
-						</button>
-					</a>
-				</div>
+		<section class="container" th:switch="${type}">
+			<div th:case="'statuses'" class="params_block">
+				<p class="title">
+					Тип запроса
+				</p>
+				<a th:href="@{/profile/admins/orders/} + ${type} + '?act=upd'">
+					<button class="params_block_button">
+						Обновить
+					</button>
+				</a>
+				<a th:href="@{/profile/admins/orders/} + ${type} + '?act=increase'">
+					<button class="params_block_button">
+						Увеличить
+					</button>
+				</a>
 			</div>
 		</section>
 	</div>
+	
 	<footer>
 		<div class="info">
 			<div class="contact-data">

@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/static/css/style.css" type="text/css">
-	<title>Мои заказы</title>
+	<title>Товар</title>
 </head>
 <body>
 <div class="wrapper">
@@ -33,46 +33,62 @@
 			</form>
 		</nav>
 	</header>
+	
 	<div class="main">
-		<section class="container_center_align"
-		         th:class="'container_center_align ' + ${#lists.size(orders) == 0 ? '' : 'hidden'}">
-			<p class="title">
-				Здесь пусто
-			</p>
-			<p class="link-subtitle">:(</p>
-		</section>
-		
-		<section th:class="'one-column-container ' + ${#lists.size(orders) == 0 ? 'hidden' : ''}">
-			<p class="title">Мои заказы</p>
-			<p class="subtitle" id="orders-info">
-				Всего заказов: <span id="orders-info_count" th:text="${#lists.size(orders)}"></span>
-			</p>
-			<div id="orders-place">
-				<div class="order order-progress"
-				     th:each="order : ${orders}">
-					<div class="order_icon">
-						<img src="/static/img/order.png" alt="Заказ" class="img">
+		<section class="container" th:switch="${act}">
+			<div class="dao" th:case="${act}">
+				<p class="title" th:case="'upd'">
+					Обновление статусов заказов
+				</p>
+				<p class="title" th:case="'increase'">
+					Повышение статусов заказов
+				</p>
+			</div>
+			<div class="double-column-container">
+				<div class="dao" th:switch="${act}">
+					<form class="dao" method="post" action="statuses/upd" th:case="'upd'">
+						<input type="text" class="input" name="ids" placeholder="номера заказов через запятую">
+						<select name="newStatus" class="select">
+							<option th:each="status : ${statuses}"
+							        th:value="${status.id}"
+							        th:text="${status.name}"></option>
+						</select>
+						<input type="hidden" th:name="_csrf" th:value="${_csrf.token}">
+						<input type="submit" class="button-2" value="Добавить">
+					</form>
+					
+					<form class="dao" method="post" action="statuses/increase" th:case="'increase'">
+						<input type="text" class="input" name="ids" placeholder="номера заказов через запятую">
+						<input type="hidden" th:name="_csrf" th:value="${_csrf.token}">
+						<input type="submit" class="button-2" value="Добавить">
+					</form>
+				</div>
+				
+				<div class="dao">
+					<div class="data-container">
+						<table class="table">
+							<thead>
+							<tr>
+								<td>Номер заказа</td>
+								<td>Статус заказа</td>
+								<td>Дата заказа</td>
+								<td>Заказчик</td>
+							</tr>
+							</thead>
+							<tr
+								th:each="order : ${allOrders}">
+								<td th:text="${order.id}">id</td>
+								<td th:text="${order.status.name}">id</td>
+								<td th:text="${order.orderDate}">date</td>
+								<td th:text="${order.customer.custFullname}">name</td>
+							</tr>
+						</table>
 					</div>
-					<div class="order_info">
-						<p class="descript info_title">
-							Заказ №<span class="order-id" th:text="${order.id}"></span>
-						</p>
-						<div th:class="'mini-block block-status-' + (${order.status.id == lastStatusId} ? 'closed' : 'in-progress') + ' info_subtitle'"
-						     th:text="${order.status.name}">
-						</div>
-						<p class="subtitle info_subtitle">
-							Дата заказа: <br><span class="order-cost" th:text="${order.orderDate}"></span>
-						</p>
-					</div>
-					<a th:href="@{/orders/order_view?id=} + ${order.id}">
-						<button class="orders_button">
-							<img src="/static/img/go.png" alt="Просмотреть" class="img-full">
-						</button>
-					</a>
 				</div>
 			</div>
 		</section>
 	</div>
+	
 	<footer>
 		<div class="info">
 			<div class="contact-data">

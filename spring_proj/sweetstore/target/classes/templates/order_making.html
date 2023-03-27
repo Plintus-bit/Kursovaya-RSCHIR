@@ -61,6 +61,14 @@
 						       class="input subtitle" placeholder="Отчество"
 						       th:value="${dadName}" th:readonly="${dadName != ''}">
 					</label>
+					
+					<div th:class="'subtitle-error ' + ${messagePhone == null ? 'hidden' : ''}"
+					     th:text="${messagePhone}"></div>
+					<label class="label subtitle-small" for="phone"> Номер телефона:
+						<input name="phone" type="tel" maxlength="20"
+						       class="input subtitle" placeholder="79998885533"
+						       th:value="${phone}" th:readonly="${phone != null && phone != ''}">
+					</label>
 				</div>
 				<div class="place_order_user_delivery">
 					<p class="subtitle">Способ получения</p>
@@ -71,8 +79,10 @@
 						        th:selected="${type.id == 1}"></option>
 					</select>
 					<p class="subtitle">Адрес доставки</p>
-					<input type="hidden" th:name="_csrf" th:value="${_csrf.token}" />
+					<div th:class="'subtitle-error ' + ${messageAddress == null ? 'hidden' : ''}"
+					     th:text="${messageAddress}"></div>
 					<textarea class="textarea" name="address" placeholder="Адрес"></textarea>
+					<input type="hidden" th:name="_csrf" th:value="${_csrf.token}" />
 				</div>
 				<input type="submit" class="button-2" value="Оформить">
 			</form>

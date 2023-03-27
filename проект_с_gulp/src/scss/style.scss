@@ -14,6 +14,7 @@
 @import "good";
 @import "profile";
 @import "account";
+@import "about_order";
 
 .img, .img-center {
     inline-size: 100%;
@@ -59,6 +60,19 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+}
+
+.container_grid_center_align {
+    position: relative;
+    width: 100%;
+    margin-top: 158px;
+    box-sizing: border-box;
+    padding: 60px;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-auto-columns: 100%;
+    gap: 12px;
+    justify-items: center;
 }
 
 .container-2 {
@@ -135,7 +149,52 @@
         border-color: $color-ok;
     }
 }
+.block-row {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+.photo-mini {
+    width: 120px;
+    height: 120px;
+}
 
+.block-status, .block-status-in-progress, .block-status-closed, .block-status-start {
+    width: fit-content;
+    padding: 7px 20px;
+    border-radius: 100px;
+    font-family: 'AlegreyaSans';
+    text-align: center;
+    justify-self: flex-start;
+}
+
+.block-status-in-progress {
+    color: $color-in-progress;
+    background-color: $color-light-in-progress;
+    border: 2px solid $color-in-progress;
+}
+.block-status-closed {
+    color: $color-ok;
+    background-color: $color-light-ok;
+    border: 2px solid $color-ok;
+}
+.block-status-start {
+    color: $color-warning;
+    background-color: $color-light-warning;
+    border: 2px solid $color-warning;
+}
+.block-address {
+    width: fit-content;
+    height: fit-content;
+    padding: 7px 20px;
+    color: $primary-light;
+}
+.mini-block {
+    padding: 4px 10px;
+}
 .description {
     color: $primary-light;
 }
@@ -231,4 +290,18 @@ form {
     grid-template-columns: 50% 50%;
     grid-auto-columns: 50% 50%;
     gap: 10px;
+}
+
+.one-column-container {
+    position: relative;
+    width: 100%;
+    margin-top: 158px;
+    box-sizing: border-box;
+    padding: 60px;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-auto-columns: 100%;
+    grid-template-rows: max-content;
+    grid-auto-rows: max-content;
+    gap: 7px;
 }

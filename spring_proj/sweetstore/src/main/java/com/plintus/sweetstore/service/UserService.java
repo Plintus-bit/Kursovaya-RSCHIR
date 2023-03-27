@@ -67,15 +67,24 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
-    public boolean updateUser(String firstName,
-                              String lastName, String dadName) {
+    public boolean updateUser(String firstName, String lastName,
+                              String dadName, String phone) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userRep.findByUsername(auth.getName());
         if (user != null) {
-            String newCustFullame = lastName + " " + firstName + " " + dadName;
+            boolean needToSave = false;
+            String newCustFullame = UtilService
+                    .getCustomerFullname(firstName, lastName, dadName);
             if (user.getCustFullname() == null
                     || !Objects.equals(user.getCustFullname(), newCustFullame)) {
                 user.setCustFullname(newCustFullame);
+                needToSave = true;
+            }
+            if (user.getPhone() == null) {
+                user.setPhone(phone);
+                needToSave = true;
+            }
+            if (needToSave) {
                 userRep.save(user);
             }
             return true;
@@ -112,20 +121,18 @@ public class UserService implements UserDetailsService {
         userRep.save(user);
     }
 
-    private String[] getUserFullnameFromString(String fullname) {
-        if (fullname == null) {
-            String[] result = new String[3];
-            result[0] = "";
-            result[1] = "";
-            result[2] = "";
-            return result;
-        }
-        return fullname.split(" ");
+    public String[] getUserFullname() {
+        User user = getCurrentAuthUser();
+        return UtilService.getCustomerArrayFullname(user.getCustFullname());
     }
 
-    public String[] getUserFullname() {
+    public User getCurrentAuthUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userRep.findByUsername(auth.getName());
-        return getUserFullnameFromString(user.getCustFullname());
+        return userRep.findByUsername(auth.getName());
+    }
+
+    public String getUserPhone() {
+        User user = getCurrentAuthUser();
+        return user.getPhone();
     }
 }
