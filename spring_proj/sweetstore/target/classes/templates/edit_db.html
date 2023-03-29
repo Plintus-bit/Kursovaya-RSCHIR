@@ -45,7 +45,8 @@
 						Добавить
 					</button>
 				</a>
-				<a th:href="@{/profile/admins/} + ${type} + '?act=upd'">
+				<a th:href="@{/profile/admins/} + ${type} + '?act=upd'"
+				   th:class="${type == 'ings_in_goods' ? 'hidden' : ''}">
 					<button class="params_block_button">
 						Обновить
 					</button>

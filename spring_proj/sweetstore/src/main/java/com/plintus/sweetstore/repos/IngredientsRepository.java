@@ -35,4 +35,9 @@ public interface IngredientsRepository extends CrudRepository<Ingredients, Integ
             nativeQuery = true
     )
     public List<Ingredients> findAllByIdIn(Collection<Integer> ids);
+    @Query(
+            value = "SELECT * FROM ingredients",
+            nativeQuery = true
+    )
+    List<Ingredients> findAllIngs();
 }

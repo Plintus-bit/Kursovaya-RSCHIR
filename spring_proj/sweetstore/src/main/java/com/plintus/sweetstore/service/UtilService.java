@@ -24,6 +24,16 @@ public class UtilService {
         return resultArray;
     }
 
+    public static List<Float> getFloatListFromStringList(List<String> array) {
+        List<Float> resultArray = new ArrayList<>();
+        for (String item : array) {
+            if (!Objects.equals(item, "")) {
+                resultArray.add(Float.parseFloat(item));
+            }
+        }
+        return resultArray;
+    }
+
     public static List<String> getStringListFromStringData(String data, String separator) {
         List<String> resultData = new ArrayList<>();
         if (data.contains(separator)) {

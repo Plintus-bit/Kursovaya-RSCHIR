@@ -270,4 +270,161 @@ public class GoodsService {
         }
     }
 
+    public Iterable<Nutritions> getAllKBJS() {
+        return nutrRep.findAll();
+    }
+
+    public void insertNutrition(String articles, String caloric,
+                                String fats, String proteins,
+                                String diet_fiber, String carbhyd,
+                                String water) {
+        List<Integer> articlesList = UtilService.getIntegerListFromStringList(
+                UtilService.getStringListFromStringData(articles));
+        List<Float> caloricList = UtilService.getFloatListFromStringList(
+                UtilService.getStringListFromStringData(caloric));
+        List<Float> fatsList = UtilService.getFloatListFromStringList(
+                UtilService.getStringListFromStringData(fats));
+        List<Float> proteinsList = UtilService.getFloatListFromStringList(
+                UtilService.getStringListFromStringData(proteins));
+        List<Float> dietFiberList = UtilService.getFloatListFromStringList(
+                UtilService.getStringListFromStringData(diet_fiber));
+        List<Float> carbhydList = UtilService.getFloatListFromStringList(
+                UtilService.getStringListFromStringData(carbhyd));
+        List<Float> waterList = UtilService.getFloatListFromStringList(
+                UtilService.getStringListFromStringData(water));
+
+        boolean hasOneCaloric = caloricList.size() == 1;
+        boolean hasOneProteins = proteinsList.size() == 1;
+        boolean hasOneFats = fatsList.size() == 1;
+        boolean hasOneCarbhyd = carbhydList.size() == 1;
+        boolean hasOneDietFiber = dietFiberList.size() == 1;
+        boolean hasOneWater = waterList.size() == 1;
+
+        int maxSize = articlesList.size();
+
+        boolean needToInsert = maxSize == caloricList.size() || hasOneCaloric;
+        needToInsert = needToInsert && (maxSize == fatsList.size() || hasOneFats);
+        needToInsert = needToInsert && (maxSize == proteinsList.size() || hasOneProteins);
+        needToInsert = needToInsert && (maxSize == dietFiberList.size() || hasOneDietFiber);
+        needToInsert = needToInsert && (maxSize == waterList.size() || hasOneWater);
+        needToInsert = needToInsert && (maxSize == carbhydList.size() || hasOneCarbhyd);
+
+        if (needToInsert) {
+            List<Integer> allGoodIdInNutr = nutrRep.findAllGoodId();
+            List<Integer> allInsertedGoodIds = goodRep.findAllIdByArticleIn(articlesList);
+            List<Integer> allGoodIds = goodRep.findAllId();
+
+            List<Nutritions> willInsertedNutrs = new ArrayList<>();
+            for (int i = 0; i < allInsertedGoodIds.size(); ++i) {
+                Integer tempId = allInsertedGoodIds.get(i);
+                if (!allGoodIdInNutr.contains(tempId)
+                        && allGoodIds.contains(tempId)) {
+                    Nutritions tempNutr = new Nutritions();
+                    tempNutr.setGoodId(goodRep.findById(tempId).get());
+                    tempNutr.setCaloric(hasOneCaloric ? caloricList.get(0) : caloricList.get(i));
+                    tempNutr.setFats(hasOneFats ? fatsList.get(0) : fatsList.get(i));
+                    tempNutr.setProteins(hasOneProteins ? proteinsList.get(0) : proteinsList.get(i));
+                    tempNutr.setDiet_fiber(hasOneDietFiber ? dietFiberList.get(0) : dietFiberList.get(i));
+                    tempNutr.setWater(hasOneWater ? waterList.get(0) : waterList.get(i));
+                    tempNutr.setCarbhyd(hasOneCarbhyd ? carbhydList.get(0) : carbhydList.get(i));
+                    willInsertedNutrs.add(tempNutr);
+                }
+            }
+            nutrRep.saveAll(willInsertedNutrs);
+        }
+    }
+
+    public void updateNutrition(String articlesToUpd, String caloric,
+                                String fats, String proteins,
+                                String dietFiber, String carbhyd,
+                                String water) {
+        List<Integer> articlesList = UtilService.getIntegerListFromStringList(
+                UtilService.getStringListFromStringData(articlesToUpd));
+        List<Float> caloricList = UtilService.getFloatListFromStringList(
+                UtilService.getStringListFromStringData(caloric));
+        List<Float> fatsList = UtilService.getFloatListFromStringList(
+                UtilService.getStringListFromStringData(fats));
+        List<Float> proteinsList = UtilService.getFloatListFromStringList(
+                UtilService.getStringListFromStringData(proteins));
+        List<Float> dietFiberList = UtilService.getFloatListFromStringList(
+                UtilService.getStringListFromStringData(dietFiber));
+        List<Float> carbhydList = UtilService.getFloatListFromStringList(
+                UtilService.getStringListFromStringData(carbhyd));
+        List<Float> waterList = UtilService.getFloatListFromStringList(
+                UtilService.getStringListFromStringData(water));
+
+        boolean hasCaloric = caloricList.size() > 0;
+        boolean hasProteins = proteinsList.size() > 0;
+        boolean hasFats = fatsList.size() > 0;
+        boolean hasCarbhyd = carbhydList.size() > 0;
+        boolean hasDietFiber = dietFiberList.size() > 0;
+        boolean hasWater = waterList.size() > 0;
+
+        boolean hasOneCaloric = caloricList.size() == 1;
+        boolean hasOneProteins = proteinsList.size() == 1;
+        boolean hasOneFats = fatsList.size() == 1;
+        boolean hasOneCarbhyd = carbhydList.size() == 1;
+        boolean hasOneDietFiber = dietFiberList.size() == 1;
+        boolean hasOneWater = waterList.size() == 1;
+
+        int maxSize = articlesList.size();
+
+        boolean needToUpdate = maxSize == caloricList.size() || !hasCaloric || hasOneCaloric;
+        needToUpdate = needToUpdate && (maxSize == fatsList.size() || !hasFats || hasOneFats);
+        needToUpdate = needToUpdate && (maxSize == proteinsList.size() || !hasProteins || hasOneProteins);
+        needToUpdate = needToUpdate && (maxSize == dietFiberList.size() || !hasDietFiber || hasOneDietFiber);
+        needToUpdate = needToUpdate && (maxSize == waterList.size() || !hasWater || hasOneWater);
+        needToUpdate = needToUpdate && (maxSize == carbhydList.size() || !hasCarbhyd || hasOneCarbhyd);
+
+        if (needToUpdate) {
+            List<Integer> goodIdsInNutr = goodRep.findAllIdByArticleIn(articlesList);
+            List<Nutritions> willUpdatedNutrs = nutrRep.findAllByGoodIdIn(goodIdsInNutr);
+            for (int i = 0; i < willUpdatedNutrs.size(); ++i) {
+                Nutritions tempNutr = willUpdatedNutrs.get(i);
+                if (hasOneCaloric) {
+                    tempNutr.setCaloric(caloricList.get(0));
+                } else if (hasCaloric) {
+                    tempNutr.setCaloric(caloricList.get(i));
+                }
+                if (hasOneCarbhyd) {
+                    tempNutr.setCarbhyd(carbhydList.get(0));
+                } else if (hasCarbhyd) {
+                    tempNutr.setCarbhyd(carbhydList.get(i));
+                }
+                if (hasOneFats) {
+                    tempNutr.setFats(fatsList.get(0));
+                }
+                else if (hasFats) {
+                    tempNutr.setFats(fatsList.get(i));
+                }
+                if (hasOneDietFiber) {
+                    tempNutr.setDiet_fiber(dietFiberList.get(0));
+                } else if (hasDietFiber) {
+                    tempNutr.setDiet_fiber(dietFiberList.get(i));
+                }
+                if (hasOneProteins) {
+                    tempNutr.setProteins(proteinsList.get(0));
+                } else if (hasProteins) {
+                    tempNutr.setProteins(proteinsList.get(i));
+                }
+                if (hasOneWater) {
+                    tempNutr.setWater(waterList.get(0));
+                } else if (hasWater) {
+                    tempNutr.setWater(waterList.get(i));
+                }
+                willUpdatedNutrs.set(i, tempNutr);
+            }
+            nutrRep.saveAll(willUpdatedNutrs);
+        }
+    }
+
+    public void deleteNutrition(String articles) {
+        List<Integer> articlesList = UtilService.getIntegerListFromStringList(
+                UtilService.getStringListFromStringData(articles));
+        List<Integer> idsToDelete = goodRep.findAllIdByArticleIn(articlesList);
+        List<Nutritions> willDeleted = nutrRep.findAllByGoodIdIn(idsToDelete);
+        if (willDeleted.size() > 0) {
+            nutrRep.deleteAll(willDeleted);
+        }
+    }
 }

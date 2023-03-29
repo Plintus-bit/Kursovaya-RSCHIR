@@ -39,7 +39,8 @@
 					<img th:src="${good.url}" alt="Фото товара" class="img-center">
 				</div>
 				<div class="good_container_info">
-					<p class="title" th:text="${good.name}">Название</p>
+					<p class="title" th:text="${good.name}">Название
+					<p class="subtitle">Артикул: <span th:text="${good.article}">артикул</span></p>
 					<p class="description" th:text="${good.descript}">
 						Описание
 					</p>
@@ -76,7 +77,7 @@
 						</tr>
 					</table>
 					<p class="subtitle">
-						Состав: <span th:text="${ings}">lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam doloribus quas perspiciatis nihil dignissimos? Sed, dolor!</span>
+						Состав: <span th:text="${ings}">состав</span>
 					</p>
 					<div class="activities_added">
 						<div class="added_controls">

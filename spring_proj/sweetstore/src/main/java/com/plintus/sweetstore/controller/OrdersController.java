@@ -21,7 +21,9 @@ public class OrdersController {
     private OrderService orderService;
     @GetMapping
     public String orders(Model model) {
-        model.addAttribute("orders", orderService.getUserOrders());
+        model.addAttribute("orders", orderService.getOrdersSortedByStatusAndDate(
+                orderService.getUserOrders()
+        ));
         model.addAttribute("lastStatusId", orderService.getLastOrderStatusId());
         return "orders";
     }

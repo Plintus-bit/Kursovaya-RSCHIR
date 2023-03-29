@@ -13,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -136,5 +137,36 @@ public class OrderService {
             finalCost += curOGS.getCount() * curOGS.getGoodId().getCost();
         }
         return finalCost;
+    }
+
+    public List<UserOrders> getOrdersSortedByStatusAndDate(List<UserOrders> orders) {
+        Integer lastOrderStatusId = getLastOrderStatusId();
+        orders.sort(new Comparator<UserOrders>() {
+            @Override
+            public int compare(UserOrders o1, UserOrders o2) {
+                boolean resBefore = o1.getOrderDate().before(o2.getOrderDate());
+                boolean resAfter = o1.getOrderDate().after(o2.getOrderDate());
+                if (resBefore) {
+                    return 1;
+                } else if (resAfter) {
+                    return -1;
+                }
+                return 0;
+            }
+        });
+        orders.sort(new Comparator<UserOrders>() {
+            @Override
+            public int compare(UserOrders o1, UserOrders o2) {
+                int o1St = Objects.equals(o1.getStatus().getId(), lastOrderStatusId) ? 1 : 0;
+                int o2St = Objects.equals(o2.getStatus().getId(), lastOrderStatusId) ? 1 : 0;
+                if (o1St > o2St) {
+                    return 1;
+                } else if (o1St < o2St) {
+                    return -1;
+                }
+                return 0;
+            }
+        });
+        return orders;
     }
 }

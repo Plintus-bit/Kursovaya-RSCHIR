@@ -80,6 +80,15 @@ public class AdminsController {
                 model.addAttribute("all", goodsService.getAllGoods());
                 model.addAttribute("allSubtypes", typesService.getAllSubtypes());
                 break;
+            case "ings_in_goods":
+                model.addAttribute("all", ingsService.getAllIngsInGoods());
+                model.addAttribute("ings", ingsService.getAllIngredients());
+                model.addAttribute("goods", goodsService.getAllGoods());
+                break;
+            case "kbjs":
+                model.addAttribute("all", goodsService.getAllKBJS());
+                model.addAttribute("goods", goodsService.getAllGoods());
+                break;
         }
         return type;
     }
@@ -209,6 +218,51 @@ public class AdminsController {
     public String goodsDel(@RequestParam String article) {
         goodsService.deleteGoods(article);
         return "redirect:/profile/admins/goods?act=del";
+    }
+
+    @PostMapping("kbjs/ins")
+    public String kbjsIns(@RequestParam String article,
+                          @RequestParam String caloric,
+                          @RequestParam String proteins,
+                          @RequestParam String fats,
+                          @RequestParam String carbhyd,
+                          @RequestParam String diet_fiber,
+                          @RequestParam String water) {
+        goodsService.insertNutrition(article, caloric,
+                fats, proteins, diet_fiber, carbhyd, water);
+        return "redirect:/profile/admins/kbjs?act=ins";
+    }
+
+    @PostMapping("kbjs/upd")
+    public String kbjsUpd(@RequestParam String article,
+                          @RequestParam String caloric,
+                          @RequestParam String proteins,
+                          @RequestParam String fats,
+                          @RequestParam String carbhyd,
+                          @RequestParam String diet_fiber,
+                          @RequestParam String water) {
+        goodsService.updateNutrition(article, caloric,
+                fats, proteins, diet_fiber, carbhyd, water);
+        return "redirect:/profile/admins/kbjs?act=upd";
+    }
+
+    @PostMapping("kbjs/del")
+    public String kbjsDel(@RequestParam String article) {
+        goodsService.deleteNutrition(article);
+        return "redirect:/profile/admins/kbjs?act=del";
+    }
+
+    @PostMapping("ings_in_goods/ins")
+    public String ingsInGoodsIns(@RequestParam String article,
+                                 @RequestParam String ings) {
+        ingsService.insertIngsStructs(article, ings);
+        return "redirect:/profile/admins/ings_in_goods?act=ins";
+    }
+    @PostMapping("ings_in_goods/del")
+    public String ingsInGoodsDel(@RequestParam String article,
+                                 @RequestParam String ings) {
+        ingsService.deleteIngsStructs(article, ings);
+        return "redirect:/profile/admins/ings_in_goods?act=del";
     }
 
 }

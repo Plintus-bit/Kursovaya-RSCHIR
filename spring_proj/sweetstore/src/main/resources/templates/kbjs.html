@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/static/css/style.css" type="text/css">
+	<title>КБЖУ товаров</title>
+</head>
+<body>
+<div class="wrapper">
+	<header>
+		<div class="logo">
+			<img src="/static/img/logo.svg" alt="logo" class="logo">
+		</div>
+		<nav class="nav-mainpage">
+			<a th:href="@{/}" class="nav_link">
+				<div class="link_button">Главная</div>
+			</a>
+			<a th:href="@{/menu}" class="nav_link">
+				<div class="link_button">Товары</div>
+			</a>
+			<a th:href="@{/profile}" class="nav_link">
+				<div class="link_button">Мой профиль</div>
+			</a>
+			<a th:href="@{/cart}" class="nav_link">
+				<div class="link_button">Корзина</div>
+			</a>
+			<form th:action="@{/logout}" method="post">
+				<input type="submit" class="link" value="Выйти"/>
+			</form>
+		</nav>
+	</header>
+	
+	<div class="main">
+		<section class="container">
+			<div class="dao">
+				<div th:switch="${act}">
+					<p class="title" th:case="'upd'">
+						Обновление КБЖУ товаров
+					</p>
+					<p class="title" th:case="'del'">
+						Удаление КБЖУ товаров
+					</p>
+					<p class="title" th:case="'ins'">
+						Добавление КБЖУ товаров
+					</p>
+				</div>
+			</div>
+			<div class="double-column-container">
+				<div class="dao">
+					<div th:switch="${act}">
+						<form class="dao" method="post" action="kbjs/ins" th:case="'ins'">
+							<p class="subtitle">Все ДРОБНЫЕ ЗНАЧЕНИЯ писать через ТОЧКУ (3.12,54.01)</p>
+							<input type="text" class="input" name="article"
+							       placeholder="артикулы товаров через запятую">
+							<input type="text" class="input" name="caloric"
+							       placeholder="калорийность через запятую или одна на все">
+							<input type="text" class="input" name="proteins"
+							       placeholder="содержание белка через запятую или одно на все">
+							<input type="text" class="input" name="fats"
+							       placeholder="содержание жиров через запятую или одно на все">
+							<input type="text" class="input" name="carbhyd"
+							       placeholder="содержание углеводов через запятую или одно на все">
+							<input type="text" class="input" name="diet_fiber"
+							       placeholder="содержание пищевых волокон через запятую или одно на все">
+							<input type="text" class="input" name="water"
+							       placeholder="содержание воды через запятую или одно на все">
+							<input type="hidden" th:name="_csrf" th:value="${_csrf.token}">
+							<input type="submit" class="button-2" value="Добавить">
+						</form>
+						
+						<form class="dao" method="post" action="kbjs/upd" th:case="'upd'">
+							<p class="subtitle">Все ДРОБНЫЕ ЗНАЧЕНИЯ писать через ТОЧКУ (3.12,54.01)</p>
+							<input type="text" class="input" name="article"
+							       placeholder="артикулы товаров через запятую">
+							<input type="text" class="input" name="caloric"
+							       placeholder="калорийность через запятую или одна на все">
+							<input type="text" class="input" name="proteins"
+							       placeholder="содержание белка через запятую или одно на все">
+							<input type="text" class="input" name="fats"
+							       placeholder="содержание жиров через запятую или одно на все">
+							<input type="text" class="input" name="carbhyd"
+							       placeholder="содержание углеводов через запятую или одно на все">
+							<input type="text" class="input" name="diet_fiber"
+							       placeholder="содержание пищевых волокон через запятую или одно на все">
+							<input type="text" class="input" name="water"
+							       placeholder="содержание воды через запятую или одно на все">
+							<input type="hidden" th:name="_csrf" th:value="${_csrf.token}">
+							<input type="submit" class="button-2" value="Изменить">
+						</form>
+						
+						<form class="dao" method="post" action="kbjs/del" th:case="'del'">
+							<input type="text" class="input" name="article"
+							       placeholder="артикулы товаров через запятую">
+							<input type="hidden" th:name="_csrf" th:value="${_csrf.token}">
+							<input type="submit" class="button-2" value="Удалить">
+						</form>
+					</div>
+				</div>
+				
+				<div class="dao-small">
+					<div class="data-container">
+						<table class="table">
+							<thead>
+							<tr>
+								<td>Артикул товара</td>
+								<td>Калорийность</td>
+								<td>Белки</td>
+								<td>Жиры</td>
+								<td>Углеводы</td>
+								<td>Пищевые волокна</td>
+								<td>Вода</td>
+							</tr>
+							</thead>
+							<tr
+								th:each="item : ${all}">
+								<td th:text="${item.goodId.article}">article</td>
+								<td th:text="${item.caloric}">caloric</td>
+								<td th:text="${item.proteins}">proteins</td>
+								<td th:text="${item.fats}">fats</td>
+								<td th:text="${item.carbhyd}">carbhyd</td>
+								<td th:text="${item.diet_fiber}">diet_fiber</td>
+								<td th:text="${item.water}">water</td>
+							</tr>
+						</table>
+					</div>
+					
+					<div class="data-container">
+						<table class="table">
+							<thead>
+							<tr>
+								<td>Артикул</td>
+								<td>Название</td>
+								<td>Описание</td>
+								<td>Подкатегория</td>
+								<td>Цена</td>
+								<td>Количество</td>
+								<td>URL</td>
+							</tr>
+							</thead>
+							<tr
+								th:each="item : ${goods}">
+								<td th:text="${item.article}">id</td>
+								<td th:text="${item.name}">name</td>
+								<td th:text="${item.descript}">descript</td>
+								<td th:text="${item.subtype.name}">subtype</td>
+								<td th:text="${item.cost}">cost</td>
+								<td th:text="${item.count}">count</td>
+								<td th:text="${item.url}">url</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	
+	<footer>
+		<div class="info">
+			<div class="contact-data">
+				<img src="/static/img/logo.svg" alt="logo" class="logo">
+				<div class="contact-data_contacts">
+					<p class="contacts_contact">Быкова Софья</p>
+					<p class="contacts_contact">sofa.byk@mail.ru</p>
+					<p class="contacts_contact">89851*7****</p>
+				</div>
+			</div>
+			<div class="follows">
+				<div class="background_pict">
+					<img src="/static/img/footer_pict.png" alt="img" class="img">
+					<div class="pelena"></div>
+				</div>
+				<p class="follows_header">Follow</p>
+				<a href="#" class="follows_link">@camshel</a>
+			</div>
+		</div>
+		<div class="offer">
+			<p class="offer_warning">
+				* данное лицо не претендует на получение высшего балла, но было бы очень радо такому событию
+			</p>
+			<div class="offer_data">
+				<p class="data_what">Курсовая работа</p>
+				<p class="data_support">При поддержке РТУ МИРЭА</p>
+			</div>
+		</div>
+	</footer>
+</div>
+</body>
+</html>
