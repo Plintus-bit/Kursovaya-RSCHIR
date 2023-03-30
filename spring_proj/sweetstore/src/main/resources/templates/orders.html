@@ -33,16 +33,16 @@
 			</form>
 		</nav>
 	</header>
-	<div class="main">
-		<section class="container_center_align"
-		         th:class="'container_center_align ' + ${#lists.size(orders) == 0 ? '' : 'hidden'}">
+	<div class="main" th:switch="${isEmpty}">
+		<section th:case="true" class="container_center_align">
 			<p class="title">
 				Здесь пусто
 			</p>
 			<p class="link-subtitle">:(</p>
 		</section>
 		
-		<section th:class="'one-column-container ' + ${#lists.size(orders) == 0 ? 'hidden' : ''}">
+		<section th:case="false"
+		         class="one-column-container">
 			<p class="title">Мои заказы</p>
 			<p class="subtitle" id="orders-info">
 				Всего заказов: <span id="orders-info_count" th:text="${#lists.size(orders)}"></span>

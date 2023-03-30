@@ -31,4 +31,8 @@ public class DeliveryService {
         order.setPrM(orderPrMethod);
         return order;
     }
+
+    public void deletePrM(ProductMethods prM) {
+        PMRep.delete(prM);
+    }
 }

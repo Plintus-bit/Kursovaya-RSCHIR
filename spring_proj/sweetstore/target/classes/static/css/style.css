@@ -1261,5 +1261,10 @@ form a {
   grid-auto-columns: 100%;
   grid-template-rows: max-content;
   grid-auto-rows: max-content;
+  justify-items: flex-start;
   gap: 7px;
+}
+
+.one-column-container .button-2 {
+    margin-top: 20px;
 }

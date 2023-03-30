@@ -169,4 +169,16 @@ public class OrderService {
         });
         return orders;
     }
+
+    public boolean cancelOrder(Integer id) {
+        List<OrderGoodStructs> ogsToDelete = OGSRep.findAllByOrderId(id);
+        UserOrders willDelete = UORep.findById(id).get();
+        if (!goodsService.updateGoodsCountToMore(ogsToDelete)) {
+            return false;
+        }
+        OGSRep.deleteAll(ogsToDelete);
+        UORep.delete(willDelete);
+        deliveryService.deletePrM(willDelete.getPrM());
+        return true;
+    }
 }

@@ -68,6 +68,10 @@
 				<p class="subtitle">Итоговая цена: </p>
 				<p class="subtitle-pr-light"><span th:text="${finalCost}">Итоговая цена</span> р.</p>
 			</div>
+			<form th:action="'drop_order/' + ${order.id}"
+			      th:class="'row-form ' + ${statusId == lastStatusId ? 'hidden' : ''}">
+				<button type="submit" class="button-2">Отменить заказ</button>
+			</form>
 		</section>
 	</div>
 	<footer>

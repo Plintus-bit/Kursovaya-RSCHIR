@@ -88,6 +88,7 @@
 							</tr>
 						</table>
 					</div>
+					
 					<div class="data-container">
 						<table class="table">
 							<thead>
@@ -98,6 +99,32 @@
 							<tr
 								th:each="item : ${ings}">
 								<td th:text="${item.name}">name</td>
+							</tr>
+						</table>
+					</div>
+					
+					<div class="data-container">
+						<table class="table">
+							<thead>
+							<tr>
+								<td>Артикул</td>
+								<td>Название</td>
+								<td>Описание</td>
+								<td>Подкатегория</td>
+								<td>Цена</td>
+								<td>Количество</td>
+								<td>URL</td>
+							</tr>
+							</thead>
+							<tr
+								th:each="item : ${goods}">
+								<td th:text="${item.article}">id</td>
+								<td th:text="${item.name}">name</td>
+								<td th:text="${item.descript}">descript</td>
+								<td th:text="${item.subtype.name}">subtype</td>
+								<td th:text="${item.cost}">cost</td>
+								<td th:text="${item.count}">count</td>
+								<td th:text="${item.url}">url</td>
 							</tr>
 						</table>
 					</div>

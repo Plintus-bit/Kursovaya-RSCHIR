@@ -11,10 +11,10 @@ public class UserOrders {
     private Integer id;
     @Temporal(TemporalType.TIMESTAMP)
     private Date orderDate;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(referencedColumnName = "id")
     private User customer;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinColumn(referencedColumnName = "id")
     private ProductMethods prM;
     @ManyToOne(fetch = FetchType.EAGER)

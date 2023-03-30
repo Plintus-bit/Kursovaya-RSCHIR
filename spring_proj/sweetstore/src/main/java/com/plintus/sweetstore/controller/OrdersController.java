@@ -21,9 +21,11 @@ public class OrdersController {
     private OrderService orderService;
     @GetMapping
     public String orders(Model model) {
-        model.addAttribute("orders", orderService.getOrdersSortedByStatusAndDate(
-                orderService.getUserOrders()
-        ));
+        List<UserOrders> orders = orderService.getOrdersSortedByStatusAndDate(
+                orderService.getUserOrders());
+        boolean isEmpty = orders.size() == 0;
+        model.addAttribute("isEmpty", isEmpty);
+        model.addAttribute("orders", orders);
         model.addAttribute("lastStatusId", orderService.getLastOrderStatusId());
         return "orders";
     }
@@ -40,5 +42,20 @@ public class OrdersController {
         model.addAttribute("ogs", ogs);
         model.addAttribute("finalCost", orderService.getOrderFinalCost(ogs));
         return "order_view";
+    }
+
+    @GetMapping("/drop_order/{id}")
+    public String dropOrder(@PathVariable Integer id,
+                            Model model) {
+        boolean isCanceled = orderService.cancelOrder(id);
+        if (isCanceled) {
+            model.addAttribute("messageTitle", "Заказ успешно отменён!");
+            model.addAttribute("message", "Очень жаль, что вы передумали :(");
+        } else {
+            model.addAttribute("messageTitle", "Что-то пошло не так");
+            model.addAttribute("message", "К сожалению, " +
+                    "при отмене заказа произошёл сбой. Попробуйте ещё раз позже");
+        }
+        return "order_is_placed";
     }
 }

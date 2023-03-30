@@ -235,6 +235,20 @@ public class GoodsService {
         return true;
     }
 
+    public boolean updateGoodsCountToMore(List<OrderGoodStructs> ogsToDelete) {
+        List<Goods> willUpdated = new ArrayList<>();
+        for (OrderGoodStructs curOGS : ogsToDelete) {
+            Goods curGood = curOGS.getGoodId();
+            curGood.setCount(curGood.getCount() + curOGS.getCount());
+            willUpdated.add(curGood);
+        }
+        if (willUpdated.size() == 0) {
+            return false;
+        }
+        goodRep.saveAll(willUpdated);
+        return true;
+    }
+
     public void checkGoodsInCarts(List<Goods> wasUpdatedGoods, Integer orderIdToNotChange) {
         List<Integer> goodIds = new ArrayList<>();
         List<Integer> orderIds = UORep.findAllIdByStatusAndNotId(1, orderIdToNotChange);
